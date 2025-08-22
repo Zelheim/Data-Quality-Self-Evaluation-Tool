@@ -1,0 +1,38 @@
+<nav role="navigation" id="wb-bc" class="" property="breadcrumb">
+	<div class="container">
+		<section aria-hidden="false" class="wb-overlay modal-content overlay-def wb-bar-t" id="info-bnr">
+			<h2 class="wb-inv">Experimental page</h2>
+			<p><a href="#info" id="info-link">This product is experimental in nature.</a></p>
+			<button class="mfp-close overlay-close" title="Close overlay" type="button">×<span class="wb-inv"> Close overlay</span></button>
+		</section>
+		<section class="alert alert-info wb-inview show-none bar-demo mrgn-tp-md mrgn-bttm-sm" data-inview="info-bnr" id="info">
+			<h3 class="wb-inv">We'd like to know...</h3>
+			<p style="padding-top: 1em;">We are currently reviewing the content of this table and would like to know more about your interest in these data. Please provide us with your <a id="feedback" href="https://www.statcan.gc.ca/eng/contact/feedback">feedback</a>.</p>
+		</section>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				var pid = $("[rel='canonical']").attr("href").split("?");
+				var pidhref = $("#feedback").attr("href") + "?" + pid[1];
+				$("#feedback").attr("href", pidhref);
+				var infohref = $("[rel='canonical']").attr("href") + "#info";
+				$("#info-link").attr("href", infohref);
+			});
+		</script>
+		<style>
+			#info-bnr a {
+				color: #000;
+				display: block;
+				font-weight: 700;
+				padding: .75em 44px;
+				text-decoration: none;
+			}
+			#info-bnr a:hover { text-decoration: underline; }
+			#info-bnr p {
+				margin: 0;
+				text-align: center;
+			}
+			#info-bnr { background-color: #d9edf7; }
+			#info-bnr .overlay-close { color: #000; }
+			#info a { padding: 0; }
+		</style>
+		<div class="row">

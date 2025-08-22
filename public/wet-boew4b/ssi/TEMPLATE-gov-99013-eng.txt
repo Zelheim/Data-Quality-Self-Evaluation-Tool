@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+  	 wet-boew.github.io/wet-boew/License-en.html / wet-boew.github.io/wet-boew/Licence-fr.html -->
+<link rel="schema.dc" href="http://purl.org/dc/elements/1.1/" />
+<link rel="schema.dcterms" href="http://purl.org/dc/terms/" />
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+
+<title>PAGE TITLE GOES HERE</title>
+<meta name="description" content="Description" />
+<meta name="keywords" content="" />
+<meta name="dcterms.creator" content="Government of Canada, Statistics Canada" />
+<meta name="dcterms.title" content="PAGE TITLE GOES HERE" />
+<meta name="dcterms.issued" title="W3CDTF" content="" />
+<meta name="dcterms.modified" title="W3CDTF" content="" />
+<meta name="dcterms.subject" title="gcstc" content="none" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+
+<!--#include VIRTUAL="/wet-boew4b/ssi/css.htm"-->
+<!-- CustomScriptsCSSEnd -->
+</head>
+
+<body vocab="http://schema.org/" typeof="WebPage">
+<!--#include VIRTUAL="/wet-boew4b/ssi/menu-before-eng.htm"-->/cgi-bin/change.cgi<!--#include VIRTUAL="/wet-boew4b/ssi/menu-after-gov-stats-eng.htm"-->
+<!--#include VIRTUAL="/wet-boew4b/ssi/99013-eng.htm"-->
+
+<!-- Breadcrumb trail -->
+<ol class="breadcrumb">
+	<li><a href="https://www.statcan.gc.ca/eng/start">Home</a></li>
+</ol>
+<!--#include VIRTUAL="/wet-boew4b/ssi/after-breadcrumb.htm"-->
+
+<section>
+<h1 property="name" id="wb-cont">PAGE TITLE GOES HERE</h1>
+
+	 <!-- ========== CONTENT GOES HERE ========== -->
+
+</section>
+
+<!--#include virtual="/wet-boew4b/ssi/date-start-eng.htm"--><!--#config timefmt="%Y-%m-%d" --><!--#echo var="LAST_MODIFIED"--><!--#include virtual="/wet-boew4b/ssi/date-end-eng.htm"-->
+<!--#include virtual="/wet-boew4b/ssi/footer-eng.htm"-->
+
+<!-- CustomScriptsJSStart -->
+<!-- CustomScriptsJSEnd -->
+</body>
+</html>
