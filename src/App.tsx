@@ -21,27 +21,37 @@ function App() {
   // Update document language attribute when language changes
   useEffect(() => {
     document.documentElement.lang = i18n.language
-    document.title = i18n.language === 'en' ? 'Data Suitability Assessment Tool' : 'Outil d\'évaluation de l\'adéquation des données'
+    document.title = i18n.language === 'en' ? 'Data Suitability Assessment Tool - Canada.ca' : 'Outil d\'évaluation de l\'adéquation des données - Canada.ca'
   }, [i18n.language])
 
   return (
-          <div className="flex flex-col min-h-screen bg-[var(--background-color)]">
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:text-[var(--primary-color)] focus:p-4 focus:shadow-lg focus:rounded-md"
-      >
-        Skip to main content
-      </a>
+    <div className="newpar">
+      {/* Skip to main content link */}
+      <ul id="wb-tphp">
+        <li className="wb-slc">
+          <a className="wb-sl" href="#wb-cont">
+            {i18n.language === 'en' ? 'Skip to main content' : 'Passer au contenu principal'}
+          </a>
+        </li>
+        <li className="wb-slc visible-sm visible-md visible-lg">
+          <a className="wb-sl" href="#wb-info">
+            {i18n.language === 'en' ? 'Skip to "About this site"' : 'Passer à « À propos de ce site »'}
+          </a>
+        </li>
+      </ul>
       
       <Header onTitleClick={handleTitleClick} />
       
-      <main 
-        id="main-content" 
-        className="flex-grow px-4 py-8 md:py-12" 
-        role="main"
-      >
-        <div className="max-w-7xl mx-auto">
-          <MainContent ref={mainContentRef} />
+      <main property="mainContentOfPage" resource="#wb-main" className="container" typeof="WebPageElement">
+        <div className="row">
+          <div className="col-md-12">
+            <h1 id="wb-cont" property="name">
+              {i18n.language === 'en' ? 'Data Suitability Assessment Tool' : 'Outil d\'évaluation de l\'adéquation des données'}
+            </h1>
+            <div className="assessment-container">
+              <MainContent ref={mainContentRef} />
+            </div>
+          </div>
         </div>
       </main>
       

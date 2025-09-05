@@ -2,19 +2,6 @@
 import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { QUALITY_DIMENSIONS } from '../../types/assessment';
-import { Button } from '../ui/Button';
-import ResultCard from '../ui/ResultCard';
-import TooltipInfo from '../ui/TooltipInfo';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableHead, 
-  TableRow, 
-  TableCell,
-  TableCaption 
-} from '../ui/Table';
 
 interface QualityDimensionsProps {
   qualityScores: Record<string, number>;
@@ -78,14 +65,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     }
   }, []);
 
- // const getQualityScoreText = (score: number) => {
- //   if (score === 0) return t('assessment.quality.scoreText.notSufficient');
- //   if (score === 1) return t('assessment.quality.scoreText.low');
- //   if (score === 2) return t('assessment.quality.scoreText.medium');
- //   if (score === 3) return t('assessment.quality.scoreText.high');
- //   return "";
- // };
-
   const handleCriteriaChange = (dimensionId: string, criteriaIndex: number, checked: boolean) => {
     const newCriteriaSatisfaction = {
       ...criteriaSatisfaction,
@@ -117,40 +96,39 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
 
   const generateQualitySummary = () => {
     return (
-      <div className="overflow-hidden rounded-lg shadow-md">
-        <Table aria-labelledby="quality-summary-title">
-          <TableHeader>
-            <TableRow>
-              <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
-              <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-              <TableHead>{t('assessment.overall.criteriaSatisfied')}</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {QUALITY_DIMENSIONS.map((dimension, index) => {
+      <div className="table-responsive">
+        <table className="table table-striped table-bordered">
+          <caption className="wb-inv">{t('assessment.quality.summary.title')}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{t('assessment.quality.summary.tableHeaders.dimension')}</th>
+              <th scope="col">{t('assessment.quality.summary.tableHeaders.score')}</th>
+              <th scope="col">{t('assessment.overall.criteriaSatisfied')}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {QUALITY_DIMENSIONS.map((dimension) => {
               const score = qualityScores[dimension.id] || 0;
               const criteria = criteriaSatisfaction[dimension.id] || [];
               
               return (
-                <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                  <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
-                  <TableCell className="text-start font-semibold">
-                    {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
-                  </TableCell>
-                  <TableCell>
-                    <div className="space-y-1">
+                <tr key={dimension.id}>
+                  <td><strong>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></td>
+                  <td>{t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}</td>
+                  <td>
+                    <ul className="list-unstyled">
                       {dimension.criteria.map((_, idx) => (
-                        <div key={idx} className={`text-sm font-semibold ${criteria[idx] ? 'text-[var(--success-color)]' : 'text-[var(--error-color)]'}`}>
+                        <li key={idx} className={`small ${criteria[idx] ? 'text-success' : 'text-danger'}`}>
                           {criteria[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                        </div>
+                        </li>
                       ))}
-                    </div>
-                  </TableCell>
-                </TableRow>
+                    </ul>
+                  </td>
+                </tr>
               );
             })}
-          </TableBody>
-        </Table>
+          </tbody>
+        </table>
       </div>
     );
   };
@@ -197,164 +175,150 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/90 shadow-lg border border-[var(--border-color)] p-6 rounded-lg transition-all hover:shadow-xl">
-      <CardHeader>
-        <CardTitle id="quality-dimensions-title">
+    <section className="panel panel-default">
+      <header className="panel-heading">
+        <h2 id="quality-dimensions-title" className="panel-title">
           {t('assessment.quality.title')}
-        </CardTitle>
-      </CardHeader>
+        </h2>
+      </header>
 
-      <CardContent>
-        <div className="intro-text mb-6">
-          <p className="text-lg">
+      <div className="panel-body">
+        <div className="mrgn-bttm-lg">
+          <p className="lead">
             {t('assessment.quality.intro.intro')}
           </p>
-          <ol 
-                className="my-6 list-decimal pl-6 space-y-2" 
-                aria-label={t('frontPage.bulletPoints.label')}
-            >
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item1')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item2')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item3')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item4')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item5')}</li>
-            </ol>
-          <p className="text-lg">
-            {t('assessment.quality.intro.part1')}
-          </p>
-          <br />
-          <p className="text-lg">
-            {t('assessment.quality.intro.part2')}
-          </p>
+          <ol className="mrgn-bttm-lg mrgn-tp-md">
+            <li>{t('assessment.quality.intro.bulletPoints.item1')}</li>
+            <li>{t('assessment.quality.intro.bulletPoints.item2')}</li>
+            <li>{t('assessment.quality.intro.bulletPoints.item3')}</li>
+            <li>{t('assessment.quality.intro.bulletPoints.item4')}</li>
+            <li>{t('assessment.quality.intro.bulletPoints.item5')}</li>
+          </ol>
+          <p>{t('assessment.quality.intro.part1')}</p>
+          <p className="mrgn-tp-md">{t('assessment.quality.intro.part2')}</p>
         </div>
 
-        <div className="overflow-hidden rounded-lg shadow-md mb-8">
-          <Table aria-labelledby="quality-dimensions-title">
-            <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="text-lg">{t('assessment.quality.table.headers.elements')}</TableHead>
-                <TableHead className="text-lg">{t('assessment.quality.table.headers.definition')}</TableHead>
-                <TableHead className="text-lg">{t('assessment.quality.table.headers.criteria')}</TableHead>
-                <TableHead className="text-lg text-center">
-                  <div className="flex items-center justify-end">
-                    {t('assessment.quality.table.headers.answer')}
-                    <TooltipInfo id="tooltip-points-info">
-                      {t('assessment.quality.table.tooltip.title')}<br />
-                      {t('assessment.quality.table.tooltip.high')}<br />
-                      {t('assessment.quality.table.tooltip.medium')}<br />
-                      {t('assessment.quality.table.tooltip.low')}<br />
-                      {t('assessment.quality.table.tooltip.notSufficient')}<br /><br />
-                      {t('assessment.quality.table.tooltip.exceptions')}
-                    </TooltipInfo>
-                  </div>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {QUALITY_DIMENSIONS.map((dimension, index) => (
-                <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                  <TableCell className="text-base font-bold text-[var(--primary-color)]">
-                    <span id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</span>
-                  </TableCell>
-                  <TableCell className="text-base">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
-                  <TableCell id={`quality-crit-${dimension.id}`} className="text-base" colSpan={2}>
-                    <div className="dimension-content">
+        <div className="table-responsive mrgn-bttm-lg">
+          <table className="table table-striped table-bordered">
+            <caption className="wb-inv">{t('assessment.quality.table.caption')}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t('assessment.quality.table.headers.elements')}</th>
+                <th scope="col">{t('assessment.quality.table.headers.definition')}</th>
+                <th scope="col">{t('assessment.quality.table.headers.criteria')}</th>
+                <th scope="col">{t('assessment.quality.table.headers.answer')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {QUALITY_DIMENSIONS.map((dimension) => (
+                <tr key={dimension.id}>
+                  <td>
+                    <strong id={`quality-el-${dimension.id}`}>
+                      {t(`qualityDimensions.dimension${dimension.id}.element`)}
+                    </strong>
+                  </td>
+                  <td>{t(`qualityDimensions.dimension${dimension.id}.definition`)}</td>
+                  <td colSpan={2}>
+                    <div id={`quality-crit-${dimension.id}`}>
                       {dimension.criteria.map((_, idx) => (
-                        <div key={idx} className="criteria-row-unified">
-                          <div className="criteria-text-unified">
-                            {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                        <div key={idx} className="criteria-row mrgn-bttm-sm">
+                          <div className="criteria-text">
+                            <label htmlFor={`quality-${dimension.id}-${idx}`}>
+                              {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                            </label>
                           </div>
-                          <div className="criteria-checkbox-unified">
-                            <label className="flex items-center justify-center cursor-pointer">
+                          <div className="criteria-checkbox">
+                            <div className="checkbox">
                               <input
+                                id={`quality-${dimension.id}-${idx}`}
                                 type="checkbox"
                                 checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
                                 onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
-                                className="h-4 w-4 text-[var(--primary-color)] focus:ring-[var(--primary-color)] border-gray-300 rounded"
                                 aria-describedby={`quality-crit-${dimension.id}`}
                               />
-                            </label>
+                              <label htmlFor={`quality-${dimension.id}-${idx}`} className="wb-inv">
+                                {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                              </label>
+                            </div>
                           </div>
                         </div>
                       ))}
                     </div>
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
 
-        <div 
-          className="section-header font-bold mt-8 mb-4 text-xl"
-          id="quality-summary-title"
-        >
-          {t('assessment.quality.summary.title')}
-        </div>
-        
-        <div 
-          ref={resultRef}
-          tabIndex={-1}
-          aria-labelledby="quality-summary-title"
-          className="transition-all"
-        >
-          {showResult && generateQualitySummary()}
+        <section className="mrgn-tp-lg">
+          <h3 id="quality-summary-title">
+            {t('assessment.quality.summary.title')}
+          </h3>
           
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mt-6 bg-[var(--light-blue)]/30 p-4 rounded-lg">
-            <div>
-              <span className="text-lg">
-                {t('assessment.quality.summary.totalScore')} <span className="font-bold text-[var(--primary-color)]">
+          <div 
+            ref={resultRef}
+            tabIndex={-1}
+            aria-labelledby="quality-summary-title"
+          >
+            {showResult && generateQualitySummary()}
+            
+            <div className="well mrgn-tp-md">
+              <p className="lead">
+                {t('assessment.quality.summary.totalScore')} 
+                <strong className="text-primary">
                   {t('assessment.quality.summary.scoreDisplay', { score: totalScore, maxScore: 15 })}
-                </span>
-              </span>
+                </strong>
+              </p>
             </div>
+            
+            {showResult && qualityPass !== null && (
+              <div className={`alert ${qualityPass ? 'alert-success' : 'alert-danger'} mrgn-tp-md`} role="alert">
+                <p className="h4">
+                  {qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}
+                </p>
+              </div>
+            )}
+            
+            {showResult && qualityInterpretation && (
+              <div className="alert alert-info mrgn-tp-md" role="status" aria-live="polite">
+                <div dangerouslySetInnerHTML={{__html: qualityInterpretation}} />
+              </div>
+            )}
           </div>
-          
-          {showResult && qualityPass !== null && (
-            <div className="mt-5 transform transition-all text-center">
-              <ResultCard result={qualityPass ? 'pass' : 'fail'}>
-                <span className="block text-center">{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</span>
-              </ResultCard>
-            </div>
-          )}
-          
-          {showResult && qualityInterpretation && (
-            <div className="mt-4 italic bg-[var(--light-blue)]/50 p-4 rounded-lg shadow-sm" role="status" aria-live="polite">
-              <div dangerouslySetInnerHTML={{__html: qualityInterpretation}} />
-            </div>
-          )}
-        </div>
-      </CardContent>
+        </section>
+      </div>
       
-      <CardFooter className="text-center gap-3">
-        <Button 
+      <footer className="panel-footer text-center">
+        <button 
+          type="button"
+          className="btn btn-default mrgn-rght-sm"
           onClick={onGoBack}
-          variant="outline"
           aria-label={t('assessment.quality.actions.goBack')}
-          className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
         >
           {t('assessment.quality.actions.goBack')}
-        </Button>
+        </button>
         {!showResult ? (
-          <Button 
+          <button 
+            type="button"
+            className="btn btn-primary"
             onClick={handleEvaluate}
             aria-label={t('assessment.quality.actions.evaluate')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
           >
             {t('assessment.quality.actions.evaluate')}
-          </Button>
+          </button>
         ) : (
-          <Button 
+          <button 
+            type="button"
+            className="btn btn-primary"
             onClick={handleContinue}
             aria-label={t('assessment.quality.actions.continue')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
           >
             {t('assessment.quality.actions.continue')}
-          </Button>
+          </button>
         )}
-      </CardFooter>
-    </Card>
+      </footer>
+    </section>
   );
 };
 

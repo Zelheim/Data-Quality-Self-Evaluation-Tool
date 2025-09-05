@@ -1,28 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../ui/Button';
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardContent, 
-} from '../ui/Card';
-import {
-  AlertDialogRoot,
-  AlertDialogContent,
-  AlertDialogHeader,
-  AlertDialogTitle,
-  AlertDialogFooter
-} from '../ui/Dialog';
 import { ETHICS_PRINCIPLES, QUALITY_DIMENSIONS } from '../../types/assessment';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableHead, 
-  TableRow, 
-  TableCell 
-} from '../ui/Table';
 
 interface OverallAssessmentProps {
   ethicsPass: boolean | null;
@@ -594,31 +572,31 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   
   const renderEthicsPrinciplesSummary = () => {
     return (
-      <div className="mb-8">
-        <h3 id="ethics-summary-title" className="text-xl font-semibold mb-4 text-[var(--primary-color)] border-b border-[var(--light-blue)] pb-2">
+      <div className="mrgn-bttm-lg">
+        <h3 id="ethics-summary-title" className="h4 mrgn-bttm-md">
           {t('assessment.ethics.title')}
         </h3>
         
-        <div className={`p-4 rounded-lg mb-4 shadow-md text-center ${ethicsPass ? 'bg-[var(--success-color)] text-white' : 'bg-[var(--error-color)] text-white'}`} role="status">
-          <strong className="block text-center">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
+        <div className={`alert ${ethicsPass ? 'alert-success' : 'alert-danger'} text-center`} role="status">
+          <p className="h4">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</p>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg" dangerouslySetInnerHTML={{__html: part1MessageKey ? t(part1MessageKey) : ''}} />
+        <div className="alert alert-info" dangerouslySetInnerHTML={{__html: part1MessageKey ? t(part1MessageKey) : ''}} />
         
-        <div className="rounded-lg overflow-hidden shadow-md">
-          <Table aria-labelledby="ethics-summary-title">
-            <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
-            <TableHeader>
-              <TableRow>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.elements')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.answer')}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {ETHICS_PRINCIPLES.map((principle, index) => (
-                <TableRow key={principle.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                  <TableCell className="font-bold text-[var(--primary-color)]">{t(`ethicsPrinciples.principle${principle.id}.element`)}</TableCell>
-                  <TableCell>
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered" aria-labelledby="ethics-summary-title">
+            <caption className="wb-inv">{t('assessment.ethics.table.caption')}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t('assessment.ethics.table.headers.elements')}</th>
+                <th scope="col">{t('assessment.ethics.table.headers.answer')}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {ETHICS_PRINCIPLES.map((principle) => (
+                <tr key={principle.id}>
+                  <td><strong>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></td>
+                  <td>
                     {assessmentData.ethicsPrinciples[principle.id] 
                       ? assessmentData.ethicsPrinciples[principle.id] === "Yes"
                         ? t('assessment.ethics.table.answers.yes')
@@ -626,11 +604,11 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                           ? t('assessment.ethics.table.answers.no')
                           : assessmentData.ethicsPrinciples[principle.id] 
                       : t('assessment.overall.export.notEvaluated')}
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
       </div>
     );
@@ -638,30 +616,32 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   
   const renderQualityDimensionsSummary = () => {
     return (
-      <div className="mb-8">
-        <h3 id="quality-summary-title" className="text-xl font-semibold mb-4 text-[var(--primary-color)] border-b border-[var(--light-blue)] pb-2">
+      <div className="mrgn-bttm-lg">
+        <h3 id="quality-summary-title" className="h4 mrgn-bttm-md">
           {t('assessment.quality.title')}
         </h3>
         
-        <div className={`p-4 rounded-lg mb-4 shadow-md text-center ${qualityPass ? 'bg-[var(--success-color)] text-white' : 'bg-[var(--error-color)] text-white'}`} role="status">
-          <strong>{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</strong>
-          <span className="ml-2">{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
+        <div className={`alert ${qualityPass ? 'alert-success' : 'alert-danger'} text-center`} role="status">
+          <p className="h4">
+            {qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}
+            <span className="mrgn-lft-sm">{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
+          </p>
         </div>
         
-        <p className="italic mb-4 bg-[var(--light-blue)]/50 p-3 rounded-lg" dangerouslySetInnerHTML={{__html: qualityInterpretationKey ? t(qualityInterpretationKey) : ''}} />
+        <div className="alert alert-info" dangerouslySetInnerHTML={{__html: qualityInterpretationKey ? t(qualityInterpretationKey) : ''}} />
         
-        <div className="rounded-lg overflow-hidden shadow-md">
-          <Table aria-labelledby="quality-summary-title">
-            <caption className="sr-only">{t('assessment.quality.table.caption')}</caption>
-            <TableHeader>
-              <TableRow>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.elements')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)] text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {QUALITY_DIMENSIONS.map((dimension, index) => {
+        <div className="table-responsive">
+          <table className="table table-striped table-bordered" aria-labelledby="quality-summary-title">
+            <caption className="wb-inv">{t('assessment.quality.table.caption')}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{t('assessment.quality.table.headers.elements')}</th>
+                <th scope="col">{t('assessment.quality.summary.tableHeaders.score')}</th>
+                <th scope="col">{t('assessment.overall.criteriaSatisfied')}</th>  
+              </tr>
+            </thead>
+            <tbody>
+              {QUALITY_DIMENSIONS.map((dimension) => {
                 const score = assessmentData.qualityDimensions[dimension.id] || 0;
                 
                 // Calculate which criteria were satisfied based on the score
@@ -677,48 +657,48 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 }
                 
                 return (
-                  <TableRow key={dimension.id} className={index % 2 === 0 ? "bg-white" : "bg-[var(--light-blue)]"}>
-                    <TableCell className="font-bold text-[var(--primary-color)]">{t(`qualityDimensions.dimension${dimension.id}.element`)}</TableCell>
-                    <TableCell className="text-start font-semibold">{score}/3</TableCell>
-                    <TableCell>
-                      <div className="space-y-1">
+                  <tr key={dimension.id}>
+                    <td><strong>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></td>
+                    <td>{score}/3</td>
+                    <td>
+                      <ul className="list-unstyled">
                         {dimension.criteria.map((_, idx) => (
-                          <div key={idx} className={`text-sm font-semibold ${criteriaSatisfied[idx] ? 'text-[var(--success-color)]' : 'text-[var(--error-color)]'}`}>
+                          <li key={idx} className={`small ${criteriaSatisfied[idx] ? 'text-success' : 'text-danger'}`}>
                             {criteriaSatisfied[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                          </div>
+                          </li>
                         ))}
-                      </div>
-                    </TableCell>
-                  </TableRow>
+                      </ul>
+                    </td>
+                  </tr>
                 );
               })}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </div>
       </div>
     );
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/90 shadow-lg border border-[var(--border-color)] transition-all hover:shadow-xl">
-      <CardHeader>
-        <CardTitle id="overall-assessment-title" className="text-2xl">
+    <section className="panel panel-default">
+      <header className="panel-heading">
+        <h2 id="overall-assessment-title" className="panel-title">
           {t('assessment.overall.title')}
-        </CardTitle>
-      </CardHeader>
+        </h2>
+      </header>
       
-      <CardContent>
+      <div className="panel-body">
         <div 
           ref={resultSummaryRef}
           tabIndex={-1}
-          className="mb-6"
+          className="mrgn-bttm-lg"
           aria-labelledby="overall-assessment-title"
         >
-          <div className={`p-5 rounded-lg shadow-md text-center mb-6 ${resultClass}`}>
-            <h2 className="text-2xl font-bold text-white">{resultText}</h2>
+          <div className={`alert ${overallPass ? 'alert-success' : 'alert-danger'} text-center mrgn-bttm-lg`}>
+            <h2 className="h3 text-white">{resultText}</h2>
           </div>
           
-          <div className="mt-4 mb-6 italic bg-[var(--light-blue)]/50 p-4 rounded-lg">
+          <div className="alert alert-info">
             <div dangerouslySetInnerHTML={{
               __html: overallPass 
                 ? t('assessment.overall.messages.bothPass')
@@ -733,154 +713,129 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           {renderEthicsPrinciplesSummary()}
           {renderQualityDimensionsSummary()}
           
-          <div className="flex flex-col sm:flex-row justify-center gap-4 mt-8">
-            <Button 
+          <div className="text-center mrgn-tp-lg">
+            <button 
+              type="button"
+              className="btn btn-primary mrgn-rght-sm"
               onClick={handleExport}
-              className="transform transition-transform hover:scale-105"
               aria-label={t('assessment.overall.export.buttons.export')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
               {t('assessment.overall.export.buttons.export')}
-            </Button>
+            </button>
             
-            <Button 
+            <button 
+              type="button"
+              className="btn btn-default mrgn-rght-sm"
               onClick={onReset}
-              variant="secondary"
-              className="transform transition-transform hover:scale-105"
               aria-label={t('assessment.overall.actions.reset')}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fillRule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clipRule="evenodd" />
-              </svg>
               {t('assessment.overall.actions.reset')}
-            </Button>
+            </button>
             
             {onReturnHome && (
-              <Button 
+              <button 
+                type="button"
+                className="btn btn-default"
                 onClick={onReturnHome}
-                variant="outline"
-                className="transform transition-transform hover:scale-105 border-[var(--primary-color)] text-[var(--primary-color)]"
                 aria-label={t('assessment.overall.actions.home')}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
-                </svg>
                 {t('assessment.overall.actions.home')}
-              </Button>
+              </button>
             )}
           </div>
         </div>
-      </CardContent>
+      </div>
       
-      <AlertDialogRoot open={exportDialogOpen} onOpenChange={setExportDialogOpen}>
-        <AlertDialogContent className="bg-white p-6 rounded-lg shadow-xl max-w-2xl w-full">
-          <AlertDialogHeader>
-            <AlertDialogTitle className="text-xl font-bold text-[var(--primary-color)]">
-              {t('assessment.overall.export.title')}
-            </AlertDialogTitle>
-          </AlertDialogHeader>
+      {exportDialogOpen && (
+        <div className="modal fade in" style={{ display: 'block' }}>
+          <div className="modal-dialog modal-lg">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h3 className="modal-title">
+                  {t('assessment.overall.export.title')}
+                </h3>
+                             </div>
           
-          <div className="my-4">
-            <div className="mb-4">
-              <label htmlFor="export-format" className="block text-sm font-medium text-[var(--text-color)] mb-2">
-                {t('assessment.overall.export.formatLabel')}
-              </label>
-              <select
-                id="export-format"
-                className="w-full p-2 border border-[var(--border-color)] rounded-md shadow-sm bg-white text-[var(--text-color)] focus:ring-2 focus:ring-[var(--primary-color)] focus:border-[var(--primary-color)]"
-                value={exportFormat}
-                onChange={(e) => setExportFormat(e.target.value as 'text' | 'csv' | 'pdf' | 'word')}
-                aria-label={t('assessment.overall.export.formatLabel')}
-              >
-                <option value="text">{t('assessment.overall.export.formats.text')}</option>
-                <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
-                <option value="pdf">{t('assessment.overall.export.formats.pdf')}</option>
-                <option value="word">{t('assessment.overall.export.formats.word')}</option>
-              </select>
+              <div className="modal-body">
+                <div className="form-group">
+                  <label htmlFor="export-format" className="control-label">
+                    {t('assessment.overall.export.formatLabel')}
+                  </label>
+                  <select
+                    id="export-format"
+                    className="form-control"
+                    value={exportFormat}
+                    onChange={(e) => setExportFormat(e.target.value as 'text' | 'csv' | 'pdf' | 'word')}
+                    aria-label={t('assessment.overall.export.formatLabel')}
+                  >
+                    <option value="text">{t('assessment.overall.export.formats.text')}</option>
+                    <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
+                    <option value="pdf">{t('assessment.overall.export.formats.pdf')}</option>
+                    <option value="word">{t('assessment.overall.export.formats.word')}</option>
+                  </select>
+                </div>
+                
+                {(exportFormat === 'text' || exportFormat === 'csv') && (
+                  <div className="form-group">
+                    <label htmlFor="export-content" className="control-label">
+                      {t('assessment.overall.export.preview', 'Preview')}
+                    </label>
+                    <textarea
+                      id="export-content"
+                      className="form-control"
+                      rows={15}
+                      value={exportContent}
+                      readOnly
+                      aria-label={t('assessment.overall.export.preview')}
+                    />
+                  </div>
+                )}
+                
+                {(exportFormat === 'pdf' || exportFormat === 'word') && (
+                  <div className="alert alert-info">
+                    <p>
+                      {exportFormat === 'pdf' 
+                        ? t('assessment.overall.export.pdfPreview', 'PDF will be generated when you click Download.')
+                        : t('assessment.overall.export.wordPreview', 'Word document will be generated when you click Download.')
+                      }
+                    </p>
+                  </div>
+                )}
+              </div>
+              
+              <div className="modal-footer">
+                <button 
+                  type="button"
+                  className="btn btn-default mrgn-rght-sm"
+                  onClick={handleCopyToClipboard}
+                  disabled={exportFormat === 'pdf' || exportFormat === 'word'}
+                  aria-label={t('assessment.overall.export.buttons.copy')}
+                >
+                  {t('assessment.overall.export.buttons.copy')}
+                </button>
+                <button 
+                  type="button"
+                  className="btn btn-primary mrgn-rght-sm"
+                  onClick={handleDownload}
+                  disabled={isGenerating}
+                  aria-label={isGenerating ? t('assessment.overall.export.generating') : t('assessment.overall.export.buttons.download')}
+                >
+                  {isGenerating ? t('assessment.overall.export.generating', 'Generating...') : t('assessment.overall.export.buttons.download')}
+                </button>
+                <button 
+                  type="button"
+                  className="btn btn-default"
+                  onClick={() => setExportDialogOpen(false)}
+                  aria-label={t('assessment.overall.export.buttons.close')}
+                >
+                  {t('assessment.overall.export.buttons.close')}
+                </button>
+              </div>
             </div>
-            
-            {(exportFormat === 'text' || exportFormat === 'csv') && (
-              <div className="mt-4">
-                <label htmlFor="export-content" className="block text-sm font-medium text-[var(--text-color)]">
-                  {t('assessment.overall.export.preview', 'Preview')}
-                </label>
-                <div className="mt-2">
-                  <textarea
-                    id="export-content"
-                    className="w-full h-64 p-3 border border-[var(--border-color)] rounded-md shadow-sm bg-gray-50 font-mono text-sm"
-                    value={exportContent}
-                    readOnly
-                    aria-label={t('assessment.overall.export.preview')}
-                  />
-                </div>
-              </div>
-            )}
-            
-            {(exportFormat === 'pdf' || exportFormat === 'word') && (
-              <div className="mt-4">
-                <div className="p-4 bg-[var(--blue-2)] border border-[var(--blue-6)] rounded-md">
-                  <p className="text-sm text-[var(--blue-11)]">
-                    {exportFormat === 'pdf' 
-                      ? t('assessment.overall.export.pdfPreview', 'PDF will be generated when you click Download.')
-                      : t('assessment.overall.export.wordPreview', 'Word document will be generated when you click Download.')
-                    }
-                  </p>
-                </div>
-              </div>
-            )}
           </div>
-          
-          <AlertDialogFooter className="flex justify-end gap-3 mt-6 pt-4 border-t border-[var(--border-color)]">
-            <Button 
-              onClick={handleCopyToClipboard}
-              variant="secondary"
-              className="transform transition-transform hover:scale-105"
-              disabled={exportFormat === 'pdf' || exportFormat === 'word'}
-              aria-label={t('assessment.overall.export.buttons.copy')}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" />
-                <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z" />
-              </svg>
-              {t('assessment.overall.export.buttons.copy')}
-            </Button>
-            <Button 
-              onClick={handleDownload}
-              className="transform transition-transform hover:scale-105"
-              disabled={isGenerating}
-              aria-label={isGenerating ? t('assessment.overall.export.generating') : t('assessment.overall.export.buttons.download')}
-            >
-              {isGenerating ? (
-                <>
-                  <svg className="animate-spin h-5 w-5 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                  </svg>
-                  {t('assessment.overall.export.generating', 'Generating...')}
-                </>
-              ) : (
-                <>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                  {t('assessment.overall.export.buttons.download')}
-                </>
-              )}
-            </Button>
-            <Button 
-              onClick={() => setExportDialogOpen(false)}
-              variant="outline"
-              className="border-[var(--primary-color)] text-[var(--primary-color)]"
-              aria-label={t('assessment.overall.export.buttons.close')}
-            >
-              {t('assessment.overall.export.buttons.close')}
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialogRoot>
-    </Card>
+        </div>
+      )}
+    </section>
   );
 };
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from '../ui/Button';
 
 interface FrontPageProps {
   onStartAssessment: () => void;
@@ -10,64 +9,166 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
   const { t } = useTranslation();
   
   return (
-    <div 
-      id="front-page" 
-      role="region" 
-      aria-labelledby="front-page-title"
-      className="max-w-4xl mx-auto"
-    >
-      <div className="bg-gradient-to-br from-[var(--primary-color)] to-[var(--secondary-color)] rounded-lg shadow-lg overflow-hidden">
-        <div className="p-8 md:p-12 text-white">
-          <h1 
-            id="front-page-title"
-            className="text-3xl md:text-4xl font-bold mb-6 text-center"
-          >
-            <div>{t('frontPage.titleLine1')}</div>
-            <div>{t('frontPage.titleLine2')}</div>
-          </h1>
-          
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-6 md:p-8 shadow-inner">
-            <div className="prose prose-lg prose-invert max-w-none">
-              <p className="text-lg">{t('frontPage.intro')}</p>
-              <p className="mt-4 text-lg">{t('frontPage.assessmentInfo')}</p>
-              
-              <ul 
-                className="my-6 list-disc pl-6 space-y-2" 
-                aria-label={t('frontPage.bulletPoints.label')}
-              >
-                <li className="text-lg">{t('frontPage.bulletPoints.item1')}</li>
-                <li className="text-lg">{t('frontPage.bulletPoints.item2')}</li>
-              </ul>
-              
-              <p className="mt-4 text-lg">{t('frontPage.noteToUsers')}</p>
-
-              <p 
-                className="mt-4 text-lg"
-                dangerouslySetInnerHTML={{ __html: t('frontPage.usage') }}
-              ></p>
-              
-              <p 
-                className="mt-4 text-lg"
-                dangerouslySetInnerHTML={{ __html: t('frontPage.contactInfo') }}
-              ></p>
-              
+    <div className="row">
+      <div className="col-md-12">
+        {/* Hero section */}
+        <section className="jumbotron mrgn-bttm-lg">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-8 col-md-offset-2 text-center">
+                <h2 className="h1 mrgn-bttm-md">
+                  {t('frontPage.titleLine1')} {t('frontPage.titleLine2')}
+                </h2>
+                <p className="lead mrgn-bttm-lg">
+                  {t('frontPage.intro')}
+                </p>
+                <button 
+                  type="button"
+                  className="btn btn-call-to-action btn-lg"
+                  onClick={onStartAssessment}
+                  aria-label={t('frontPage.startButtonAriaLabel')}
+                >
+                  <span className="glyphicon glyphicon-play" aria-hidden="true"></span>
+                  {t('frontPage.startButton')}
+                </button>
+              </div>
             </div>
           </div>
+        </section>
+
+        {/* Main content */}
+        <div className="row">
+          <div className="col-md-8">
+            {/* Overview section */}
+            <section className="panel panel-primary">
+              <header className="panel-heading">
+                <h3 className="panel-title">
+                  {t('frontPage.assessmentInfo')}
+                </h3>
+              </header>
+              <div className="panel-body">
+                <p>{t('frontPage.assessmentInfo')}</p>
+                
+                <h4 className="h5 mrgn-tp-lg">
+                  {t('frontPage.bulletPoints.label')}
+                </h4>
+                <ul className="fa-ul mrgn-bttm-md">
+                  <li>
+                    <span className="fa-li">
+                      <span className="fas fa-check text-success" aria-hidden="true"></span>
+                    </span>
+                    {t('frontPage.bulletPoints.item1')}
+                  </li>
+                  <li>
+                    <span className="fa-li">
+                      <span className="fas fa-check text-success" aria-hidden="true"></span>
+                    </span>
+                    {t('frontPage.bulletPoints.item2')}
+                  </li>
+                </ul>
+
+                <div className="alert alert-info">
+                  <p className="h5">
+                    <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                    {t('frontPage.noteToUsers')}
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* Usage information */}
+            <section className="panel panel-default">
+              <header className="panel-heading">
+                <h3 className="panel-title">
+                  How to use this tool
+                </h3>
+              </header>
+              <div className="panel-body">
+                <div 
+                  dangerouslySetInnerHTML={{ __html: t('frontPage.usage') }}
+                />
+              </div>
+            </section>
+          </div>
+
+          {/* Sidebar */}
+          <div className="col-md-4">
+            {/* Getting started */}
+            <section className="well">
+              <h3 className="h4">Getting started</h3>
+              <p>Ready to evaluate your data? Click the button below to begin the assessment process.</p>
+              <button 
+                type="button"
+                className="btn btn-primary btn-block btn-lg mrgn-tp-md"
+                onClick={onStartAssessment}
+                aria-label={t('frontPage.startButtonAriaLabel')}
+              >
+                <span className="glyphicon glyphicon-play" aria-hidden="true"></span>
+                {t('frontPage.startButton')}
+              </button>
+            </section>
+
+            {/* Contact information */}
+            <section className="panel panel-info">
+              <header className="panel-heading">
+                <h3 className="panel-title">
+                  <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                  Contact information
+                </h3>
+              </header>
+              <div className="panel-body">
+                <div 
+                  dangerouslySetInnerHTML={{ __html: t('frontPage.contactInfo') }}
+                />
+              </div>
+            </section>
+
+            {/* Related links */}
+            <section className="panel panel-default">
+              <header className="panel-heading">
+                <h3 className="panel-title">
+                  <span className="glyphicon glyphicon-link" aria-hidden="true"></span>
+                  Related resources
+                </h3>
+              </header>
+              <div className="panel-body">
+                <ul className="list-unstyled">
+                  <li className="mrgn-bttm-sm">
+                    <a href="https://www.statcan.gc.ca/en/about/quality" 
+                       className="btn btn-link btn-block text-left">
+                      <span className="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                      Statistics Canada Quality Guidelines
+                    </a>
+                  </li>
+                  <li className="mrgn-bttm-sm">
+                    <a href="https://www.statcan.gc.ca/en/about/smr01/smr01" 
+                       className="btn btn-link btn-block text-left">
+                      <span className="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                      Survey Methods and Practices
+                    </a>
+                  </li>
+                  <li className="mrgn-bttm-sm">
+                    <a href="https://www.statcan.gc.ca/en/trust" 
+                       className="btn btn-link btn-block text-left">
+                      <span className="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                      Trust Centre
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </section>
+          </div>
         </div>
-      </div>
-      
-      <div className="mt-12 flex justify-center">
-        <Button 
-          onClick={onStartAssessment}
-          size="lg"
-          className="px-12 py-4 text-xl font-semibold transition-all transform hover:scale-105 focus:scale-105 shadow-xl hover:shadow-2xl bg-[var(--primary-color)] border-0 rounded-full cursor-pointer"
-          aria-label={t('frontPage.startButtonAriaLabel')}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-          {t('frontPage.startButton')}
-        </Button>
+
+        {/* Date modified */}
+        <div className="pagedetails">
+          <dl id="wb-dtmd">
+            <dt>Date modified:</dt>
+            <dd>
+              <time property="dateModified">{new Date().toLocaleDateString()}</time>
+            </dd>
+          </dl>
+        </div>
       </div>
     </div>
   );

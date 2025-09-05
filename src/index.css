@@ -1,10 +1,5 @@
-@import 'tailwindcss';
-@import '@radix-ui/colors/indigo.css';
-@import '@radix-ui/colors/blue.css';
-@import '@radix-ui/colors/slate.css';
-@import '@radix-ui/colors/green.css';
-@import '@radix-ui/colors/red.css';
-@import '@radix-ui/colors/amber.css';
+/* WET-BOEW and StatCan styles are loaded via HTML link tags */
+/* Keep only essential custom styles that complement WET-BOEW */
 
 @layer base {
   :root {

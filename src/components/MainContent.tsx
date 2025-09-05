@@ -3,7 +3,6 @@
 // @ts-ignore - React is used for JSX
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
 import { useTranslation } from 'react-i18next'
-import * as Tabs from '@radix-ui/react-tabs'
 import FrontPage from './tabs/FrontPage'
 import AssessmentTool from './tabs/AssessmentTool'
 import License from './tabs/License'
@@ -51,7 +50,6 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
     setTotalQualityScore(0)
     setQualityPass(null)
     setQualityInterpretationKey('')
-    // Reset UI state
     setEthicsShowResult(false)
     setQualityShowResult(false)
     setQualityInterpretation('')
@@ -64,77 +62,83 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   }))
   
   return (
-    <div className="container mx-auto px-4 py-6 flex-grow">
+    <div className="container">
       {/* This component uses React JSX */}
       {activeTab === 'front-page' && (
         <FrontPage onStartAssessment={handleStartAssessment} />
       )}
       
       {showTabsNavigation && (
-        <div className="mt-4">
-          <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <Tabs.List
-              className="flex mb-6 border-b border-[var(--border-color)] shadow-sm w-full"
-              aria-label={t('mainContent.navigation')}
+        <div className="wb-tabs">
+          <div className="tabpanels">
+            <details 
+              id="assessment-details" 
+              open={activeTab === 'assessment-tab-panel'}
             >
-              <Tabs.Trigger
-                value="assessment-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg mr-1 sm:mr-2 transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
+              <summary 
+                className="btn btn-primary btn-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('assessment-tab-panel');
+                }}
               >
                 {t('mainContent.tabs.assessment')}
-              </Tabs.Trigger>
-              <Tabs.Trigger
-                value="license-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
+              </summary>
+              {activeTab === 'assessment-tab-panel' && (
+                <div className="tabbedcontent">
+                  <AssessmentTool 
+                    onReturnHome={handleReturnHome}
+                    // Pass assessment state as props
+                    currentStep={currentStep}
+                    setCurrentStep={setCurrentStep}
+                    ethicsAnswers={ethicsAnswers}
+                    setEthicsAnswers={setEthicsAnswers}
+                    ethicsPass={ethicsPass}
+                    setEthicsPass={setEthicsPass}
+                    part1MessageKey={part1MessageKey}
+                    setPart1MessageKey={setPart1MessageKey}
+                    qualityScores={qualityScores}
+                    setQualityScores={setQualityScores}
+                    totalQualityScore={totalQualityScore}
+                    setTotalQualityScore={setTotalQualityScore}
+                    qualityPass={qualityPass}
+                    setQualityPass={setQualityPass}
+                    qualityInterpretationKey={qualityInterpretationKey}
+                    setQualityInterpretationKey={setQualityInterpretationKey}
+                    // Pass UI state as props
+                    ethicsShowResult={ethicsShowResult}
+                    setEthicsShowResult={setEthicsShowResult}
+                    qualityShowResult={qualityShowResult}
+                    setQualityShowResult={setQualityShowResult}
+                    qualityInterpretation={qualityInterpretation}
+                    setQualityInterpretation={setQualityInterpretation}
+                    criteriaSatisfaction={criteriaSatisfaction}
+                    setCriteriaSatisfaction={setCriteriaSatisfaction}
+                  />
+                </div>
+              )}
+            </details>
+            
+            <details 
+              id="license-details" 
+              open={activeTab === 'license-tab-panel'}
+            >
+              <summary 
+                className="btn btn-default btn-lg"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('license-tab-panel');
+                }}
               >
                 {t('mainContent.tabs.license')}
-              </Tabs.Trigger>
-            </Tabs.List>
-            
-            <Tabs.Content 
-              value="assessment-tab-panel" 
-              className="shadow-sm rounded-b-lg"
-              tabIndex={0}
-            >
-              <AssessmentTool 
-                onReturnHome={handleReturnHome}
-                // Pass assessment state as props
-                currentStep={currentStep}
-                setCurrentStep={setCurrentStep}
-                ethicsAnswers={ethicsAnswers}
-                setEthicsAnswers={setEthicsAnswers}
-                ethicsPass={ethicsPass}
-                setEthicsPass={setEthicsPass}
-                part1MessageKey={part1MessageKey}
-                setPart1MessageKey={setPart1MessageKey}
-                qualityScores={qualityScores}
-                setQualityScores={setQualityScores}
-                totalQualityScore={totalQualityScore}
-                setTotalQualityScore={setTotalQualityScore}
-                qualityPass={qualityPass}
-                setQualityPass={setQualityPass}
-                qualityInterpretationKey={qualityInterpretationKey}
-                setQualityInterpretationKey={setQualityInterpretationKey}
-                // Pass UI state as props
-                ethicsShowResult={ethicsShowResult}
-                setEthicsShowResult={setEthicsShowResult}
-                qualityShowResult={qualityShowResult}
-                setQualityShowResult={setQualityShowResult}
-                qualityInterpretation={qualityInterpretation}
-                setQualityInterpretation={setQualityInterpretation}
-                criteriaSatisfaction={criteriaSatisfaction}
-                setCriteriaSatisfaction={setCriteriaSatisfaction}
-              />
-            </Tabs.Content>
-            
-            <Tabs.Content 
-              value="license-tab-panel" 
-              className="shadow-sm rounded-b-lg"
-              tabIndex={0}
-            >
-              <License currentYear={currentYear} />
-            </Tabs.Content>
-          </Tabs.Root>
+              </summary>
+              {activeTab === 'license-tab-panel' && (
+                <div className="tabbedcontent">
+                  <License currentYear={currentYear} />
+                </div>
+              )}
+            </details>
+          </div>
         </div>
       )}
     </div>
