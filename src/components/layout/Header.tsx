@@ -22,53 +22,149 @@ const Header = ({ onTitleClick }: HeaderProps) => {
   }
   
   return (
-    <header 
-      className="bg-gradient-to-r from-[var(--primary-color)] to-[var(--secondary-color)] text-white py-4 px-6 shadow-md"
-      role="banner"
-    >
-      <div className="max-w-7xl mx-auto relative">
-        {/* Language toggle positioned absolutely on the right */}
-        <div className="absolute top-1/2 right-0 transform -translate-y-1/2">
-          <button 
-            className="relative overflow-hidden group bg-white text-[var(--primary-color)] border-none rounded-full px-5 py-2 font-medium transition-all hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[var(--primary-color)]"
-            onClick={toggleLanguage}
-            aria-label={currentLanguage === 'en' ? t('header.switchToFrench') : t('header.switchToEnglish')}
-            aria-pressed={currentLanguage === 'fr'}
-            type="button"
-          >
-            <span className="flex items-center">
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
-              </svg>
-              {currentLanguage === 'en' ? t('header.switchToFrench') : t('header.switchToEnglish')}
-            </span>
-          </button>
-        </div>
-
-        {/* Center title and beta */}
-        <div className="flex flex-col items-center mb-4 sm:mb-0">
-          <h1 
-            id="siteTitle" 
-            className="text-3xl mb-2 mt-4 font-bold cursor-pointer hover:text-white/90 transition-colors"
-            onClick={onTitleClick}
-            tabIndex={0}
-            role="button"
-            aria-label={t('header.returnToHome')}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onTitleClick?.();
-              }
-            }}
-          >
-            {t('header.title')}
-          </h1>
-          <div 
-            className="bg-white/20 px-3 py-1 rounded-full text-sm font-medium mt-2"
-            dangerouslySetInnerHTML={{ __html: t('header.beta') }}
-          ></div>
+    <header role="banner">
+      <div id="wb-bnr" className="container">
+        <section id="wb-lng" className="visible-md visible-lg text-right">
+          <h2 className="wb-inv">Language selection</h2>
+          <div className="row">
+            <div className="col-md-12">
+              <ul className="list-inline margin-bottom-none">
+                <li>
+                  <button 
+                    onClick={toggleLanguage}
+                    lang={currentLanguage === 'en' ? 'fr' : 'en'}
+                    className="text-decoration-none bg-transparent border-0 cursor-pointer"
+                    style={{ color: 'inherit' }}
+                    type="button"
+                  >
+                    {currentLanguage === 'en' ? 'Français' : 'English'}
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <div className="row">
+          <div className="brand col-xs-8 col-sm-9 col-md-6">
+            <img 
+              src="/wet-boew4b/assets/sig-blk-gov-en.svg" 
+              alt="Government of Canada"
+            />
+            <span className="wb-inv"> / <span lang="fr">Gouvernement du Canada</span></span>
+          </div>
+          <section className="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs" id="wb-glb-mn">
+            <h2>Search and menus</h2>
+            <ul className="list-inline text-right chvrn">
+              <li>
+                <a 
+                  href="#mb-pnl" 
+                  title="Search and menus" 
+                  aria-controls="mb-pnl" 
+                  className="overlay-lnk" 
+                  role="button"
+                >
+                  <span className="glyphicon glyphicon-search">
+                    <span className="glyphicon glyphicon-th-list">
+                      <span className="wb-inv">Search and menus</span>
+                    </span>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <div id="mb-pnl"></div>
+          </section>
+          <section id="wb-srch" className="col-xs-6 text-right visible-md visible-lg">
+            <h2 className="wb-inv">Search</h2>
+            <form 
+              action="https://www.statcan.gc.ca/search/results/site-search" 
+              method="get" 
+              name="cse-search-box" 
+              role="search" 
+              className="form-inline"
+            >
+              <div className="form-group wb-srch-qry">
+                <label htmlFor="wb-srch-q" className="wb-inv">Search website</label>
+                <input type="hidden" name="fq" value="stclac:2" />
+                <input 
+                  id="wb-srch-q" 
+                  list="wb-srch-q-ac" 
+                  className="wb-srch-q form-control" 
+                  name="q" 
+                  type="search" 
+                  defaultValue=""
+                  size={27} 
+                  maxLength={150} 
+                  placeholder="Search website"
+                />
+                <datalist id="wb-srch-q-ac"></datalist>
+              </div>
+              <div className="form-group submit">
+                <button 
+                  type="submit" 
+                  id="wb-srch-sub" 
+                  className="btn btn-primary btn-small"
+                  name="wb-srch-sub"
+                >
+                  <span className="glyphicon-search glyphicon"></span>
+                  <span className="wb-inv">Search</span>
+                </button>
+              </div>
+            </form>
+          </section>
         </div>
       </div>
+      <nav 
+        role="navigation" 
+        id="wb-sm" 
+        className="wb-menu visible-md visible-lg" 
+        data-trgt="mb-pnl" 
+        data-ajax-replace="/wet-boew4b/ajax/sitemenu-en.html" 
+        typeof="SiteNavigationElement"
+      >
+        <div className="container nvbar">
+          <h2 className="wb-inv">Topics menu</h2>
+          <div className="row">
+            <ul className="list-inline menu">
+              <li><a href="https://www150.statcan.gc.ca/n1/en/subjects?MM=1">Subjects</a></li>
+              <li><a href="https://www150.statcan.gc.ca/n1/en/type/data?MM=1">Data</a></li>
+              <li><a href="https://www150.statcan.gc.ca/n1/en/type/analysis?MM=1">Analysis</a></li>
+              <li><a href="https://www.statcan.gc.ca/en/reference?MM=1">Reference</a></li>
+              <li><a href="https://www.statcan.gc.ca/en/geography?MM=1">Geography</a></li>
+              <li><a href="https://www.statcan.gc.ca/en/census?MM=1">Census</a></li>
+              <li><a href="https://www.statcan.gc.ca/en/surveys?MM=1">Surveys and statistical programs</a></li>
+              <li><a href="https://www.statcan.gc.ca/en/about/statcan?MM=1">About StatCan</a></li>
+              <li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <nav role="navigation" id="wb-bc" property="breadcrumb">
+        <div className="container">
+          <div className="row"> 
+            <ol className="breadcrumb">
+              <li><a href="https://www.statcan.gc.ca/en/start">Home</a></li>
+              <li><a href="https://www150.statcan.gc.ca/n1/en/subjects">Subjects</a></li>
+              <li>
+                <button
+                  onClick={onTitleClick}
+                  className="bg-transparent border-0 p-0 text-decoration-underline cursor-pointer"
+                  style={{ color: 'inherit' }}
+                  tabIndex={0}
+                  aria-label={t('header.returnToHome')}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onTitleClick?.();
+                    }
+                  }}
+                >
+                  {t('header.title')}
+                </button>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </nav>
     </header>
   )
 }

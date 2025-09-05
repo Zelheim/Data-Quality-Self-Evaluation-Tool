@@ -36,13 +36,14 @@ function App() {
       <Header onTitleClick={handleTitleClick} />
       
       <main 
-        id="main-content" 
-        className="flex-grow px-4 py-8 md:py-12" 
-        role="main"
+        role="main" property="mainContentOfPage" className="container"
       >
+        <section>
+        <h1 property="name" id="wb-cont">Data analysis tool</h1>
         <div className="max-w-7xl mx-auto">
           <MainContent ref={mainContentRef} />
         </div>
+        </section>
       </main>
       
       <Footer year={currentYear} />
