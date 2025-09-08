@@ -4,6 +4,13 @@ import { useTranslation } from 'react-i18next';
 import { ETHICS_PRINCIPLES } from '../../types/assessment';
 import { Button } from '../ui/Button';
 import { 
+  Card, 
+  CardHeader, 
+  CardTitle, 
+  CardContent, 
+  CardFooter 
+} from '../ui/Card';
+import { 
   Table, 
   TableHeader, 
   TableBody, 
@@ -109,133 +116,160 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   };
 
   return (
-    <section className="wb-cont mb-8">
-      <div className="panel panel-default">
-        <header className="panel-heading">
-          <h2 id="ethics-principles-title" className="panel-title">
-            {t('assessment.ethics.title')}
-          </h2>
-        </header>
+    <Card className="backdrop-blur-sm bg-white/90 shadow-lg border border-[var(--border-color)] transition-all hover:shadow-xl">
+      <CardHeader>
+        <CardTitle id="ethics-principles-title" className="text-2xl">
+          {t('assessment.ethics.title')}
+        </CardTitle>
+      </CardHeader>
 
-        <div className="panel-body">
-          <div className="mrgn-bttm-lg">
-            <p className="mrgn-bttm-md">
-              {t('assessment.ethics.intro.intro')}
-            </p>
-            <ul className="list-unstyled mrgn-bttm-md">
-              <li>{t('assessment.ethics.intro.bulletPoints.item1')}</li>
-              <li>{t('assessment.ethics.intro.bulletPoints.item2')}</li>
-              <li>{t('assessment.ethics.intro.bulletPoints.item3')}</li>
-              <li>{t('assessment.ethics.intro.bulletPoints.item4')}</li>
-              <li>{t('assessment.ethics.intro.bulletPoints.item5')}</li>
-            </ul>
-            <p className="mrgn-bttm-md" dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}} />
-            <p>
-              {t('assessment.ethics.intro.part2')}
-            </p>
-          </div>
-
-          <div className="table-responsive">
-            <Table className="table table-striped table-bordered">
-              <caption className="wb-inv">{t('assessment.ethics.table.caption')}</caption>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="bg-primary text-white">{t('assessment.ethics.table.headers.elements')}</TableHead>
-                  <TableHead className="bg-primary text-white">{t('assessment.ethics.table.headers.explanation')}</TableHead>
-                  <TableHead className="bg-primary text-white">{t('assessment.ethics.table.headers.criteria')}</TableHead>
-                  <TableHead className="bg-primary text-white">{t('assessment.ethics.table.headers.answer')}</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {ETHICS_PRINCIPLES.map((principle) => (
-                  <TableRow key={principle.id}>
-                    <TableCell className="font-weight-bold">
-                      <strong id={`ethics-el-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
-                    </TableCell>
-                    <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
-                    <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
-                    <TableCell>
-                      <Select
-                        value={ethicsAnswers[principle.id] || ""}
-                        onValueChange={(value) => handleAnswerChange(principle.id, value)}
-                      >
-                        <SelectTrigger 
-                          className="form-control" 
-                          aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
-                        >
-                          <SelectValue 
-                            placeholder={t('assessment.ethics.table.answers.select')} 
-                          />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="unselected">
-                            {t('assessment.ethics.table.answers.select')}
-                          </SelectItem>
-                          <SelectItem value="Yes">
-                            {t('assessment.ethics.table.answers.yes')}
-                          </SelectItem>
-                          <SelectItem value="No">
-                            {t('assessment.ethics.table.answers.no')}
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-
-          <div className="well well-sm mrgn-tp-lg" id="ethics-results-title">
-            <h3 className="h4 mrgn-bttm-md">
-              {t('assessment.ethics.results.title')}
-            </h3>
-            
-            <div 
-              ref={resultRef}
-              tabIndex={-1}
-              aria-labelledby="ethics-results-title"
+      <CardContent>
+        <div className="mb-6 text-[var(--text-color)]">
+          <p className="text-lg">
+          {t('assessment.ethics.intro.intro') }
+          </p>
+          <ol 
+                className="my-6 list-decimal pl-6 space-y-2" 
+                aria-label={t('frontPage.bulletPoints.label')}
             >
-              {showResult && ethicsPass !== null && (
-                <div 
-                  className={`alert ${ethicsPass ? 'alert-success' : 'alert-danger'} text-center`}
-                  role="alert"
-                  aria-live="polite"
-                >
-                  <strong>{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
-                </div>
-              )}
-
-              {showResult && (
-                <div className="alert alert-info" role="status" aria-live="polite">
-                  <p className="mrgn-bttm-0" dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
-                </div>
-              )}
-            </div>
-          </div>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item1')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item2')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item3')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item4')}</li>
+              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item5')}</li>
+            </ol>
+          <p className="text-lg" dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}}
+          />
+          <br/>
+          <p className="text-lg">
+            {t('assessment.ethics.intro.part2')}
+          </p>
         </div>
 
-        <footer className="panel-footer text-center">
-          {!showResult ? (
-            <Button 
-              onClick={handleEvaluate}
-              aria-label={t('assessment.ethics.actions.evaluate')}
-              className="btn btn-primary"
+        <div className="rounded-lg overflow-hidden shadow-md">
+          <Table>
+            <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
+            <TableHeader className="text-lg">
+              <TableRow>
+                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.elements')}</TableHead>
+                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.explanation')}</TableHead>
+                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.criteria')}</TableHead>
+                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.answer')}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {ETHICS_PRINCIPLES.map((principle, index) => (
+                <TableRow 
+                  key={principle.id} 
+                  className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}
+                >
+                  <TableCell className="font-medium">
+                    <strong id={`ethics-el-${principle.id}`} className="text-[var(--primary-color)] text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
+                  </TableCell>
+                  <TableCell className="text-base">{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
+                  <TableCell id={`ethics-crit-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
+                  <TableCell>
+                    <Select
+                      value={ethicsAnswers[principle.id] || ""}
+                      onValueChange={(value) => handleAnswerChange(principle.id, value)}
+                    >
+                      <SelectTrigger 
+                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)] text-base" 
+                        aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
+                        style={{ fontSize: '1rem' }}
+                      >
+                        <SelectValue 
+                          placeholder={t('assessment.ethics.table.answers.select')} 
+                          className="text-base"
+                          style={{ fontSize: '1rem' }}
+                        />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem 
+                          value="unselected" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.select')}</span>
+                        </SelectItem>
+                        <SelectItem 
+                          value="Yes" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.yes')}</span>
+                        </SelectItem>
+                        <SelectItem 
+                          value="No" 
+                          className="text-base py-3"
+                          style={{ fontSize: '1rem' }}
+                        >
+                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.no')}</span>
+                        </SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
+
+        <div 
+          className="section-header font-bold mt-8 mb-4 text-xl"
+          id="ethics-results-title"
+        >
+          {t('assessment.ethics.results.title')}
+        </div>
+        
+        <div 
+          ref={resultRef}
+          tabIndex={-1}
+          aria-labelledby="ethics-results-title"
+          className="transition-all"
+        >
+          {showResult && ethicsPass !== null && (
+            <div 
+              className={`p-4 rounded-lg font-bold mt-5 text-center shadow-md transform transition-all ${
+                ethicsPass 
+                  ? 'bg-[var(--success-color)] text-white' 
+                  : 'bg-[var(--error-color)] text-white'
+              }`}
+              role="alert"
+              aria-live="polite"
             >
-              {t('assessment.ethics.actions.evaluate')}
-            </Button>
-          ) : (
-            <Button 
-              onClick={handleContinue}
-              aria-label={t('assessment.ethics.actions.continue')}
-              className="btn btn-primary"
-            >
-              {t('assessment.ethics.actions.continue')}
-            </Button>
+              <span className="text-center block">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</span>
+            </div>
           )}
-        </footer>
-      </div>
-    </section>
+
+          {showResult && (
+            <div className="mt-5 italic bg-[var(--light-blue)]/50 p-4 rounded-lg" role="status" aria-live="polite">
+              <p dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
+            </div>
+          )}
+        </div>
+      </CardContent>
+
+      <CardFooter className="text-center gap-3">
+        {!showResult ? (
+          <Button 
+            onClick={handleEvaluate}
+            aria-label={t('assessment.ethics.actions.evaluate')}
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+          >
+            {t('assessment.ethics.actions.evaluate')}
+          </Button>
+        ) : (
+          <Button 
+            onClick={handleContinue}
+            aria-label={t('assessment.ethics.actions.continue')}
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+          >
+            {t('assessment.ethics.actions.continue')}
+          </Button>
+        )}
+      </CardFooter>
+    </Card>
   );
 };
 
