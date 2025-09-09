@@ -20,9 +20,6 @@ import {
 } from '../ui/Table';
 import { 
   Select, 
-  SelectTrigger, 
-  SelectValue, 
-  SelectContent, 
   SelectItem 
 } from '../ui/Select';
 
@@ -116,9 +113,9 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   };
 
   return (
-    <Card className="backdrop-blur-sm bg-white/90 shadow-lg border border-[var(--border-color)] transition-all hover:shadow-xl">
+    <Card>
       <CardHeader>
-        <CardTitle id="ethics-principles-title" className="text-2xl">
+        <CardTitle id="ethics-principles-title">
           {t('assessment.ethics.title')}
         </CardTitle>
       </CardHeader>
@@ -170,43 +167,19 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
                   <TableCell id={`ethics-crit-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
                   <TableCell>
                     <Select
-                      value={ethicsAnswers[principle.id] || ""}
+                      value={ethicsAnswers[principle.id] || "unselected"}
                       onValueChange={(value) => handleAnswerChange(principle.id, value)}
+                      aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
                     >
-                      <SelectTrigger 
-                        className="w-full shadow-sm transition-all hover:border-[var(--secondary-color)] text-base" 
-                        aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
-                        style={{ fontSize: '1rem' }}
-                      >
-                        <SelectValue 
-                          placeholder={t('assessment.ethics.table.answers.select')} 
-                          className="text-base"
-                          style={{ fontSize: '1rem' }}
-                        />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem 
-                          value="unselected" 
-                          className="text-base py-3"
-                          style={{ fontSize: '1rem' }}
-                        >
-                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.select')}</span>
-                        </SelectItem>
-                        <SelectItem 
-                          value="Yes" 
-                          className="text-base py-3"
-                          style={{ fontSize: '1rem' }}
-                        >
-                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.yes')}</span>
-                        </SelectItem>
-                        <SelectItem 
-                          value="No" 
-                          className="text-base py-3"
-                          style={{ fontSize: '1rem' }}
-                        >
-                          <span style={{ fontSize: '1rem' }}>{t('assessment.ethics.table.answers.no')}</span>
-                        </SelectItem>
-                      </SelectContent>
+                      <SelectItem value="unselected" disabled>
+                        {t('assessment.ethics.table.answers.select')}
+                      </SelectItem>
+                      <SelectItem value="Yes">
+                        {t('assessment.ethics.table.answers.yes')}
+                      </SelectItem>
+                      <SelectItem value="No">
+                        {t('assessment.ethics.table.answers.no')}
+                      </SelectItem>
                     </Select>
                   </TableCell>
                 </TableRow>
@@ -230,21 +203,19 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
         >
           {showResult && ethicsPass !== null && (
             <div 
-              className={`p-4 rounded-lg font-bold mt-5 text-center shadow-md transform transition-all ${
-                ethicsPass 
-                  ? 'bg-[var(--success-color)] text-white' 
-                  : 'bg-[var(--error-color)] text-white'
-              }`}
+              className={`wb-inv-result ${ethicsPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} text-center mrgn-tp-md`}
               role="alert"
               aria-live="polite"
             >
-              <span className="text-center block">{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</span>
+              <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok text-success' : 'glyphicon-remove text-danger'} mrgn-rght-sm`} aria-hidden="true"></span>
+              <strong>{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
             </div>
           )}
 
           {showResult && (
-            <div className="mt-5 italic bg-[var(--light-blue)]/50 p-4 rounded-lg" role="status" aria-live="polite">
-              <p dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
+            <div className="wb-inv-message wb-inv-message-info mrgn-tp-md" role="status" aria-live="polite">
+              <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+              <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
             </div>
           )}
         </div>
