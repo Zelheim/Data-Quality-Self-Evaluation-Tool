@@ -25,28 +25,26 @@ function App() {
   }, [i18n.language])
 
   return (
-          <div className="flex flex-col min-h-screen bg-[var(--background-color)]">
-      <a 
-        href="#main-content" 
-        className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:bg-white focus:text-[var(--primary-color)] focus:p-4 focus:shadow-lg focus:rounded-md"
-      >
-        Skip to main content
-      </a>
-      
+    <>
       <Header onTitleClick={handleTitleClick} />
       
-      <main 
-        id="main-content" 
-        className="flex-grow px-4 py-8 md:py-12" 
-        role="main"
-      >
-        <div className="max-w-7xl mx-auto">
+      <main role="main" property="mainContentOfPage" className="container">
+        <section>
+          <h1 property="name" id="wb-cont">Data Suitability Assessment Tool</h1>
           <MainContent ref={mainContentRef} />
+        </section>
+        <div className="pagedetails">
+          <dl id="wb-dtmd">
+            <dt>Date modified:&#32;</dt>
+            <dd>
+              <time property="dateModified">{new Date().toISOString().split('T')[0]}</time>
+            </dd>
+          </dl>
         </div>
       </main>
       
       <Footer year={currentYear} />
-    </div>
+    </>
   )
 }
 
