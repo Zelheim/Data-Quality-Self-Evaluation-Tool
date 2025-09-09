@@ -7,10 +7,10 @@ interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
 
 const Table = React.forwardRef<HTMLTableElement, TableProps>(
   ({ className, ...props }, ref) => (
-    <div className="w-full overflow-auto">
+    <div className="table-responsive">
       <table
         ref={ref}
-        className={`w-full caption-bottom text-sm ${className}`}
+        className={`table table-striped ${className || ''}`}
         role="table"
         {...props}
       />
@@ -25,7 +25,7 @@ interface TableHeaderProps extends React.HTMLAttributes<HTMLTableSectionElement>
 
 const TableHeader = React.forwardRef<HTMLTableSectionElement, TableHeaderProps>(
   ({ className, ...props }, ref) => (
-    <thead ref={ref} className={className} role="rowgroup" {...props} />
+    <thead ref={ref} className={className || ''} role="rowgroup" {...props} />
   )
 )
 TableHeader.displayName = "TableHeader"
@@ -38,7 +38,7 @@ const TableBody = React.forwardRef<HTMLTableSectionElement, TableBodyProps>(
   ({ className, ...props }, ref) => (
     <tbody
       ref={ref}
-      className={className}
+      className={className || ''}
       role="rowgroup"
       {...props}
     />
@@ -54,7 +54,7 @@ const TableRow = React.forwardRef<HTMLTableRowElement, TableRowProps>(
   ({ className, ...props }, ref) => (
     <tr
       ref={ref}
-      className={`border-b border-[var(--border-color)] transition-colors ${className}`}
+      className={className || ''}
       role="row"
       {...props}
     />
@@ -70,7 +70,7 @@ const TableHead = React.forwardRef<HTMLTableCellElement, TableHeadProps>(
   ({ className, scope = "col", ...props }, ref) => (
     <th
       ref={ref}
-      className={`bg-[var(--primary-color)] text-white p-3 text-left align-middle font-bold ${className}`}
+      className={className || ''}
       scope={scope}
       role="columnheader"
       {...props}
@@ -87,7 +87,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, TableCellProps>(
   ({ className, ...props }, ref) => (
     <td
       ref={ref}
-      className={`p-3 align-middle border-b border-[var(--border-color)] ${className}`}
+      className={className || ''}
       role="cell"
       {...props}
     />
@@ -103,7 +103,7 @@ const TableCaption = React.forwardRef<HTMLTableCaptionElement, TableCaptionProps
   ({ className, ...props }, ref) => (
     <caption
       ref={ref}
-      className={`mt-4 text-sm text-gray-500 ${className}`}
+      className={`mrgn-tp-md text-muted ${className || ''}`}
       {...props}
     />
   )
