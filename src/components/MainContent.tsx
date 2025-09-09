@@ -2,21 +2,20 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // @ts-ignore - React is used for JSX
 import React, { useState, forwardRef, useImperativeHandle } from 'react'
-import { useTranslation } from 'react-i18next'
-import * as Tabs from '@radix-ui/react-tabs'
-import FrontPage from './tabs/FrontPage'
+// import { useTranslation } from 'react-i18next' // COMMENTED OUT: Not needed when showing only assessment tool
+// import FrontPage from './tabs/FrontPage' // COMMENTED OUT: Front page is hidden
 import AssessmentTool from './tabs/AssessmentTool'
-import License from './tabs/License'
+// import License from './tabs/License' // COMMENTED OUT: License tab is hidden
 
 export interface MainContentRef {
   handleReturnHome: () => void;
 }
 
 const MainContent = forwardRef<MainContentRef>((_, ref) => {
-  const { t } = useTranslation()
-  const [activeTab, setActiveTab] = useState('front-page')
-  const [showTabsNavigation, setShowTabsNavigation] = useState(false)
-  const [currentYear] = useState(() => new Date().getFullYear())
+  // const { t } = useTranslation() // COMMENTED OUT: Not needed when showing only assessment tool
+  // const [activeTab, setActiveTab] = useState('front-page') // COMMENTED OUT: No tabs to manage
+  // const [showTabsNavigation, setShowTabsNavigation] = useState(false) // COMMENTED OUT: No tab navigation
+  // const [currentYear] = useState(() => new Date().getFullYear()) // COMMENTED OUT: Not needed for assessment tool only
   
   // Assessment state lifted up to preserve across tab switches
   const [currentStep, setCurrentStep] = useState<'ethics' | 'quality' | 'overall'>('ethics')
@@ -34,15 +33,15 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   const [qualityInterpretation, setQualityInterpretation] = useState('')
   const [criteriaSatisfaction, setCriteriaSatisfaction] = useState<Record<string, boolean[]>>({})
   
-  const handleStartAssessment = () => {
-    setActiveTab('assessment-tab-panel')
-    setShowTabsNavigation(true)
-  }
+  // const handleStartAssessment = () => { // COMMENTED OUT: No front page to start from
+  //   setActiveTab('assessment-tab-panel')
+  //   setShowTabsNavigation(true)
+  // }
 
   const handleReturnHome = () => {
-    setActiveTab('front-page')
-    setShowTabsNavigation(false)
-    // Reset assessment state when returning home
+    // setActiveTab('front-page') // COMMENTED OUT: No front page to return to
+    // setShowTabsNavigation(false) // COMMENTED OUT: No tab navigation
+    // Reset assessment state when returning home (still functional for reset button)
     setCurrentStep('ethics')
     setEthicsAnswers({})
     setEthicsPass(null)
@@ -64,80 +63,144 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   }))
   
   return (
-    <div className="container mx-auto px-4 py-6 flex-grow">
+    <>
       {/* This component uses React JSX */}
+      {/* COMMENTED OUT: Front page and tab navigation to show only assessment tool */}
+      {/* 
       {activeTab === 'front-page' && (
         <FrontPage onStartAssessment={handleStartAssessment} />
       )}
       
       {showTabsNavigation && (
-        <div className="mt-4">
-          <Tabs.Root value={activeTab} onValueChange={setActiveTab} className="w-full">
-            <Tabs.List
-              className="flex mb-6 border-b border-[var(--border-color)] shadow-sm w-full"
-              aria-label={t('mainContent.navigation')}
-            >
-              <Tabs.Trigger
-                value="assessment-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg mr-1 sm:mr-2 transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
+        <div className="mrgn-tp-md">
+          {/* Bootstrap/WET-BOEW Tab Navigation */}
+          {/* 
+          <ul className="nav nav-tabs" role="tablist" aria-label={t('mainContent.navigation')}>
+            <li role="presentation" className={activeTab === 'assessment-tab-panel' ? 'active' : ''}>
+              <a
+                href="#assessment-tab-panel"
+                role="tab"
+                aria-controls="assessment-tab-panel"
+                aria-selected={activeTab === 'assessment-tab-panel'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('assessment-tab-panel');
+                }}
+                className="nav-link"
               >
                 {t('mainContent.tabs.assessment')}
-              </Tabs.Trigger>
-              <Tabs.Trigger
-                value="license-tab-panel"
-                className={`py-2 sm:py-3 px-4 sm:px-6 text-lg font-bold text-base rounded-t-lg transition-all duration-200 ease-in-out border-t border-l border-r border-[var(--border-color)] flex-1 cursor-pointer data-[state=active]:bg-[var(--primary-color)] data-[state=active]:text-white data-[state=active]:font-bold data-[state=active]:shadow-md data-[state=active]:translate-y-px data-[state=inactive]:bg-[var(--light-blue)]/50 data-[state=inactive]:text-[var(--text-color)] data-[state=inactive]:hover:bg-[var(--light-blue)] data-[state=inactive]:hover:text-[var(--primary-color)] data-[state=inactive]:hover:shadow-md`}
+              </a>
+            </li>
+            <li role="presentation" className={activeTab === 'license-tab-panel' ? 'active' : ''}>
+              <a
+                href="#license-tab-panel"
+                role="tab"
+                aria-controls="license-tab-panel"
+                aria-selected={activeTab === 'license-tab-panel'}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveTab('license-tab-panel');
+                }}
+                className="nav-link"
               >
                 {t('mainContent.tabs.license')}
-              </Tabs.Trigger>
-            </Tabs.List>
-            
-            <Tabs.Content 
-              value="assessment-tab-panel" 
-              className="shadow-sm rounded-b-lg"
+              </a>
+            </li>
+          </ul>
+          */}
+          
+          {/* Tab Content */}
+          {/* 
+          <div className="tab-content">
+            <div 
+              id="assessment-tab-panel"
+              className={`tab-pane ${activeTab === 'assessment-tab-panel' ? 'active in' : ''}`}
+              role="tabpanel"
+              aria-labelledby="assessment-tab"
               tabIndex={0}
             >
-              <AssessmentTool 
-                onReturnHome={handleReturnHome}
-                // Pass assessment state as props
-                currentStep={currentStep}
-                setCurrentStep={setCurrentStep}
-                ethicsAnswers={ethicsAnswers}
-                setEthicsAnswers={setEthicsAnswers}
-                ethicsPass={ethicsPass}
-                setEthicsPass={setEthicsPass}
-                part1MessageKey={part1MessageKey}
-                setPart1MessageKey={setPart1MessageKey}
-                qualityScores={qualityScores}
-                setQualityScores={setQualityScores}
-                totalQualityScore={totalQualityScore}
-                setTotalQualityScore={setTotalQualityScore}
-                qualityPass={qualityPass}
-                setQualityPass={setQualityPass}
-                qualityInterpretationKey={qualityInterpretationKey}
-                setQualityInterpretationKey={setQualityInterpretationKey}
-                // Pass UI state as props
-                ethicsShowResult={ethicsShowResult}
-                setEthicsShowResult={setEthicsShowResult}
-                qualityShowResult={qualityShowResult}
-                setQualityShowResult={setQualityShowResult}
-                qualityInterpretation={qualityInterpretation}
-                setQualityInterpretation={setQualityInterpretation}
-                criteriaSatisfaction={criteriaSatisfaction}
-                setCriteriaSatisfaction={setCriteriaSatisfaction}
-              />
-            </Tabs.Content>
+              {activeTab === 'assessment-tab-panel' && (
+                <AssessmentTool 
+                  onReturnHome={handleReturnHome}
+                  // Pass assessment state as props
+                  currentStep={currentStep}
+                  setCurrentStep={setCurrentStep}
+                  ethicsAnswers={ethicsAnswers}
+                  setEthicsAnswers={setEthicsAnswers}
+                  ethicsPass={ethicsPass}
+                  setEthicsPass={setEthicsPass}
+                  part1MessageKey={part1MessageKey}
+                  setPart1MessageKey={setPart1MessageKey}
+                  qualityScores={qualityScores}
+                  setQualityScores={setQualityScores}
+                  totalQualityScore={totalQualityScore}
+                  setTotalQualityScore={setTotalQualityScore}
+                  qualityPass={qualityPass}
+                  setQualityPass={setQualityPass}
+                  qualityInterpretationKey={qualityInterpretationKey}
+                  setQualityInterpretationKey={setQualityInterpretationKey}
+                  // Pass UI state as props
+                  ethicsShowResult={ethicsShowResult}
+                  setEthicsShowResult={setEthicsShowResult}
+                  qualityShowResult={qualityShowResult}
+                  setQualityShowResult={setQualityShowResult}
+                  qualityInterpretation={qualityInterpretation}
+                  setQualityInterpretation={setQualityInterpretation}
+                  criteriaSatisfaction={criteriaSatisfaction}
+                  setCriteriaSatisfaction={setCriteriaSatisfaction}
+                />
+              )}
+            </div>
             
-            <Tabs.Content 
-              value="license-tab-panel" 
-              className="shadow-sm rounded-b-lg"
+            <div 
+              id="license-tab-panel"
+              className={`tab-pane ${activeTab === 'license-tab-panel' ? 'active in' : ''}`}
+              role="tabpanel"
+              aria-labelledby="license-tab"
               tabIndex={0}
             >
-              <License currentYear={currentYear} />
-            </Tabs.Content>
-          </Tabs.Root>
+              {activeTab === 'license-tab-panel' && (
+                <License currentYear={currentYear} />
+              )}
+            </div>
+          </div>
         </div>
       )}
-    </div>
+      */}
+
+      {/* DISPLAY ONLY ASSESSMENT TOOL */}
+      <div className="mrgn-tp-md">
+        <AssessmentTool 
+          onReturnHome={handleReturnHome}
+          // Pass assessment state as props
+          currentStep={currentStep}
+          setCurrentStep={setCurrentStep}
+          ethicsAnswers={ethicsAnswers}
+          setEthicsAnswers={setEthicsAnswers}
+          ethicsPass={ethicsPass}
+          setEthicsPass={setEthicsPass}
+          part1MessageKey={part1MessageKey}
+          setPart1MessageKey={setPart1MessageKey}
+          qualityScores={qualityScores}
+          setQualityScores={setQualityScores}
+          totalQualityScore={totalQualityScore}
+          setTotalQualityScore={setTotalQualityScore}
+          qualityPass={qualityPass}
+          setQualityPass={setQualityPass}
+          qualityInterpretationKey={qualityInterpretationKey}
+          setQualityInterpretationKey={setQualityInterpretationKey}
+          // Pass UI state as props
+          ethicsShowResult={ethicsShowResult}
+          setEthicsShowResult={setEthicsShowResult}
+          qualityShowResult={qualityShowResult}
+          setQualityShowResult={setQualityShowResult}
+          qualityInterpretation={qualityInterpretation}
+          setQualityInterpretation={setQualityInterpretation}
+          criteriaSatisfaction={criteriaSatisfaction}
+          setCriteriaSatisfaction={setCriteriaSatisfaction}
+        />
+      </div>
+    </>
   )
 })
 
