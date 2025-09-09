@@ -111,10 +111,10 @@ const AlertDialogComponent: React.FC<AlertDialogComponentProps> = ({
               >
                 <span aria-hidden="true">&times;</span>
               </button>
-              <h4 className="modal-title" id={titleId}>
+              <div className="modal-title" id={titleId}>
                 <span className="glyphicon glyphicon-exclamation-sign text-warning mrgn-rght-sm" aria-hidden="true"></span>
                 {dialogTitle}
-              </h4>
+              </div>
             </div>
             
             {/* Modal Body */}
