@@ -24,9 +24,9 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, children, className = '
   const getResultIcon = () => {
     switch (result) {
       case 'pass':
-        return <span className="glyphicon glyphicon-ok text-success mrgn-rght-sm" aria-hidden="true"></span>;
+        return <span className="glyphicon glyphicon-ok-sign text-success mrgn-rght-sm" aria-hidden="true"></span>;
       case 'fail':
-        return <span className="glyphicon glyphicon-remove text-danger mrgn-rght-sm" aria-hidden="true"></span>;
+        return <span className="glyphicon glyphicon-remove-sign text-danger mrgn-rght-sm" aria-hidden="true"></span>;
       case 'warning':
         return <span className="glyphicon glyphicon-warning-sign text-warning mrgn-rght-sm" aria-hidden="true"></span>;
       default:

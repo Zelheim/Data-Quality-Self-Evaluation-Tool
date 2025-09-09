@@ -206,7 +206,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
               role="alert"
               aria-live="polite"
             >
-              <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok text-success' : 'glyphicon-remove text-danger'} mrgn-rght-sm`} aria-hidden="true"></span>
+              <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'} mrgn-rght-sm`} aria-hidden="true"></span>
               <strong>{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
             </div>
           )}

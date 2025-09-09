@@ -594,7 +594,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         </h3>
         
         <div className={`wb-inv-result ${ethicsPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
-          <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok text-success' : 'glyphicon-remove text-danger'}`} aria-hidden="true"></span>
+          <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
           <div className="wb-inv-result-content">
             <strong>{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
           </div>
@@ -644,7 +644,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         </h3>
         
         <div className={`wb-inv-result ${qualityPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
-          <span className={`glyphicon ${qualityPass ? 'glyphicon-ok text-success' : 'glyphicon-remove text-danger'}`} aria-hidden="true"></span>
+          <span className={`glyphicon ${qualityPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
           <div className="wb-inv-result-content">
             <strong>{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</strong>
             <span>{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
@@ -721,7 +721,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           aria-labelledby="overall-assessment-title"
         >
           <div className={`${resultClass} mrgn-bttm-md`} role="alert">
-            <span className={`glyphicon ${overallPass ? 'glyphicon-ok text-success' : 'glyphicon-remove text-danger'}`} aria-hidden="true"></span>
+            <span className={`glyphicon ${overallPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
             <div className="wb-inv-result-content">
               <h2 className="h2"><strong>{resultText}</strong></h2>
             </div>

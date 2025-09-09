@@ -301,7 +301,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           {showResult && generateQualitySummary()}
           
           <div className="wb-inv-message wb-inv-message-info mrgn-tp-md">
-            <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+            <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
             <div className="wb-inv-message-content">
               <span className="text-lg">
                 {t('assessment.quality.summary.totalScore')} <span className="font-bold text-primary">
