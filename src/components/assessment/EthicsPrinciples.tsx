@@ -225,7 +225,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           <Button 
             onClick={handleEvaluate}
             aria-label={t('assessment.ethics.actions.evaluate')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
           >
             {t('assessment.ethics.actions.evaluate')}
           </Button>
@@ -233,7 +233,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           <Button 
             onClick={handleContinue}
             aria-label={t('assessment.ethics.actions.continue')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
           >
             {t('assessment.ethics.actions.continue')}
           </Button>

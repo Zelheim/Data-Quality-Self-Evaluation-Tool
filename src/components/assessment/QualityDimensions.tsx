@@ -334,7 +334,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           onClick={onGoBack}
           variant="outline"
           aria-label={t('assessment.quality.actions.goBack')}
-          className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg"
+          className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
         >
           {t('assessment.quality.actions.goBack')}
         </Button>
@@ -342,7 +342,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <Button 
             onClick={handleEvaluate}
             aria-label={t('assessment.quality.actions.evaluate')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md"
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md btn-lg"
           >
             {t('assessment.quality.actions.evaluate')}
           </Button>
@@ -350,7 +350,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <Button 
             onClick={handleContinue}
             aria-label={t('assessment.quality.actions.continue')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md"
+            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md btn-lg"
           >
             {t('assessment.quality.actions.continue')}
           </Button>
