@@ -11,19 +11,33 @@ const ResultCard: React.FC<ResultCardProps> = ({ result, children, className = '
   const getResultClass = () => {
     switch (result) {
       case 'pass':
-        return 'bg-[var(--success-color)] text-white';
+        return 'wb-inv-result wb-inv-result-pass';
       case 'fail':
-        return 'bg-[var(--error-color)] text-white';
+        return 'wb-inv-result wb-inv-result-fail';
       case 'warning':
-        return 'bg-[var(--warning-color)] text-white';
+        return 'wb-inv-result wb-inv-result-warning';
       default:
-        return '';
+        return 'wb-inv-result wb-inv-result-info';
+    }
+  };
+  
+  const getResultIcon = () => {
+    switch (result) {
+      case 'pass':
+        return <span className="glyphicon glyphicon-ok text-success mrgn-rght-sm" aria-hidden="true"></span>;
+      case 'fail':
+        return <span className="glyphicon glyphicon-remove text-danger mrgn-rght-sm" aria-hidden="true"></span>;
+      case 'warning':
+        return <span className="glyphicon glyphicon-warning-sign text-warning mrgn-rght-sm" aria-hidden="true"></span>;
+      default:
+        return <span className="glyphicon glyphicon-info-sign text-info mrgn-rght-sm" aria-hidden="true"></span>;
     }
   };
   
   return (
-    <div className={`p-4 rounded font-bold mt-5 text-center ${getResultClass()} ${className}`}>
-      {children}
+    <div className={`${getResultClass()} text-center mrgn-tp-md ${className}`} role="alert">
+      {getResultIcon()}
+      <strong>{children}</strong>
     </div>
   );
 };
