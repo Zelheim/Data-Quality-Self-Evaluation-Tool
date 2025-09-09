@@ -83,7 +83,7 @@ const Footer = ({ year }: FooterProps) => {
           
           <div className="wtrmrk align-self-end">
             <img 
-              src="/wet-boew4b/assets/wmms-blk.svg" 
+              src="./wet-boew4b/assets/wmms-blk.svg" 
               alt="Symbol of the Government of Canada"
             />
           </div>

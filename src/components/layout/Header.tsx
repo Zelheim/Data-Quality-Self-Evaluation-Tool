@@ -60,7 +60,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
             {/* Government of Canada Brand */}
             <div className="brand col-xs-8 col-sm-9 col-md-6">
               <img 
-                src="/wet-boew4b/assets/sig-blk-gov-en.svg" 
+                src="./wet-boew4b/assets/sig-blk-gov-en.svg" 
                 alt="Government of Canada"
               />
               <span className="wb-inv"> / <span lang="fr">Gouvernement du Canada</span></span>
