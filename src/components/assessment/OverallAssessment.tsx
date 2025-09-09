@@ -906,7 +906,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   <Button 
                     onClick={handleCopyToClipboard}
                     variant="secondary"
-                    size="sm"
+                    size="lg"
                     disabled={exportFormat === 'pdf' || exportFormat === 'word'}
                   >
                     <span className="glyphicon glyphicon-copy mrgn-rght-sm" aria-hidden="true"></span>
@@ -915,7 +915,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   <Button 
                     onClick={handleDownload}
                     variant="primary"
-                    size="sm"
+                    size="lg"
                     disabled={isGenerating}
                   >
                     {isGenerating ? (
@@ -933,7 +933,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   <Button 
                     onClick={() => setExportDialogOpen(false)}
                     variant="secondary"
-                    size="sm"
+                    size="lg"
                   >
                     <span className="glyphicon glyphicon-remove mrgn-rght-sm" aria-hidden="true"></span>
                     {t('assessment.overall.export.buttons.close')}
