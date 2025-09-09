@@ -50,7 +50,7 @@
   border-radius: 3px;
   background-color: #f8f9fa;
   border: 1px solid #e9ecef;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.4;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -90,7 +90,7 @@
 
 /* Icon spacing and sizing for results */
 .wb-inv-result .glyphicon {
-  font-size: 16px;
+  font-size: 20px;
   flex-shrink: 0;
 }
 
@@ -139,7 +139,7 @@
   border-radius: 4px;
   background-color: #f8f9fa;
   border: 1px solid #e1e5e9;
-  font-size: 16px;
+  font-size: 20px;
   line-height: 1.5;
   border-left: 4px solid #17a2b8;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -179,7 +179,7 @@
 
 /* Message box icons */
 .wb-inv-message .glyphicon {
-  font-size: 16px;
+  font-size: 20px;
   margin-top: 2px;
   flex-shrink: 0;
 }

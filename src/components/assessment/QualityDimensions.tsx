@@ -271,7 +271,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                                 type="checkbox"
                                 checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
                                 onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
-                                className="form-control"
                                 aria-describedby={`quality-crit-${dimension.id}`}
                               />
                             </label>
