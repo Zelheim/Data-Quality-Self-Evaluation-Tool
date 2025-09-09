@@ -224,8 +224,8 @@ a:visited, .wb-inv-link:visited {
 .form-control {
   display: block;
   width: 100%;
-  padding: 6px 12px;
-  font-size: 14px;
+  padding: 8px 12px;
+  font-size: 16px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -254,9 +254,9 @@ a:visited, .wb-inv-link:visited {
 
 /* Select specific styling */
 select.form-control {
-  height: 34px;
-  padding: 6px 12px;
-  font-size: 14px;
+  height: 38px;
+  padding: 8px 12px;
+  font-size: 16px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -269,9 +269,10 @@ select.form-control {
 }
 
 select.form-control option {
-  padding: 4px 8px;
+  padding: 6px 10px;
   color: #333;
   background-color: #fff;
+  font-size: 16px;
 }
 
 select.form-control option:disabled {
@@ -291,7 +292,7 @@ select.form-control option:selected {
 /* Assessment table form controls */
 table .form-control {
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* WET-BOEW Tab styling */
