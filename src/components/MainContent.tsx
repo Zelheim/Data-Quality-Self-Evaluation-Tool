@@ -1,9 +1,6 @@
 // src/components/MainContent.tsx (updated version)
-/* eslint-disable @typescript-eslint/no-unused-vars */
-// @ts-ignore - React is used for JSX
-import React, { useState, forwardRef, useImperativeHandle } from 'react'
-// import { useTranslation } from 'react-i18next' // COMMENTED OUT: Not needed when showing only assessment tool
-// import FrontPage from './tabs/FrontPage' // COMMENTED OUT: Front page is hidden
+import { useState, forwardRef, useImperativeHandle } from 'react'
+import FrontPage from './tabs/FrontPage'
 import AssessmentTool from './tabs/AssessmentTool'
 // import License from './tabs/License' // COMMENTED OUT: License tab is hidden
 
@@ -12,10 +9,9 @@ export interface MainContentRef {
 }
 
 const MainContent = forwardRef<MainContentRef>((_, ref) => {
-  // const { t } = useTranslation() // COMMENTED OUT: Not needed when showing only assessment tool
-  // const [activeTab, setActiveTab] = useState('front-page') // COMMENTED OUT: No tabs to manage
+  const [activeTab, setActiveTab] = useState('front-page')
   // const [showTabsNavigation, setShowTabsNavigation] = useState(false) // COMMENTED OUT: No tab navigation
-  // const [currentYear] = useState(() => new Date().getFullYear()) // COMMENTED OUT: Not needed for assessment tool only
+  // const [currentYear] = useState(() => new Date().getFullYear()) // COMMENTED OUT: Not needed for license tab
   
   // Assessment state lifted up to preserve across tab switches
   const [currentStep, setCurrentStep] = useState<'ethics' | 'quality' | 'overall'>('ethics')
@@ -33,14 +29,12 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   const [qualityInterpretation, setQualityInterpretation] = useState('')
   const [criteriaSatisfaction, setCriteriaSatisfaction] = useState<Record<string, boolean[]>>({})
   
-  // const handleStartAssessment = () => { // COMMENTED OUT: No front page to start from
-  //   setActiveTab('assessment-tab-panel')
-  //   setShowTabsNavigation(true)
-  // }
+  const handleStartAssessment = () => {
+    setActiveTab('assessment-tool')
+  }
 
   const handleReturnHome = () => {
-    // setActiveTab('front-page') // COMMENTED OUT: No front page to return to
-    // setShowTabsNavigation(false) // COMMENTED OUT: No tab navigation
+    setActiveTab('front-page')
     // Reset assessment state when returning home (still functional for reset button)
     setCurrentStep('ethics')
     setEthicsAnswers({})
@@ -64,13 +58,12 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
   
   return (
     <>
-      {/* This component uses React JSX */}
-      {/* COMMENTED OUT: Front page and tab navigation to show only assessment tool */}
-      {/* 
       {activeTab === 'front-page' && (
         <FrontPage onStartAssessment={handleStartAssessment} />
       )}
       
+      {/* COMMENTED OUT: Tab navigation - keeping only front page and direct assessment tool */}
+      {/* 
       {showTabsNavigation && (
         <div className="mrgn-tp-md">
           {/* Bootstrap/WET-BOEW Tab Navigation */}
@@ -168,38 +161,39 @@ const MainContent = forwardRef<MainContentRef>((_, ref) => {
       )}
       */}
 
-      {/* DISPLAY ONLY ASSESSMENT TOOL */}
-      <div className="mrgn-tp-md">
-        <AssessmentTool 
-          onReturnHome={handleReturnHome}
-          // Pass assessment state as props
-          currentStep={currentStep}
-          setCurrentStep={setCurrentStep}
-          ethicsAnswers={ethicsAnswers}
-          setEthicsAnswers={setEthicsAnswers}
-          ethicsPass={ethicsPass}
-          setEthicsPass={setEthicsPass}
-          part1MessageKey={part1MessageKey}
-          setPart1MessageKey={setPart1MessageKey}
-          qualityScores={qualityScores}
-          setQualityScores={setQualityScores}
-          totalQualityScore={totalQualityScore}
-          setTotalQualityScore={setTotalQualityScore}
-          qualityPass={qualityPass}
-          setQualityPass={setQualityPass}
-          qualityInterpretationKey={qualityInterpretationKey}
-          setQualityInterpretationKey={setQualityInterpretationKey}
-          // Pass UI state as props
-          ethicsShowResult={ethicsShowResult}
-          setEthicsShowResult={setEthicsShowResult}
-          qualityShowResult={qualityShowResult}
-          setQualityShowResult={setQualityShowResult}
-          qualityInterpretation={qualityInterpretation}
-          setQualityInterpretation={setQualityInterpretation}
-          criteriaSatisfaction={criteriaSatisfaction}
-          setCriteriaSatisfaction={setCriteriaSatisfaction}
-        />
-      </div>
+      {activeTab === 'assessment-tool' && (
+        <div className="mrgn-tp-md">
+          <AssessmentTool 
+            onReturnHome={handleReturnHome}
+            // Pass assessment state as props
+            currentStep={currentStep}
+            setCurrentStep={setCurrentStep}
+            ethicsAnswers={ethicsAnswers}
+            setEthicsAnswers={setEthicsAnswers}
+            ethicsPass={ethicsPass}
+            setEthicsPass={setEthicsPass}
+            part1MessageKey={part1MessageKey}
+            setPart1MessageKey={setPart1MessageKey}
+            qualityScores={qualityScores}
+            setQualityScores={setQualityScores}
+            totalQualityScore={totalQualityScore}
+            setTotalQualityScore={setTotalQualityScore}
+            qualityPass={qualityPass}
+            setQualityPass={setQualityPass}
+            qualityInterpretationKey={qualityInterpretationKey}
+            setQualityInterpretationKey={setQualityInterpretationKey}
+            // Pass UI state as props
+            ethicsShowResult={ethicsShowResult}
+            setEthicsShowResult={setEthicsShowResult}
+            qualityShowResult={qualityShowResult}
+            setQualityShowResult={setQualityShowResult}
+            qualityInterpretation={qualityInterpretation}
+            setQualityInterpretation={setQualityInterpretation}
+            criteriaSatisfaction={criteriaSatisfaction}
+            setCriteriaSatisfaction={setCriteriaSatisfaction}
+          />
+        </div>
+      )}
     </>
   )
 })
