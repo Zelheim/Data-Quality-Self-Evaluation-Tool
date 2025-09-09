@@ -1,6 +1,5 @@
 // src/components/ui/TooltipInfo.tsx
-import * as RadixTooltip from '@radix-ui/react-tooltip';
-import React from 'react';
+import React, { useState } from 'react';
 
 interface TooltipInfoProps {
   children: React.ReactNode;
@@ -13,41 +12,109 @@ const TooltipInfo: React.FC<TooltipInfoProps> = ({
   id, 
   side = 'top' 
 }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  const showTooltip = () => setIsVisible(true);
+  const hideTooltip = () => setIsVisible(false);
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      setIsVisible(!isVisible);
+    }
+    if (e.key === 'Escape') {
+      setIsVisible(false);
+    }
+  };
+
   return (
-    <RadixTooltip.Provider>
-      <RadixTooltip.Root delayDuration={300}>
-        <RadixTooltip.Trigger asChild>
-          <span 
-            className="inline-flex items-center justify-center ml-1.5 w-5 h-5 bg-[var(--primary-color)] text-white rounded-full text-center leading-5 text-sm font-bold cursor-help transition-colors hover:bg-[var(--secondary-color)] focus:outline-none focus:ring-2 focus:ring-[var(--secondary-color)] focus:ring-offset-2"
-            tabIndex={0}
-            aria-label="More information"
-            role="button"
-            aria-describedby={id}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                e.currentTarget.click();
-              }
+    <span className="tooltip-container" style={{ position: 'relative', display: 'inline-block' }}>
+      <span 
+        className="btn btn-info btn-xs"
+        tabIndex={0}
+        aria-label="More information"
+        aria-describedby={isVisible ? id : undefined}
+        aria-expanded={isVisible}
+        role="button"
+        onMouseEnter={showTooltip}
+        onMouseLeave={hideTooltip}
+        onFocus={showTooltip}
+        onBlur={hideTooltip}
+        onClick={() => setIsVisible(!isVisible)}
+        onKeyDown={handleKeyDown}
+        style={{
+          width: '20px',
+          height: '20px',
+          borderRadius: '50%',
+          padding: '0',
+          fontSize: '12px',
+          fontWeight: 'bold',
+          marginLeft: '5px',
+          cursor: 'help',
+          display: 'inline-flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}
+      >
+        <span className="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
+      </span>
+      
+      {isVisible && (
+        <div
+          id={id}
+          role="tooltip"
+          aria-live="polite"
+          className="tooltip tooltip-open"
+          style={{
+            position: 'absolute',
+            zIndex: 1050,
+            display: 'block',
+            opacity: 1,
+            ...(side === 'top' && {
+              bottom: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              marginBottom: '5px'
+            }),
+            ...(side === 'bottom' && {
+              top: '100%',
+              left: '50%',
+              transform: 'translateX(-50%)',
+              marginTop: '5px'
+            }),
+            ...(side === 'left' && {
+              right: '100%',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              marginRight: '5px'
+            }),
+            ...(side === 'right' && {
+              left: '100%',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              marginLeft: '5px'
+            })
+          }}
+        >
+          <div className="tooltip-arrow"></div>
+          <div 
+            className="tooltip-inner"
+            style={{
+              maxWidth: '300px',
+              padding: '8px 12px',
+              backgroundColor: '#333',
+              color: '#fff',
+              textAlign: 'left',
+              fontSize: '12px',
+              borderRadius: '4px',
+              boxShadow: '0 2px 8px rgba(0,0,0,0.15)'
             }}
           >
-            ?
-          </span>
-        </RadixTooltip.Trigger>
-        <RadixTooltip.Portal>
-          <RadixTooltip.Content
-            id={id}
-            className="bg-[var(--primary-color)] text-white text-left rounded-md p-4 max-w-xs z-50 text-sm font-normal shadow-md border border-[var(--secondary-color)]"
-            sideOffset={5}
-            side={side}
-            role="tooltip"
-            aria-live="polite"
-          >
-            <div className="leading-relaxed">{children}</div>
-            <RadixTooltip.Arrow className="fill-[var(--primary-color)]" width={10} height={5} />
-          </RadixTooltip.Content>
-        </RadixTooltip.Portal>
-      </RadixTooltip.Root>
-    </RadixTooltip.Provider>
+            {children}
+          </div>
+        </div>
+      )}
+    </span>
   );
 };
 
