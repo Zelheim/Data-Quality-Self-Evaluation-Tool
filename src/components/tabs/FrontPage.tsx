@@ -53,7 +53,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
         </div>
       </div>
       
-      <div className="text-center mrgn-tp-xl">
+      <div className="text-center mrgn-tp-md">
         <Button 
           onClick={onStartAssessment}
           size="lg"
