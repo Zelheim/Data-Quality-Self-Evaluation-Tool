@@ -10,7 +10,7 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={`bg-white rounded-lg shadow-md p-6 ${className}`}
+        className={`panel panel-default ${className || ''}`}
         role="region"
         {...props}
       >
@@ -30,7 +30,7 @@ const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(
     return (
       <div
         ref={ref}
-        className={`mb-4 ${className}`}
+        className={`panel-heading ${className || ''}`}
         {...props}
       >
         {children}
@@ -46,11 +46,11 @@ interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
-  ({ className, children, as: Component = "h1", ...props }, ref) => {
+  ({ className, children, as: Component = "h3", ...props }, ref) => {
     return (
       <Component
         ref={ref}
-        className={`text-[var(--primary-color)] text-2xl font-semibold border-b-2 border-[var(--light-blue)] pb-2.5 mt-0 ${className}`}
+        className={`panel-title ${className || ''}`}
         {...props}
       >
         {children}
@@ -69,7 +69,7 @@ const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(
     return (
       <div
         ref={ref}
-        className={`pt-4 ${className}`}
+        className={`panel-body ${className || ''}`}
         {...props}
       >
         {children}
@@ -88,7 +88,7 @@ const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(
     return (
       <div
         ref={ref}
-        className={`flex justify-center mt-6 pt-4 border-t border-[var(--border-color)] ${className}`}
+        className={`panel-footer text-center ${className || ''}`}
         {...props}
       >
         {children}
