@@ -30,7 +30,7 @@ const TooltipInfo: React.FC<TooltipInfoProps> = ({
   return (
     <span className="tooltip-container" style={{ position: 'relative', display: 'inline-block' }}>
       <span 
-        className="btn btn-info btn-xs"
+        className="btn btn-info btn-xs glyphicon glyphicon-question-sign"
         tabIndex={0}
         aria-label="More information"
         aria-describedby={isVisible ? id : undefined}
@@ -56,7 +56,6 @@ const TooltipInfo: React.FC<TooltipInfoProps> = ({
           justifyContent: 'center'
         }}
       >
-        <span className="glyphicon glyphicon-question-sign" aria-hidden="true"></span>
       </span>
       
       {isVisible && (
