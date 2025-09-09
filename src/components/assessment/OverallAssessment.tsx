@@ -722,8 +722,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         >
           <div className={`${resultClass} mrgn-bttm-md`} role="alert">
             <span className={`glyphicon ${overallPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
-            <div className="wb-inv-result-content">
-              <h2 className="h2"><strong>{resultText}</strong></h2>
+            <div className="wb-inv-result-content overall-message">
+              <strong>{resultText}</strong>
             </div>
           </div>
           
