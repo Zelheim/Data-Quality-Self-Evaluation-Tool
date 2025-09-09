@@ -137,7 +137,6 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
             </ol>
           <p className="text-lg" dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}}
           />
-          <br/>
           <p className="text-lg">
             {t('assessment.ethics.intro.part2')}
           </p>
