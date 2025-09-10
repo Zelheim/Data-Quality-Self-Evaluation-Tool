@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Outil d'évaluation de l'adéquation des données</title>
+    <meta name="description" content="Un outil complet pour évaluer l'adéquation et la qualité des données">
+    <meta name="keywords" content="analyse de données, évaluation, qualité, statistiques">
+    
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Skip Links */
+        .skip-links {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            z-index: 999;
+        }
+        
+        .skip-links a {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        
+        .skip-links a:focus {
+            position: static;
+            width: auto;
+            height: auto;
+            background: #000;
+            color: #fff;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: #fff;
+            border-bottom: 3px solid #af3c43;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .header-top {
+            background: #000;
+            color: #fff;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+        
+        .language-toggle {
+            text-align: right;
+        }
+        
+        .language-toggle a {
+            color: #fff;
+            text-decoration: none;
+            padding: 4px 8px;
+            border-radius: 3px;
+            transition: background-color 0.3s;
+        }
+        
+        .language-toggle a:hover {
+            background-color: #333;
+        }
+        
+        .header-main {
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .brand {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .brand img {
+            height: 40px;
+            margin-right: 15px;
+        }
+        
+        .search-form {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-input {
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 250px;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #af3c43;
+        }
+        
+        .search-btn {
+            padding: 8px 16px;
+            background: #af3c43;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .search-btn:hover {
+            background: #8b2f35;
+        }
+        
+        /* Navigation */
+        .nav-menu {
+            background: #af3c43;
+            padding: 0;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .nav-list li {
+            margin: 0;
+        }
+        
+        .nav-list a {
+            display: block;
+            padding: 15px 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-list a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Breadcrumb */
+        .breadcrumb {
+            background: #e9ecef;
+            padding: 10px 0;
+            font-size: 14px;
+        }
+        
+        .breadcrumb-list {
+            list-style: none;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .breadcrumb-list li {
+            margin-right: 10px;
+        }
+        
+        .breadcrumb-list li:not(:last-child)::after {
+            content: ">";
+            margin-left: 10px;
+            color: #666;
+        }
+        
+        .breadcrumb-list a {
+            color: #af3c43;
+            text-decoration: none;
+        }
+        
+        .breadcrumb-list a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 40px 0;
+            min-height: 60vh;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            color: #af3c43;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #af3c43;
+            padding-bottom: 10px;
+        }
+        
+        .content-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        .assessment-tool {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .tool-section {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #af3c43;
+        }
+        
+        .tool-section h3 {
+            color: #af3c43;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: #af3c43;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #af3c43;
+            color: #fff;
+        }
+        
+        .btn-primary:hover {
+            background: #8b2f35;
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: #fff;
+        }
+        
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+        
+        .results-panel {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f4f8;
+            border-radius: 6px;
+            border: 1px solid #bee5eb;
+            display: none;
+        }
+        
+        .results-panel.show {
+            display: block;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .score-display {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .score-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        
+        .score-excellent { background: #28a745; }
+        .score-good { background: #17a2b8; }
+        .score-fair { background: #ffc107; color: #333; }
+        .score-poor { background: #dc3545; }
+        
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #af3c43;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: #fff;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #555;
+            padding-top: 20px;
+            text-align: center;
+            color: #ccc;
+            font-size: 14px;
+        }
+        
+        .footer-logo {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .search-form {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .nav-list {
+                flex-direction: column;
+            }
+            
+            .assessment-tool {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .search-input {
+                width: 200px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .content-section {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Skip Links -->
+    <div class="skip-links">
+        <a href="#main-content">Passer au contenu principal</a>
+        <a href="#footer">Passer au pied de page</a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-top">
+            <div class="container">
+                <div class="language-toggle">
+                    <a href="data-analysis-complete-eng.html" lang="en">English</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="header-main">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+                    <div class="brand">
+                        <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="100" height="100" fill="#af3c43"/>
+                            <path d="M20 20h60v60H20V20z" fill="white"/>
+                            <path d="M30 40h40v20H30V40z" fill="#af3c43"/>
+                        </svg>
+                        Gouvernement du Canada
+                    </div>
+                    
+                    <form class="search-form" role="search">
+                        <label for="search-input" class="sr-only">Rechercher dans le site Web</label>
+                        <input type="search" id="search-input" class="search-input" placeholder="Rechercher dans le site Web" maxlength="150">
+                        <button type="submit" class="search-btn">
+                            <span>Recherche</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="nav-menu" role="navigation">
+            <div class="container">
+                <ul class="nav-list">
+                    <li><a href="#sujets">Sujets</a></li>
+                    <li><a href="#donnees">Données</a></li>
+                    <li><a href="#analyses">Analyses</a></li>
+                    <li><a href="#references">Références</a></li>
+                    <li><a href="#geographie">Géographie</a></li>
+                    <li><a href="#recensement">Recensement</a></li>
+                    <li><a href="#enquetes">Enquêtes</a></li>
+                    <li><a href="#apropos">À propos de StatCan</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <div class="breadcrumb">
+            <div class="container">
+                <ol class="breadcrumb-list">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#sujets">Sujets</a></li>
+                    <li>Outil d'évaluation de l'adéquation des données</li>
+                </ol>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" class="container">
+        <h1>Outil d'évaluation de l'adéquation des données</h1>
+        
+        <div class="content-section">
+            <p>Cet outil complet vous aide à évaluer l'adéquation et la qualité de vos données pour l'analyse statistique et les fins de recherche. Utilisez les critères d'évaluation ci-dessous pour évaluer votre jeu de données et recevoir des recommandations d'amélioration.</p>
+            
+            <div class="assessment-tool">
+                <div class="tool-section">
+                    <h3>Évaluation de la qualité des données</h3>
+                    <form id="assessment-form">
+                        <div class="form-group">
+                            <label for="completeness">Complétude des données (0-100%)</label>
+                            <input type="range" id="completeness" class="form-control" min="0" max="100" value="75">
+                            <span id="completeness-value">75%</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="accuracy">Précision des données (échelle 1-5)</label>
+                            <select id="accuracy" class="form-control">
+                                <option value="5">Excellente (5)</option>
+                                <option value="4" selected>Bonne (4)</option>
+                                <option value="3">Acceptable (3)</option>
+                                <option value="2">Faible (2)</option>
+                                <option value="1">Très faible (1)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="consistency">Cohérence des données</label>
+                            <select id="consistency" class="form-control">
+                                <option value="high" selected>Élevée</option>
+                                <option value="medium">Moyenne</option>
+                                <option value="low">Faible</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeliness">Actualité des données</label>
+                            <select id="timeliness" class="form-control">
+                                <option value="current" selected>Actuelles</option>
+                                <option value="recent">Récentes</option>
+                                <option value="outdated">Désuètes</option>
+                            </select>
+                        </div>
+                        
+                        <button type="button" class="btn btn-primary" onclick="assessData()">Évaluer la qualité des données</button>
+                        <button type="reset" class="btn btn-secondary">Réinitialiser le formulaire</button>
+                    </form>
+                </div>
+                
+                <div class="tool-section">
+                    <h3>Résultats de l'évaluation</h3>
+                    <div id="results-panel" class="results-panel">
+                        <div class="score-display">
+                            <div id="score-circle" class="score-circle score-good">
+                                <span id="score-text">0</span>
+                            </div>
+                            <div id="score-label">Score global de qualité</div>
+                        </div>
+                        
+                        <div id="recommendations">
+                            <h4>Recommandations :</h4>
+                            <ul id="recommendation-list"></ul>
+                        </div>
+                        
+                        <div id="detailed-analysis">
+                            <h4>Analyse détaillée :</h4>
+                            <div id="analysis-content"></div>
+                        </div>
+                    </div>
+                    
+                    <div id="initial-message">
+                        <p>Complétez le formulaire d'évaluation pour voir vos résultats de qualité des données et les recommandations.</p>
+                        <p><strong>Critères d'évaluation :</strong></p>
+                        <ul>
+                            <li><strong>Complétude :</strong> Pourcentage de données non manquantes</li>
+                            <li><strong>Précision :</strong> À quel point les données représentent la réalité</li>
+                            <li><strong>Cohérence :</strong> Les données suivent des formats standard</li>
+                            <li><strong>Actualité :</strong> À quel point les données sont récentes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Ressources supplémentaires</h2>
+            <p>Pour plus d'informations sur l'évaluation de la qualité des données et les meilleures pratiques statistiques, explorez ces ressources :</p>
+            <ul>
+                <li><a href="#guide">Guide d'évaluation de la qualité des données</a></li>
+                <li><a href="#normes">Normes et directives statistiques</a></li>
+                <li><a href="#outils">Outils d'évaluation supplémentaires</a></li>
+                <li><a href="#formation">Matériel de formation</a></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Statistique Canada</h3>
+                    <ul>
+                        <li><a href="#contact">Contactez StatCan</a></li>
+                        <li><a href="#confiance">Centre de confiance</a></li>
+                        <li><a href="#accessibilite">Accessibilité</a></li>
+                        <li><a href="#aide">Aide</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Gouvernement du Canada</h3>
+                    <ul>
+                        <li><a href="#coordonnees">Toutes les coordonnées</a></li>
+                        <li><a href="#ministeres">Ministères et organismes</a></li>
+                        <li><a href="#gouvernement">À propos du gouvernement</a></li>
+                        <li><a href="#canada">Canada.ca</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Services et renseignements</h3>
+                    <ul>
+                        <li><a href="#emplois">Emplois</a></li>
+                        <li><a href="#immigration">Immigration</a></li>
+                        <li><a href="#voyage">Voyage</a></li>
+                        <li><a href="#entreprises">Entreprises</a></li>
+                        <li><a href="#prestations">Prestations</a></li>
+                        <li><a href="#sante">Santé</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Gouvernement du Canada. Tous droits réservés.</p>
+                <div class="footer-logo">
+                    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="100" height="100" fill="white"/>
+                        <path d="M20 20h60v60H20V20z" fill="#af3c43"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Outil d'évaluation des données JavaScript
+        
+        // Mise à jour de l'affichage de l'entrée de plage
+        document.getElementById('completeness').addEventListener('input', function() {
+            document.getElementById('completeness-value').textContent = this.value + '%';
+        });
+        
+        // Fonction d'évaluation
+        function assessData() {
+            const completeness = parseInt(document.getElementById('completeness').value);
+            const accuracy = parseInt(document.getElementById('accuracy').value);
+            const consistency = document.getElementById('consistency').value;
+            const timeliness = document.getElementById('timeliness').value;
+            
+            // Calculer le score global
+            let score = 0;
+            let maxScore = 0;
+            
+            // Complétude (0-25 points)
+            score += (completeness / 100) * 25;
+            maxScore += 25;
+            
+            // Précision (0-25 points)
+            score += (accuracy / 5) * 25;
+            maxScore += 25;
+            
+            // Cohérence (0-25 points)
+            const consistencyScores = { high: 25, medium: 15, low: 5 };
+            score += consistencyScores[consistency];
+            maxScore += 25;
+            
+            // Actualité (0-25 points)
+            const timelinessScores = { current: 25, recent: 15, outdated: 5 };
+            score += timelinessScores[timeliness];
+            maxScore += 25;
+            
+            // Convertir en pourcentage
+            const finalScore = Math.round((score / maxScore) * 100);
+            
+            // Afficher les résultats
+            displayResults(finalScore, completeness, accuracy, consistency, timeliness);
+        }
+        
+        function displayResults(score, completeness, accuracy, consistency, timeliness) {
+            const resultsPanel = document.getElementById('results-panel');
+            const initialMessage = document.getElementById('initial-message');
+            const scoreCircle = document.getElementById('score-circle');
+            const scoreText = document.getElementById('score-text');
+            
+            // Masquer le message initial et afficher les résultats
+            initialMessage.style.display = 'none';
+            resultsPanel.classList.add('show');
+            
+            // Mettre à jour l'affichage du score
+            scoreText.textContent = score;
+            
+            // Mettre à jour la couleur du cercle de score
+            scoreCircle.className = 'score-circle';
+            if (score >= 85) {
+                scoreCircle.classList.add('score-excellent');
+            } else if (score >= 70) {
+                scoreCircle.classList.add('score-good');
+            } else if (score >= 50) {
+                scoreCircle.classList.add('score-fair');
+            } else {
+                scoreCircle.classList.add('score-poor');
+            }
+            
+            // Générer les recommandations
+            generateRecommendations(score, completeness, accuracy, consistency, timeliness);
+            
+            // Générer l'analyse détaillée
+            generateDetailedAnalysis(completeness, accuracy, consistency, timeliness);
+        }
+        
+        function generateRecommendations(score, completeness, accuracy, consistency, timeliness) {
+            const recommendationList = document.getElementById('recommendation-list');
+            recommendationList.innerHTML = '';
+            
+            const recommendations = [];
+            
+            if (completeness < 80) {
+                recommendations.push('Améliorer les processus de collecte de données pour réduire les valeurs manquantes');
+            }
+            
+            if (accuracy < 4) {
+                recommendations.push('Implémenter des règles de validation des données et des contrôles de qualité');
+            }
+            
+            if (consistency === 'low' || consistency === 'medium') {
+                recommendations.push('Standardiser les formats de données et établir des conventions de nommage cohérentes');
+            }
+            
+            if (timeliness === 'outdated') {
+                recommendations.push('Mettre à jour la fréquence de collecte des données et établir des cycles de rafraîchissement réguliers');
+            }
+            
+            if (score >= 85) {
+                recommendations.push('Excellente qualité des données ! Considérez partager les meilleures pratiques avec d\'autres équipes');
+            } else if (score < 50) {
+                recommendations.push('Considérez un programme complet d\'amélioration de la qualité des données');
+            }
+            
+            recommendations.forEach(rec => {
+                const li = document.createElement('li');
+                li.textContent = rec;
+                recommendationList.appendChild(li);
+            });
+        }
+        
+        function generateDetailedAnalysis(completeness, accuracy, consistency, timeliness) {
+            const analysisContent = document.getElementById('analysis-content');
+            
+            const analysisHTML = `
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #17a2b8;">
+                        <strong>Complétude :</strong> ${completeness}%<br>
+                        <small>${getCompletenessMessage(completeness)}</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #28a745;">
+                        <strong>Précision :</strong> ${accuracy}/5<br>
+                        <small>${getAccuracyMessage(accuracy)}</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #ffc107;">
+                        <strong>Cohérence :</strong> ${consistency}<br>
+                        <small>${getConsistencyMessage(consistency)}</small>
+                    </div>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; border-left: 4px solid #af3c43;">
+                        <strong>Actualité :</strong> ${timeliness}<br>
+                        <small>${getTimelinessMessage(timeliness)}</small>
+                    </div>
+                </div>
+            `;
+            
+            analysisContent.innerHTML = analysisHTML;
+        }
+        
+        function getCompletenessMessage(completeness) {
+            if (completeness >= 95) return 'Excellente complétude des données';
+            if (completeness >= 85) return 'Bonne complétude des données';
+            if (completeness >= 70) return 'Complétude acceptable avec place à l\'amélioration';
+            return 'Problèmes significatifs de données manquantes';
+        }
+        
+        function getAccuracyMessage(accuracy) {
+            const messages = {
+                5: 'Données très précises',
+                4: 'Bons niveaux de précision',
+                3: 'Préoccupations modérées de précision',
+                2: 'Problèmes significatifs de précision',
+                1: 'Problèmes majeurs de précision'
+            };
+            return messages[accuracy];
+        }
+        
+        function getConsistencyMessage(consistency) {
+            const messages = {
+                high: 'Les données suivent des normes cohérentes',
+                medium: 'Quelques problèmes de cohérence présents',
+                low: 'Problèmes significatifs de cohérence'
+            };
+            return messages[consistency];
+        }
+        
+        function getTimelinessMessage(timeliness) {
+            const messages = {
+                current: 'Les données sont à jour',
+                recent: 'Les données sont raisonnablement actuelles',
+                outdated: 'Les données ont besoin d\'être mises à jour'
+            };
+            return messages[timeliness];
+        }
+        
+        // Gestionnaire de réinitialisation de formulaire
+        document.querySelector('button[type="reset"]').addEventListener('click', function() {
+            setTimeout(() => {
+                document.getElementById('completeness-value').textContent = '75%';
+                document.getElementById('results-panel').classList.remove('show');
+                document.getElementById('initial-message').style.display = 'block';
+            }, 100);
+        });
+        
+        // Fonctionnalité de recherche
+        document.querySelector('.search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const searchTerm = document.getElementById('search-input').value;
+            if (searchTerm.trim()) {
+                alert('La fonctionnalité de recherche rechercherait : ' + searchTerm);
+            }
+        });
+        
+        // Défilement fluide pour les liens d'ancrage
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Améliorations d'accessibilité
+        document.addEventListener('DOMContentLoaded', function() {
+            // Ajouter une classe pour lecteur d'écran seulement pour une meilleure accessibilité
+            const style = document.createElement('style');
+            style.textContent = `
+                .sr-only {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                    border: 0;
+                }
+            `;
+            document.head.appendChild(style);
+        });
+        
+        // Suivi analytique (placeholder)
+        function trackEvent(category, action, label) {
+            // Placeholder pour le suivi analytique
+            console.log('Événement analytique :', { category, action, label });
+        }
+        
+        // Suivre la completion de l'évaluation
+        const originalAssessData = assessData;
+        assessData = function() {
+            originalAssessData();
+            trackEvent('Évaluation', 'Complété', 'Évaluation de la qualité des données');
+        };
+        
+        console.log('Outil d\'évaluation de l\'adéquation des données initialisé avec succès');
+    </script>
+</body>
+</html>
