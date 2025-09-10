@@ -42,15 +42,20 @@ i18n
     debug: false // Only enable this in development if needed
   });
 
-// Log when i18n is initialized
-i18n.on('initialized', () => {
-  console.log('i18n initialized successfully with language:', i18n.language);
-});
-
-// Handle language changes
+// Handle language changes - update document language attribute
 i18n.on('languageChanged', (lng) => {
-  console.log('Language changed to:', lng);
+  // Only log in development mode
+  if (import.meta.env.DEV) {
+    console.log('Language changed to:', lng);
+  }
   document.documentElement.lang = lng;
 });
+
+// Log initialization only in development mode
+if (import.meta.env.DEV) {
+  i18n.on('initialized', () => {
+    console.log('i18n initialized successfully with language:', i18n.language);
+  });
+}
 
 export default i18n; 
