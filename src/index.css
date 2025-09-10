@@ -177,6 +177,13 @@
   border-left-color: #dc3545;
 }
 
+.wb-inv-message-grayscale {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  color: #495057;
+  border-left-color: #6c757d;
+}
+
 /* Message box icons */
 .wb-inv-message .glyphicon {
   font-size: 20px;
