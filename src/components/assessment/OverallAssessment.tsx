@@ -647,7 +647,6 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <span className={`glyphicon ${qualityPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
           <div className="wb-inv-result-content">
             <strong>{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</strong>
-            <span>{t('assessment.quality.summary.totalScore')} {totalQualityScore}/15</span>
           </div>
         </div>
         
@@ -700,6 +699,18 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               })}
             </TableBody>
           </Table>
+        </div>
+        
+        {/* Total Score Display */}
+        <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
+          <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
+          <div className="wb-inv-message-content">
+            <span className="text-lg">
+              {t('assessment.quality.summary.totalScore')} <span className="font-bold text-primary">
+                {totalQualityScore}/15
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     );
@@ -845,7 +856,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
-                  <h4 className="modal-title" id="export-modal-title">
+                  <h4 className="alert-title" id="export-modal-title">
                     <span className="glyphicon glyphicon-export text-primary mrgn-rght-sm" aria-hidden="true"></span>
                     {t('assessment.overall.export.title')}
                   </h4>
