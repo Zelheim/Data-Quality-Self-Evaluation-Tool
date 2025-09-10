@@ -45,6 +45,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   const [exportContent, setExportContent] = React.useState('');
   const [isGenerating, setIsGenerating] = React.useState(false);
   const resultSummaryRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
   
   const overallPass = ethicsPass && qualityPass;
   
@@ -70,9 +72,32 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   }, []);
 
   const handleExport = () => {
+    // Store the currently focused element
+    previousFocusRef.current = document.activeElement as HTMLElement;
     generateExportContent();
     setExportDialogOpen(true);
   };
+
+  const handleCloseModal = () => {
+    setExportDialogOpen(false);
+    // Return focus to the element that opened the modal
+    if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+    }
+  };
+
+  // Focus management for modal
+  useEffect(() => {
+    if (exportDialogOpen && modalRef.current) {
+      // Focus the first focusable element in the modal
+      const firstFocusableElement = modalRef.current.querySelector(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      ) as HTMLElement;
+      if (firstFocusableElement) {
+        firstFocusableElement.focus();
+      }
+    }
+  }, [exportDialogOpen]);
 
   const generateExportContent = () => {
     const date = new Date().toISOString().split('T')[0];
@@ -122,12 +147,16 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         const assessment = getQualityScoreText(Number(score));
         content += `- ${t(`qualityDimensions.dimension${dimension.id}.element`)}: ${score}/3 - ${assessment}\n`;
         
-        // Add detailed criteria satisfaction
+        // Calculate criteria satisfaction based on score
         const criteriaSatisfied: any[] = [];
         for (let i = 0; i < dimension.criteria.length; i++) {
           if (dimension.id === "3") {
-            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+            // For dimension 3 (Accessibility): score of 3 means both criteria satisfied, 
+            // score of 2 means both satisfied (since there are only 2 criteria), 
+            // score of 1 means first criterion satisfied
+            criteriaSatisfied.push(score >= 2 || (score === 1 && i === 0));
           } else {
+            // Standard case: score equals number of criteria satisfied sequentially
             criteriaSatisfied.push(i < score);
           }
         }
@@ -176,12 +205,16 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         const score = assessmentData.qualityDimensions[dimension.id] || 0;
         const assessment = getQualityScoreText(Number(score));
         
-        // Calculate criteria satisfaction
+        // Calculate criteria satisfaction based on score
         const criteriaSatisfied: any[] = [];
         for (let i = 0; i < dimension.criteria.length; i++) {
           if (dimension.id === "3") {
-            criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+            // For dimension 3 (Accessibility): score of 3 means both criteria satisfied, 
+            // score of 2 means both satisfied (since there are only 2 criteria), 
+            // score of 1 means first criterion satisfied
+            criteriaSatisfied.push(score >= 2 || (score === 1 && i === 0));
           } else {
+            // Standard case: score equals number of criteria satisfied sequentially
             criteriaSatisfied.push(i < score);
           }
         }
@@ -299,7 +332,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         
         pdf.setFont('helvetica', 'normal');
         dimension.criteria.forEach((_, idx) => {
-          const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+          const criteriaSatisfied = dimension.id === "3" ? (score >= 2 || (score === 1 && idx === 0)) : (idx < score);
           const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
           const criteriaText = `  ${idx + 1}. ${t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}: ${status}`;
           const splitCriteria = pdf.splitTextToSize(criteriaText, pageWidth - 2 * margin);
@@ -473,7 +506,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         );
         
         dimension.criteria.forEach((_, idx) => {
-          const criteriaSatisfied = dimension.id === "3" ? (score === 3 || (score >= 1 && idx < score)) : (idx < score);
+          const criteriaSatisfied = dimension.id === "3" ? (score >= 2 || (score === 1 && idx === 0)) : (idx < score);
           const status = criteriaSatisfied ? t('assessment.overall.export.criteriaStatus.satisfied') : t('assessment.overall.export.criteriaStatus.notSatisfied');
           
           children.push(
@@ -673,10 +706,12 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 const criteriaSatisfied: any[] = [];
                 for (let i = 0; i < dimension.criteria.length; i++) {
                   if (dimension.id === "3") {
-                    // Special case for Accessibility and clarity: if score is 3, both criteria are satisfied
-                    criteriaSatisfied.push(score === 3 || (score >= 1 && i < score));
+                    // For dimension 3 (Accessibility): score of 3 means both criteria satisfied, 
+                    // score of 2 means both satisfied (since there are only 2 criteria), 
+                    // score of 1 means first criterion satisfied
+                    criteriaSatisfied.push(score >= 2 || (score === 1 && i === 0));
                   } else {
-                    // Standard case: score equals number of criteria satisfied
+                    // Standard case: score equals number of criteria satisfied sequentially
                     criteriaSatisfied.push(i < score);
                   }
                 }
@@ -799,7 +834,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         <>
           <div 
             className="modal-backdrop in"
-            onClick={() => setExportDialogOpen(false)}
+            onClick={handleCloseModal}
             style={{ 
               zIndex: 1040,
               backgroundColor: 'rgba(0, 0, 0, 0.5)',
@@ -809,9 +844,11 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               width: '100%',
               height: '100%'
             }}
+            aria-hidden="true"
           />
           
           <div
+            ref={modalRef}
             className="modal in"
             style={{ 
               display: 'flex', 
@@ -829,10 +866,17 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             tabIndex={-1}
             role="dialog"
             aria-labelledby="export-modal-title"
+            aria-describedby="export-modal-description"
+            aria-modal="true"
             aria-hidden="false"
+            onKeyDown={(e) => {
+              if (e.key === 'Escape') {
+                handleCloseModal();
+              }
+            }}
             onClick={(e) => {
               if (e.target === e.currentTarget) {
-                setExportDialogOpen(false);
+                handleCloseModal();
               }
             }}
           >
@@ -851,8 +895,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                   <button
                     type="button"
                     className="close"
-                    onClick={() => setExportDialogOpen(false)}
-                    aria-label="Close"
+                    onClick={handleCloseModal}
+                    aria-label={t('assessment.overall.export.buttons.close', 'Close')}
                   >
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -864,6 +908,10 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 
                 {/* Modal Body */}
                 <div className="modal-body">
+                  <p id="export-modal-description" className="sr-only">
+                    {t('assessment.overall.export.description', 'Choose a format to export your assessment results. You can preview text and CSV formats before downloading.')}
+                  </p>
+                  
                   <div className="form-group">
                     <label className="control-label" htmlFor="export-format-select">
                       {t('assessment.overall.export.formatLabel')}
@@ -873,12 +921,16 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                       value={exportFormat} 
                       onChange={(e) => setExportFormat(e.target.value as 'text' | 'csv' | 'pdf' | 'word')}
                       className="form-control"
+                      aria-describedby="format-help"
                     >
                       <option value="text">{t('assessment.overall.export.formats.text')}</option>
                       <option value="csv">{t('assessment.overall.export.formats.csv')}</option>
                       <option value="pdf">{t('assessment.overall.export.formats.pdf')}</option>
                       <option value="word">{t('assessment.overall.export.formats.word')}</option>
                     </select>
+                    <div id="format-help" className="help-block sr-only">
+                      {t('assessment.overall.export.formatHelp', 'Select the format you want to export your assessment results in.')}
+                    </div>
                   </div>
                   
                   {(exportFormat === 'text' || exportFormat === 'csv') && (
@@ -944,7 +996,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                     )}
                   </Button>
                   <Button 
-                    onClick={() => setExportDialogOpen(false)}
+                    onClick={handleCloseModal}
                     variant="secondary"
                     size="lg"
                   >

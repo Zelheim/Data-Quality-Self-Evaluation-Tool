@@ -98,10 +98,10 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     // Calculate new score for this dimension
     const satisfiedCount = newCriteriaSatisfaction[dimensionId].filter(Boolean).length;
     
-    // Special case for Accessibility and clarity (dimension 3): 2 criteria satisfied = 3 points
+    // Special case for Accessibility and clarity (dimension 3): only 2 criteria, so max score is achieved when both are satisfied
     let score = satisfiedCount;
     if (dimensionId === "3" && satisfiedCount === 2) {
-      score = 3;
+      score = 3; // Award maximum points when both criteria are met for dimension 3
     }
     
     const newScores = {
