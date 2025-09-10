@@ -296,7 +296,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
         >
           {showResult && generateQualitySummary()}
           
-          <div className="wb-inv-message wb-inv-message-info mrgn-tp-md">
+          <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
             <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
             <div className="wb-inv-message-content">
               <span className="text-lg">
