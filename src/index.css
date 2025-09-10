@@ -591,11 +591,60 @@ a:visited, .wb-inv-link:visited {
   color: #269abc !important;
 }
 
+/* Statistics Canada style tooltips */
+.statcan-tooltip {
+  position: relative;
+  cursor: help;
+  text-decoration: none;
+  border-bottom: 1px dotted #000;
+  display: inline;
+}
+
+.statcan-tooltip:hover {
+  text-decoration: none;
+}
+
+.statcan-tooltip-content {
+  position: fixed;
+  z-index: 9999;
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  line-height: 1.4;
+  max-width: 350px;
+  min-width: 200px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  pointer-events: auto;
+  white-space: pre-line;
+  word-wrap: break-word;
+  transition: none;
+}
+
+.statcan-tooltip-content::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #333;
+}
+
+/* Accessibility support */
+.statcan-tooltip:focus {
+  outline: 2px solid #335075;
+  outline-offset: 2px;
+}
+
+/* Legacy support for existing acro classes */
 a[class^="acro"]:hover {
-  text-decoration:none
+  text-decoration: none;
 }
 a[class^="acro"] {
-  cursor:help;
-  text-decoration:none;
-  border-bottom:1px dotted black
+  cursor: help;
+  text-decoration: none;
+  border-bottom: 1px dotted black;
 }
