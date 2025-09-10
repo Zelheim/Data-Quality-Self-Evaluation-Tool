@@ -12,8 +12,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
   return (
     <div 
       id="front-page" 
-      role="region" 
-      aria-labelledby="front-page-title"
+      role="region"
     >
       <div className="panel panel-info mrgn-tp-lg">
         <div className="panel-body">
