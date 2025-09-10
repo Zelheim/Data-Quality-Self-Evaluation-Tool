@@ -8,7 +8,7 @@ import React from 'react'
 
 function App() {
   const [currentYear] = useState(new Date().getFullYear())
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   
   const mainContentRef = React.useRef<{ handleReturnHome: () => void } | null>(null)
   
@@ -30,12 +30,12 @@ function App() {
       
       <main role="main" property="mainContentOfPage" className="container">
         <section>
-          <h1 property="name" id="wb-cont">Data Suitability Assessment Tool</h1>
+          <h1 property="name" id="wb-cont">{t('mainContent.title')}</h1>
           <MainContent ref={mainContentRef} />
         </section>
         <div className="pagedetails">
           <dl id="wb-dtmd">
-            <dt>Date modified:&#32;</dt>
+            <dt>{t('mainContent.dateModified')}&#32;</dt>
             <dd>
               <time property="dateModified">{new Date().toISOString().split('T')[0]}</time>
             </dd>
