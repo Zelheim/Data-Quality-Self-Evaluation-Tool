@@ -74,7 +74,9 @@ const AlertDialogComponent: React.FC<AlertDialogComponentProps> = ({
         id={modalId}
         className="modal in"
         style={{ 
-          display: 'block', 
+          display: 'flex', 
+          alignItems: 'center',
+          justifyContent: 'center',
           zIndex: 1050,
           position: 'fixed',
           top: 0,
@@ -91,7 +93,7 @@ const AlertDialogComponent: React.FC<AlertDialogComponentProps> = ({
         aria-hidden="false"
         onClick={handleBackdropClick}
       >
-        <div className="modal-dialog modal-sm" role="document" style={{ margin: '30px auto' }}>
+        <div className="modal-dialog modal-sm" role="document" style={{ margin: '20px' }}>
           <div 
             className="modal-content"
             style={{
