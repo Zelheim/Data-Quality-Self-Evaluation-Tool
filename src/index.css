@@ -325,6 +325,37 @@ table .form-control {
   margin-bottom: 5px;
   font-weight: bold;
   color: #333;
+}
+
+/* Search form alignment */
+.form-inline .form-group {
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
+
+.form-inline .form-group.wb-srch-qry {
+  margin-right: 5px;
+}
+
+.form-inline .form-group.submit {
+  vertical-align: middle;
+}
+
+.form-inline .form-group.submit .btn {
+  height: 38px;
+  padding: 8px 12px;
+  line-height: 1.42857143;
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* Ensure search input and button have consistent sizing */
+.form-inline .wb-srch-q.form-control {
+  height: 38px;
+  padding: 8px 12px;
+  line-height: 1.42857143;
+  vertical-align: middle;
 } 
 /* WET-BOEW Tab styling */
 .nav-tabs {
