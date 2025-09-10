@@ -2,6 +2,21 @@
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
 
+// Extend window interface for WET-BOEW
+declare global {
+  interface Window {
+    wb?: {
+      ajax?: {
+        refresh: () => void
+      }
+      init?: () => void
+      menu?: {
+        init: () => void
+      }
+    }
+  }
+}
+
 interface HeaderProps {
   onTitleClick?: () => void;
 }
@@ -13,7 +28,17 @@ const Header = ({ onTitleClick }: HeaderProps) => {
   // Update the state when i18n.language changes
   useEffect(() => {
     setCurrentLanguage(i18n.language)
+    
+    // Trigger WET-BOEW Ajax replacement after language change
+    setTimeout(() => {
+      // Simple approach: just trigger WET-BOEW refresh
+      if (window.wb && window.wb.ajax) {
+        window.wb.ajax.refresh()
+      }
+    }, 100)
   }, [i18n.language])
+  
+  
   
   const toggleLanguage = () => {
     const newLanguage = currentLanguage === 'en' ? 'fr' : 'en'
@@ -26,10 +51,10 @@ const Header = ({ onTitleClick }: HeaderProps) => {
       {/* Skip to content links */}
       <ul id="wb-tphp">
         <li className="wb-slc">
-          <a className="wb-sl" href="#wb-cont">Skip to main content</a>
+          <a className="wb-sl" href="#wb-cont">{t('header.skipToMainContent')}</a>
         </li>
         <li className="wb-slc visible-sm visible-md visible-lg">
-          <a className="wb-sl" href="#wb-info">Skip to "About this site"</a>
+          <a className="wb-sl" href="#wb-info">{t('header.skipToAboutSite')}</a>
         </li>
       </ul>
       
@@ -37,7 +62,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
         <div id="wb-bnr" className="container">
           {/* Language Selection */}
           <section id="wb-lng" className="visible-md visible-lg text-right">
-            <h2 className="wb-inv">Language selection</h2>
+            <h2 className="wb-inv">{t('header.languageSelection')}</h2>
             <div className="row">
               <div className="col-md-12">
                 <ul className="list-inline margin-bottom-none">
@@ -47,7 +72,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
                       lang={currentLanguage === 'en' ? 'fr' : 'en'}
                       style={{ background: 'none', border: 'none', color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}
                     >
-                      {currentLanguage === 'en' ? 'Français' : 'English'}
+                      {currentLanguage === 'en' ? t('header.switchToFrench') : t('header.switchToEnglish')}
                     </button>
                   </li>
                 </ul>
@@ -60,21 +85,21 @@ const Header = ({ onTitleClick }: HeaderProps) => {
             {/* Government of Canada Brand */}
             <div className="brand col-xs-8 col-sm-9 col-md-6">
               <img 
-                src="./wet-boew4b/assets/sig-blk-gov-en.svg" 
-                alt="Government of Canada"
+                src={currentLanguage === 'en' ? "./wet-boew4b/assets/sig-blk-gov-en.svg" : "./wet-boew4b/assets/sig-blk-gov-fr.svg"}
+                alt={currentLanguage === 'en' ? t('header.governmentOfCanada') : t('header.governmentOfCanadaFr')}
               />
-              <span className="wb-inv"> / <span lang="fr">Gouvernement du Canada</span></span>
+              <span className="wb-inv"> / <span lang={currentLanguage === 'en' ? 'fr' : 'en'}>{currentLanguage === 'en' ? t('header.governmentOfCanadaFr') : t('header.governmentOfCanada')}</span></span>
             </div>
             
             {/* Mobile Menu Button */}
             <section className="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs" id="wb-glb-mn">
-              <h2>Search and menus</h2>
+              <h2>{t('header.searchAndMenus')}</h2>
               <ul className="list-inline text-right chvrn">
                 <li>
-                  <a href="#mb-pnl" title="Search and menus" aria-controls="mb-pnl" className="overlay-lnk" role="button">
+                  <a href="#mb-pnl" title={t('header.searchAndMenus')} aria-controls="mb-pnl" className="overlay-lnk" role="button">
                     <span className="glyphicon glyphicon-search">
                       <span className="glyphicon glyphicon-th-list">
-                        <span className="wb-inv">Search and menus</span>
+                        <span className="wb-inv">{t('header.searchAndMenus')}</span>
                       </span>
                     </span>
                   </a>
@@ -85,16 +110,16 @@ const Header = ({ onTitleClick }: HeaderProps) => {
             
             {/* Search Section */}
             <section id="wb-srch" className="col-xs-6 text-right visible-md visible-lg">
-              <h2 className="wb-inv">Search</h2>
+              <h2 className="wb-inv">{t('header.search')}</h2>
               <form 
-                action="https://www.statcan.gc.ca/search/results/site-search" 
+                action={currentLanguage === 'en' ? "https://www.statcan.gc.ca/search/results/site-search" : "https://www.statcan.gc.ca/recherche/resultats/site-recherche"}
                 method="get" 
                 name="cse-search-box" 
                 role="search" 
                 className="form-inline"
               >
                 <div className="form-group wb-srch-qry">
-                  <label htmlFor="wb-srch-q" className="wb-inv">Search website</label>
+                  <label htmlFor="wb-srch-q" className="wb-inv">{t('header.searchWebsite')}</label>
                   <input type="hidden" name="fq" value="stclac:2" />
                   <input 
                     id="wb-srch-q" 
@@ -105,7 +130,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
                     value=""
                     size={27} 
                     maxLength={150} 
-                    placeholder="Search website"
+                    placeholder={t('header.searchWebsite')}
                   />
                   <datalist id="wb-srch-q-ac"></datalist>
                 </div>
@@ -117,7 +142,7 @@ const Header = ({ onTitleClick }: HeaderProps) => {
                     name="wb-srch-sub"
                   >
                     <span className="glyphicon-search glyphicon"></span>
-                    <span className="wb-inv">Search</span>
+                    <span className="wb-inv">{t('header.search')}</span>
                   </button>
                 </div>
               </form>
@@ -126,20 +151,38 @@ const Header = ({ onTitleClick }: HeaderProps) => {
         </div>
         
         {/* Navigation Menu */}
-        <nav role="navigation" id="wb-sm" className="wb-menu visible-md visible-lg" data-trgt="mb-pnl" data-ajax-replace="/wet-boew4b/ajax/sitemenu-en.html" typeof="SiteNavigationElement">
+        <nav role="navigation" id="wb-sm" className="wb-menu visible-md visible-lg" data-trgt="mb-pnl" data-ajax-replace={currentLanguage === 'en' ? "/wet-boew4b/ajax/sitemenu-en.html" : "/wet-boew4b/ajax/sitemenu-fr.html"} typeof="SiteNavigationElement">
           <div className="container nvbar">
-            <h2 className="wb-inv">Topics menu</h2>
+            <h2 className="wb-inv">{t('header.topicsMenu')}</h2>
             <div className="row">
               <ul className="list-inline menu">
-                <li><a href="https://www150.statcan.gc.ca/n1/en/subjects?MM=1">Subjects</a></li>
-                <li><a href="https://www150.statcan.gc.ca/n1/en/type/data?MM=1">Data</a></li>
-                <li><a href="https://www150.statcan.gc.ca/n1/en/type/analysis?MM=1">Analysis</a></li>
-                <li><a href="https://www.statcan.gc.ca/en/reference?MM=1">Reference</a></li>
-                <li><a href="https://www.statcan.gc.ca/en/geography?MM=1">Geography</a></li>
-                <li><a href="https://www.statcan.gc.ca/en/census?MM=1">Census</a></li>
-                <li><a href="https://www.statcan.gc.ca/en/surveys?MM=1">Surveys and statistical programs</a></li>
-                <li><a href="https://www.statcan.gc.ca/en/about/statcan?MM=1">About StatCan</a></li>
-                <li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www150.statcan.gc.ca/n1/en/subjects?MM=1" : "https://www150.statcan.gc.ca/n1/fr/sujets?MM=1"}>
+                  {t('header.subjects')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www150.statcan.gc.ca/n1/en/type/data?MM=1" : "https://www150.statcan.gc.ca/n1/fr/type/donnees?MM=1"}>
+                  {t('header.data')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www150.statcan.gc.ca/n1/en/type/analysis?MM=1" : "https://www150.statcan.gc.ca/n1/fr/type/analyses?MM=1"}>
+                  {t('header.analysis')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/reference?MM=1" : "https://www.statcan.gc.ca/fr/references?MM=1"}>
+                  {t('header.reference')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/geography?MM=1" : "https://www.statcan.gc.ca/fr/geographie?MM=1"}>
+                  {t('header.geography')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/census?MM=1" : "https://www.statcan.gc.ca/fr/recensement?MM=1"}>
+                  {t('header.census')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/surveys?MM=1" : "https://www.statcan.gc.ca/fr/enquetes?MM=1"}>
+                  {t('header.surveysAndPrograms')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/about/statcan?MM=1" : "https://www.statcan.gc.ca/fr/apercu/statcan?MM=1"}>
+                  {t('header.aboutStatCan')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.canada.ca/en.html" : "https://www.canada.ca/fr.html"}>
+                  {t('header.canadaCa')}
+                </a></li>
               </ul>
             </div>
           </div>
@@ -150,8 +193,12 @@ const Header = ({ onTitleClick }: HeaderProps) => {
           <div className="container">
             <div className="row">
               <ol className="breadcrumb">
-                <li><a href="https://www.statcan.gc.ca/en/start">Home</a></li>
-                <li><a href="https://www150.statcan.gc.ca/n1/en/subjects">Subjects</a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www.statcan.gc.ca/en/start" : "https://www.statcan.gc.ca/fr/debut"}>
+                  {t('header.home')}
+                </a></li>
+                <li><a href={currentLanguage === 'en' ? "https://www150.statcan.gc.ca/n1/en/subjects" : "https://www150.statcan.gc.ca/n1/fr/sujets"}>
+                  {t('header.subjects')}
+                </a></li>
                 <li>
                   <button 
                     onClick={onTitleClick}
