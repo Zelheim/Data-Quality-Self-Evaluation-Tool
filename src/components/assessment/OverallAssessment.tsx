@@ -747,7 +747,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <div className="center-block" style={{maxWidth: '600px'}}>
               <Button 
                 onClick={handleExport}
-                size="sm"
+                size="lg"
                 className="mrgn-rght-sm mrgn-bttm-sm"
                 aria-label={t('assessment.overall.export.buttons.export')}
               >
@@ -758,7 +758,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               <Button 
                 onClick={onReset}
                 variant="secondary"
-                size="sm"
+                size="lg"
                 className="mrgn-rght-sm mrgn-bttm-sm"
                 aria-label={t('assessment.overall.actions.reset')}
               >
@@ -770,7 +770,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 <Button 
                   onClick={onReturnHome}
                   variant="outline"
-                  size="sm"
+                  size="lg"
                   className="mrgn-bttm-sm"
                   aria-label={t('assessment.overall.actions.home')}
                 >
