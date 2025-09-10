@@ -803,7 +803,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <div
             className="modal in"
             style={{ 
-              display: 'block', 
+              display: 'flex', 
+              alignItems: 'center',
+              justifyContent: 'center',
               zIndex: 1050,
               position: 'fixed',
               top: 0,
@@ -823,7 +825,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               }
             }}
           >
-            <div className="modal-dialog modal-lg" role="document" style={{ margin: '30px auto' }}>
+            <div className="modal-dialog modal-lg" role="document" style={{ margin: '20px' }}>
               <div 
                 className="modal-content"
                 style={{
