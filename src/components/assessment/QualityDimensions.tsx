@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { QUALITY_DIMENSIONS } from '../../types/assessment';
 import { Button } from '../ui/Button';
 import ResultCard from '../ui/ResultCard';
-import TooltipInfo from '../ui/TooltipInfo';
+import StatCanTooltip from '../ui/StatCanTooltip';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
 import { 
   Table, 
@@ -117,7 +117,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
 
   const generateQualitySummary = () => {
     return (
-      <div className="overflow-hidden rounded-lg shadow-md">
+      <div className="overflow-visible rounded-lg shadow-md">
         <Table aria-labelledby="quality-summary-title">
           <TableHeader className="text-lg">
             <TableRow>
@@ -228,7 +228,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           </p>
         </div>
 
-        <div className="overflow-hidden rounded-lg shadow-md mb-8">
+        <div className="overflow-visible rounded-lg shadow-md mb-8">
           <Table aria-labelledby="quality-dimensions-title">
             <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
             <TableHeader className="text-lg">
@@ -238,15 +238,11 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.criteria')}</TableHead>
                 <TableHead className="bg-[var(--primary-color)] text-center">
                   <div className="flex items-center justify-end">
-                    {t('assessment.quality.table.headers.answer')}
-                    <TooltipInfo id="tooltip-points-info">
-                      {t('assessment.quality.table.tooltip.title')}<br />
-                      {t('assessment.quality.table.tooltip.high')}<br />
-                      {t('assessment.quality.table.tooltip.medium')}<br />
-                      {t('assessment.quality.table.tooltip.low')}<br />
-                      {t('assessment.quality.table.tooltip.notSufficient')}<br /><br />
-                      {t('assessment.quality.table.tooltip.exceptions')}
-                    </TooltipInfo>
+                    <StatCanTooltip 
+                      tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
+                    >
+                      {t('assessment.quality.table.headers.answer')}
+                    </StatCanTooltip>
                   </div>
                 </TableHead>
               </TableRow>
