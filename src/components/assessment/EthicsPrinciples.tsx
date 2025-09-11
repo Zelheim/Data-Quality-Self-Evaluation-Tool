@@ -121,31 +121,30 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
       </CardHeader>
 
       <CardContent>
-        <div className="mb-6">
-          <p className="text-lg">
+        <div>
+          <p>
           {t('assessment.ethics.intro.intro') }
           </p>
           <ol 
-                className="my-6 list-decimal pl-6 space-y-2" 
                 aria-label={t('frontPage.bulletPoints.label')}
             >
-              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item1')}</li>
-              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item2')}</li>
-              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item3')}</li>
-              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item4')}</li>
-              <li className="text-lg">{t('assessment.ethics.intro.bulletPoints.item5')}</li>
+              <li>{t('assessment.ethics.intro.bulletPoints.item1')}</li>
+              <li>{t('assessment.ethics.intro.bulletPoints.item2')}</li>
+              <li>{t('assessment.ethics.intro.bulletPoints.item3')}</li>
+              <li>{t('assessment.ethics.intro.bulletPoints.item4')}</li>
+              <li>{t('assessment.ethics.intro.bulletPoints.item5')}</li>
             </ol>
-          <p className="text-lg" dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}}
+          <p dangerouslySetInnerHTML={{__html: t('assessment.ethics.intro.part1')}}
           />
-          <p className="text-lg">
+          <p>
             {t('assessment.ethics.intro.part2')}
           </p>
         </div>
 
-        <div className="rounded-lg overflow-hidden shadow-md">
+        <div>
           <Table>
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
-            <TableHeader className="text-lg">
+            <TableHeader>
               <TableRow>
                 <TableHead>{t('assessment.ethics.table.headers.elements')}</TableHead>
                 <TableHead>{t('assessment.ethics.table.headers.explanation')}</TableHead>
@@ -156,11 +155,11 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
             <TableBody>
               {ETHICS_PRINCIPLES.map((principle) => (
                 <TableRow key={principle.id}>
-                  <TableCell className="font-medium">
-                    <strong id={`ethics-el-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
+                  <TableCell>
+                    <strong id={`ethics-el-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
                   </TableCell>
-                  <TableCell className="text-base">{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
-                  <TableCell id={`ethics-crit-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
+                  <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
+                  <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
                   <TableCell>
                     <Select
                       value={ethicsAnswers[principle.id] || "unselected"}
@@ -184,10 +183,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           </Table>
         </div>
 
-        <div 
-          className="section-header font-bold mt-8 mb-4 text-xl"
-          id="ethics-results-title"
-        >
+        <div id="ethics-results-title">
           {t('assessment.ethics.results.title')}
         </div>
         
@@ -217,12 +213,12 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
         </div>
       </CardContent>
 
-      <CardFooter className="text-center gap-3">
+      <CardFooter>
         {!showResult ? (
           <Button 
             onClick={handleEvaluate}
             aria-label={t('assessment.ethics.actions.evaluateARIA')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
+            className="btn-lg"
           >
             {t('assessment.ethics.actions.evaluate')}
           </Button>
@@ -230,7 +226,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           <Button 
             onClick={handleContinue}
             aria-label={t('assessment.ethics.actions.continueARIA')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
+            className="btn-lg"
           >
             {t('assessment.ethics.actions.continue')}
           </Button>

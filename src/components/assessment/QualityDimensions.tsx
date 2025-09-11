@@ -117,12 +117,12 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
 
   const generateQualitySummary = () => {
     return (
-      <div className="overflow-visible rounded-lg shadow-md">
+      <div>
         <Table aria-labelledby="quality-summary-title">
-          <TableHeader className="text-lg">
+          <TableHeader>
             <TableRow>
               <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
-              <TableHead className=" text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
+              <TableHead className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
               <TableHead>{t('assessment.overall.criteriaSatisfied')}</TableHead>
             </TableRow>
           </TableHeader>
@@ -133,14 +133,14 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               
               return (
                 <TableRow key={dimension.id}>
-                  <TableCell className="font-medium"><strong className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
-                  <TableCell className="text-start font-semibold text-base">
+                  <TableCell><strong>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
+                  <TableCell>
                     {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
                   </TableCell>
-                  <TableCell className="text-base">
-                    <div className="space-y-1">
+                  <TableCell>
+                    <div>
                       {dimension.criteria.map((_, idx) => (
-                        <div key={idx} className={`text-sm font-semibold ${criteria[idx] ? 'text-success' : 'text-danger'}`}>
+                        <div key={idx} className={`${criteria[idx] ? 'text-success' : 'text-danger'}`}>
                           {criteria[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
                         </div>
                       ))}
@@ -205,39 +205,36 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
       </CardHeader>
 
       <CardContent>
-        <div className="intro-text mb-6">
-          <p className="text-lg">
+        <div className="intro-text">
+          <p>
             {t('assessment.quality.intro.intro')}
           </p>
-          <ol 
-                className="my-6 list-decimal pl-6 space-y-2" 
-                aria-label={t('frontPage.bulletPoints.label')}
-            >
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item1')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item2')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item3')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item4')}</li>
-              <li className="text-lg">{t('assessment.quality.intro.bulletPoints.item5')}</li>
+          <ol aria-label={t('frontPage.bulletPoints.label')}>
+              <li>{t('assessment.quality.intro.bulletPoints.item1')}</li>
+              <li>{t('assessment.quality.intro.bulletPoints.item2')}</li>
+              <li>{t('assessment.quality.intro.bulletPoints.item3')}</li>
+              <li>{t('assessment.quality.intro.bulletPoints.item4')}</li>
+              <li>{t('assessment.quality.intro.bulletPoints.item5')}</li>
             </ol>
-          <p className="text-lg">
+          <p>
             {t('assessment.quality.intro.part1')}
           </p>
           <br />
-          <p className="text-lg">
+          <p>
             {t('assessment.quality.intro.part2')}
           </p>
         </div>
 
-        <div className="overflow-visible rounded-lg shadow-md mb-8">
+        <div>
           <Table aria-labelledby="quality-dimensions-title">
             <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
-            <TableHeader className="text-lg">
+            <TableHeader>
               <TableRow>
                 <TableHead>{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead>{t('assessment.quality.table.headers.definition')}</TableHead>
                 <TableHead>{t('assessment.quality.table.headers.criteria')}</TableHead>
                 <TableHead className="text-center">
-                  <div className="flex items-center justify-end">
+                  <div>
                     <StatCanTooltip 
                       tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
                     >
@@ -250,11 +247,11 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
             <TableBody>
               {QUALITY_DIMENSIONS.map((dimension) => (
                 <TableRow key={dimension.id}>
-                  <TableCell className="font-medium">
-                    <strong id={`quality-el-${dimension.id}`} className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
+                  <TableCell>
+                    <strong id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
                   </TableCell>
-                  <TableCell className="text-base">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
-                  <TableCell id={`quality-crit-${dimension.id}`} className="text-base" colSpan={2}>
+                  <TableCell>{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
+                  <TableCell id={`quality-crit-${dimension.id}`} colSpan={2}>
                     <div className="dimension-content">
                       {dimension.criteria.map((_, idx) => (
                         <div key={idx} className="criteria-row-unified">
@@ -262,7 +259,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                             {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
                           </div>
                           <div className="criteria-checkbox-unified">
-                            <label className="flex items-center justify-center cursor-pointer">
+                            <label>
                               <input
                                 type="checkbox"
                                 checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
@@ -281,10 +278,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           </Table>
         </div>
 
-        <div 
-          className="section-header font-bold mt-8 mb-4 text-xl"
-          id="quality-summary-title"
-        >
+        <div id="quality-summary-title">
           {t('assessment.quality.summary.title')}
         </div>
         
@@ -299,18 +293,17 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
             <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
             <div className="wb-inv-message-content">
-              <span className="text-lg">
-                {t('assessment.quality.summary.totalScore')} <span className="font-bold text-primary">
-                  {t('assessment.quality.summary.scoreDisplay', { score: totalScore, maxScore: 15 })}
-                </span>
+              <span>
+                {t('assessment.quality.summary.totalScore')}
+                <span>{t('assessment.quality.summary.scoreDisplay', { score: totalScore, maxScore: 15 })}</span>
               </span>
             </div>
           </div>
           
           {showResult && qualityPass !== null && (
-            <div className="mt-5 transform transition-all text-center">
+            <div>
               <ResultCard result={qualityPass ? 'pass' : 'fail'}>
-                <span className="block text-center">{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</span>
+                <span className="text-center">{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</span>
               </ResultCard>
             </div>
           )}
@@ -324,12 +317,12 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
         </div>
       </CardContent>
       
-      <CardFooter className="text-center gap-3">
+      <CardFooter className="text-center">
         <Button 
           onClick={onGoBack}
           variant="outline"
           aria-label={t('assessment.quality.actions.goBackARIA')}
-          className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg btn-lg"
+          className="btn-lg"
         >
           {t('assessment.quality.actions.goBack')}
         </Button>
@@ -337,7 +330,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <Button 
             onClick={handleEvaluate}
             aria-label={t('assessment.quality.actions.evaluateARIA')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md btn-lg"
+            className="mrgn-lft-md btn-lg"
           >
             {t('assessment.quality.actions.evaluate')}
           </Button>
@@ -345,7 +338,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <Button 
             onClick={handleContinue}
             aria-label={t('assessment.quality.actions.continueARIA')}
-            className="transform transition-transform hover:scale-105 px-6 py-2.5 text-lg mrgn-lft-md btn-lg"
+            className="mrgn-lft-md btn-lg"
           >
             {t('assessment.quality.actions.continue')}
           </Button>

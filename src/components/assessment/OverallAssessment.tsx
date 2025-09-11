@@ -621,8 +621,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   
   const renderEthicsPrinciplesSummary = () => {
     return (
-      <div className="mb-8">
-        <h3 id="ethics-summary-title" className="h3 mrgn-bttm-md text-primary">
+      <div>
+        <h3 id="ethics-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.ethics.title')}
         </h3>
         
@@ -638,10 +638,10 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: part1MessageKey ? t(part1MessageKey) : ''}} />
         </div>
         
-        <div className="rounded-lg overflow-hidden shadow-md">
+        <div>
           <Table aria-labelledby="ethics-summary-title">
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
-            <TableHeader className="text-lg">
+            <TableHeader>
               <TableRow>
                 <TableHead scope="col">{t('assessment.ethics.table.headers.elements')}</TableHead>
                 <TableHead scope="col">{t('assessment.ethics.table.headers.answer')}</TableHead>
@@ -650,8 +650,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <TableBody>
               {ETHICS_PRINCIPLES.map((principle) => (
                 <TableRow key={principle.id}>
-                  <TableCell className="font-medium"><strong className="text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></TableCell>
-                  <TableCell className="text-base">
+                  <TableCell><strong>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></TableCell>
+                  <TableCell>
                     {assessmentData.ethicsPrinciples[principle.id] 
                       ? assessmentData.ethicsPrinciples[principle.id] === "Yes"
                         ? t('assessment.ethics.table.answers.yes')
@@ -671,8 +671,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   
   const renderQualityDimensionsSummary = () => {
     return (
-      <div className="mb-8">
-        <h3 id="quality-summary-title" className="h3 mrgn-bttm-md text-primary">
+      <div>
+        <h3 id="quality-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.quality.title')}
         </h3>
         
@@ -688,10 +688,10 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
           <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: qualityInterpretationKey ? t(qualityInterpretationKey) : ''}} />
         </div>
         
-        <div className="rounded-lg overflow-hidden shadow-md">
+        <div>
           <Table aria-labelledby="quality-summary-title">
             <caption className="sr-only">{t('assessment.quality.table.caption')}</caption>
-            <TableHeader className="text-lg">
+            <TableHeader>
               <TableRow>
                 <TableHead scope="col">{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead scope="col" className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
@@ -718,12 +718,12 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 
                 return (
                   <TableRow key={dimension.id}>
-                    <TableCell className="font-medium"><strong className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
-                    <TableCell className="text-start font-semibold text-base">{score}/3</TableCell>
-                    <TableCell className="text-base">
-                      <div className="space-y-1">
+                    <TableCell><strong>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
+                    <TableCell>{score}/3</TableCell>
+                    <TableCell>
+                      <div>
                         {dimension.criteria.map((_, idx) => (
-                          <div key={idx} className={`text-sm font-semibold ${criteriaSatisfied[idx] ? 'text-success' : 'text-danger'}`}>
+                          <div key={idx} className={`${criteriaSatisfied[idx] ? 'text-success' : 'text-danger'}`}>
                             {criteriaSatisfied[idx] ? '✓' : '✗'} {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
                           </div>
                         ))}
@@ -740,8 +740,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
           <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
           <div className="wb-inv-message-content">
-            <span className="text-lg">
-              {t('assessment.quality.summary.totalScore')} <span className="font-bold text-primary">
+            <span>
+              {t('assessment.quality.summary.totalScore')} <span>
                 {totalQualityScore}/15
               </span>
             </span>
@@ -754,7 +754,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   return (
     <Card className="panel panel-default">
       <CardHeader>
-        <CardTitle id="overall-assessment-title" className="text-2xl">
+        <CardTitle id="overall-assessment-title">
           {t('assessment.overall.title')}
         </CardTitle>
       </CardHeader>
@@ -763,7 +763,6 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
         <div 
           ref={resultSummaryRef}
           tabIndex={-1}
-          className="mb-6"
           aria-labelledby="overall-assessment-title"
         >
           <div className={`${resultClass} mrgn-bttm-md`} role="alert">
