@@ -121,19 +121,19 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
         <Table aria-labelledby="quality-summary-title">
           <TableHeader className="text-lg">
             <TableRow>
-              <TableHead className="bg-[var(--primary-color)]">{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
-              <TableHead className="bg-[var(--primary-color)] text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-              <TableHead className="bg-[var(--primary-color)]">{t('assessment.overall.criteriaSatisfied')}</TableHead>
+              <TableHead>{t('assessment.quality.summary.tableHeaders.dimension')}</TableHead>
+              <TableHead className=" text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
+              <TableHead>{t('assessment.overall.criteriaSatisfied')}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            {QUALITY_DIMENSIONS.map((dimension, index) => {
+            {QUALITY_DIMENSIONS.map((dimension) => {
               const score = qualityScores[dimension.id] || 0;
               const criteria = criteriaSatisfaction[dimension.id] || [];
               
               return (
-                <TableRow key={dimension.id} className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}>
-                  <TableCell className="font-medium"><strong className="text-[var(--primary-color)] text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
+                <TableRow key={dimension.id}>
+                  <TableCell className="font-medium"><strong className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
                   <TableCell className="text-start font-semibold text-base">
                     {t('assessment.quality.summary.scoreDisplay', { score: score, maxScore: dimension.maxScore })}
                   </TableCell>
@@ -233,10 +233,10 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
             <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
             <TableHeader className="text-lg">
               <TableRow>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.elements')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.definition')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.criteria')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)] text-center">
+                <TableHead>{t('assessment.quality.table.headers.elements')}</TableHead>
+                <TableHead>{t('assessment.quality.table.headers.definition')}</TableHead>
+                <TableHead>{t('assessment.quality.table.headers.criteria')}</TableHead>
+                <TableHead className="text-center">
                   <div className="flex items-center justify-end">
                     <StatCanTooltip 
                       tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
@@ -249,9 +249,9 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
             </TableHeader>
             <TableBody>
               {QUALITY_DIMENSIONS.map((dimension, index) => (
-                <TableRow key={dimension.id} className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}>
+                <TableRow key={dimension.id}>
                   <TableCell className="font-medium">
-                    <strong id={`quality-el-${dimension.id}`} className="text-[var(--primary-color)] text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
+                    <strong id={`quality-el-${dimension.id}`} className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
                   </TableCell>
                   <TableCell className="text-base">{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
                   <TableCell id={`quality-crit-${dimension.id}`} className="text-base" colSpan={2}>
