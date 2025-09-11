@@ -830,6 +830,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
       </CardContent>
       
       {/* WET-BOEW Export Modal */}
+      {/* To do: Move focus to the first interactive element when the modal opens, 
+      trap the focus inside the modal while it is open, and then restore focus to the triggering element when the modal closes */}
       {exportDialogOpen && (
         <>
           <div 
@@ -909,7 +911,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 {/* Modal Body */}
                 <div className="modal-body">
                   <p id="export-modal-description" className="sr-only">
-                    {t('assessment.overall.export.description', 'Choose a format to export your assessment results. You can preview text and CSV formats before downloading.')}
+                    {t('assessment.overall.export.description')}
                   </p>
                   
                   <div className="form-group">
@@ -929,7 +931,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                       <option value="word">{t('assessment.overall.export.formats.word')}</option>
                     </select>
                     <div id="format-help" className="help-block sr-only">
-                      {t('assessment.overall.export.formatHelp', 'Select the format you want to export your assessment results in.')}
+                      {t('assessment.overall.export.formatHelp')}
                     </div>
                   </div>
                   
@@ -958,8 +960,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                       <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                       <div className="wb-inv-message-content">
                         {exportFormat === 'pdf' 
-                          ? t('assessment.overall.export.pdfPreview', 'PDF will be generated when you click Download.')
-                          : t('assessment.overall.export.wordPreview', 'Word document will be generated when you click Download.')
+                          ? t('assessment.overall.export.pdfPreview')
+                          : t('assessment.overall.export.wordPreview')
                         }
                       </div>
                     </div>

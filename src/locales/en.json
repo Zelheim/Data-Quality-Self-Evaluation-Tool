@@ -153,7 +153,9 @@
       },
       "actions": {
         "continue": "Continue",
-        "evaluate": "Evaluate"
+        "continueARIA": "Continue to the next section",
+        "evaluate": "Evaluate",
+        "evaluateARIA": "Evaluate your results"
       },
       "alerts": {
         "answerAll": "Please provide answers to all criteria."
@@ -222,9 +224,13 @@
         "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
       },
       "actions": {
-        "evaluate": "Evaluate",
         "continue": "Continue",
-        "goBack": "Go Back"
+        "continueARIA": "Continue to the next section",
+        "evaluate": "Evaluate",
+        "evaluateARIA": "Evaluate your results",
+        "goBack": "Go back",
+        "goBackARIA": "Go back to the previous section"
+
       }
     },
     "overall": {
@@ -256,7 +262,9 @@
       },
       "export": {
         "title": "Export Assessment",
+        "description": "Please select a format to export your assessment results. You may preview the text and CSV options before proceeding with the download.",
         "formatLabel": "Export Format:",
+        "formatHelp": "Please select the preferred format for exporting your assessment results.",
         "formats": {
           "text": "Text",
           "csv": "CSV",
