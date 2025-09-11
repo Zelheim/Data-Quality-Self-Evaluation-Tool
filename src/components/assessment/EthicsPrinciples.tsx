@@ -121,7 +121,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
       </CardHeader>
 
       <CardContent>
-        <div className="mb-6 text-[var(--text-color)]">
+        <div className="mb-6">
           <p className="text-lg">
           {t('assessment.ethics.intro.intro') }
           </p>
@@ -147,20 +147,17 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
             <TableHeader className="text-lg">
               <TableRow>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.elements')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.explanation')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.criteria')}</TableHead>
-                <TableHead className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.answer')}</TableHead>
+                <TableHead>{t('assessment.ethics.table.headers.elements')}</TableHead>
+                <TableHead>{t('assessment.ethics.table.headers.explanation')}</TableHead>
+                <TableHead>{t('assessment.ethics.table.headers.criteria')}</TableHead>
+                <TableHead>{t('assessment.ethics.table.headers.answer')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {ETHICS_PRINCIPLES.map((principle, index) => (
-                <TableRow 
-                  key={principle.id} 
-                  className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}
-                >
+              {ETHICS_PRINCIPLES.map((principle) => (
+                <TableRow key={principle.id}>
                   <TableCell className="font-medium">
-                    <strong id={`ethics-el-${principle.id}`} className="text-[var(--primary-color)] text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
+                    <strong id={`ethics-el-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
                   </TableCell>
                   <TableCell className="text-base">{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
                   <TableCell id={`ethics-crit-${principle.id}`} className="text-base">{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>

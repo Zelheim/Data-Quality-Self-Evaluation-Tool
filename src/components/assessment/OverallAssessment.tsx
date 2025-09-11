@@ -643,14 +643,14 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
             <TableHeader className="text-lg">
               <TableRow>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.elements')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.ethics.table.headers.answer')}</TableHead>
+                <TableHead scope="col">{t('assessment.ethics.table.headers.elements')}</TableHead>
+                <TableHead scope="col">{t('assessment.ethics.table.headers.answer')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {ETHICS_PRINCIPLES.map((principle, index) => (
-                <TableRow key={principle.id} className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}>
-                  <TableCell className="font-medium"><strong className="text-[var(--primary-color)] text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></TableCell>
+              {ETHICS_PRINCIPLES.map((principle) => (
+                <TableRow key={principle.id}>
+                  <TableCell className="font-medium"><strong className="text-base">{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></TableCell>
                   <TableCell className="text-base">
                     {assessmentData.ethicsPrinciples[principle.id] 
                       ? assessmentData.ethicsPrinciples[principle.id] === "Yes"
@@ -693,9 +693,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             <caption className="sr-only">{t('assessment.quality.table.caption')}</caption>
             <TableHeader className="text-lg">
               <TableRow>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.quality.table.headers.elements')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)] text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-                <TableHead scope="col" className="bg-[var(--primary-color)]">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
+                <TableHead scope="col">{t('assessment.quality.table.headers.elements')}</TableHead>
+                <TableHead scope="col" className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
+                <TableHead scope="col">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -717,8 +717,8 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 }
                 
                 return (
-                  <TableRow key={dimension.id} className={index % 2 === 1 ? "bg-[var(--light-blue)]" : "bg-white"}>
-                    <TableCell className="font-medium"><strong className="text-[var(--primary-color)] text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
+                  <TableRow key={dimension.id}>
+                    <TableCell className="font-medium"><strong className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
                     <TableCell className="text-start font-semibold text-base">{score}/3</TableCell>
                     <TableCell className="text-base">
                       <div className="space-y-1">
