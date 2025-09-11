@@ -248,7 +248,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {QUALITY_DIMENSIONS.map((dimension, index) => (
+              {QUALITY_DIMENSIONS.map((dimension) => (
                 <TableRow key={dimension.id}>
                   <TableCell className="font-medium">
                     <strong id={`quality-el-${dimension.id}`} className="text-base">{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>

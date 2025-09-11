@@ -699,7 +699,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {QUALITY_DIMENSIONS.map((dimension, index) => {
+              {QUALITY_DIMENSIONS.map((dimension) => {
                 const score = assessmentData.qualityDimensions[dimension.id] || 0;
                 
                 // Calculate which criteria were satisfied based on the score
