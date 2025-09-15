@@ -219,7 +219,6 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           <p>
             {t('assessment.quality.intro.part1')}
           </p>
-          <br />
           <p>
             {t('assessment.quality.intro.part2')}
           </p>
@@ -264,6 +263,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                                 type="checkbox"
                                 checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
                                 onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
+                                aria-labelledby={`quality-crit-${dimension.id}-${idx}`}
                                 aria-describedby={`quality-crit-${dimension.id}`}
                               />
                             </label>

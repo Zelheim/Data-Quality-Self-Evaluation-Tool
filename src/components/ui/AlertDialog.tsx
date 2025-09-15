@@ -130,7 +130,7 @@ const AlertDialogComponent: React.FC<AlertDialogComponentProps> = ({
                 variant="primary" 
                 onClick={onClose} 
                 autoFocus
-                className="btn-sm"
+                className="btn-lg"
               >
                 <span className="glyphicon glyphicon-ok mrgn-rght-sm" aria-hidden="true"></span>
                 {t('alerts.ok')}
