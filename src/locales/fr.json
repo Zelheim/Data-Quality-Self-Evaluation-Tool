@@ -127,7 +127,7 @@
           "item4": "Protection de la vie privée, et",
           "item5": "Confidentialité."
         },
-        "part1": "L'évaluation de chacun de ces éléments nous aide à évaluer si les données sont utilisées de manière appropriée tout au long de leur cycle de vie et peuvent donc être considérées comme adéquates pour contribuer aux rapports sur les objectifs de développement durable (ODD). Veuillez consulter le <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a> pour en savoir plus sur l'éthique des données.",
+        "part1": "L'évaluation de chacun de ces éléments nous aide à évaluer si les données sont utilisées de manière appropriée tout au long de leur cycle de vie et peuvent donc être considérées comme adéquates pour contribuer aux rapports sur les objectifs de développement durable (ODD). Veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a> pour en savoir plus sur l'éthique des données.",
         "part2": "Chaque principe d'éthique est évalué ci-dessous en répondant si les données sont alignées avec les principes ou non."
       },
       "table": {
@@ -149,7 +149,7 @@
         "pass": "Réussite",
         "fail": "Échec",
         "passMessage": "Telles qu'évaluées ci-dessus, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
+        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "actions": {
         "continue": "Continuer",
@@ -218,10 +218,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
-        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
+        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
         "high": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD.",
-        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
+        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "actions": {
         "continue": "Continuer",
@@ -247,9 +247,9 @@
       },
       "messages": {
         "bothPass": "Telles qu'évaluées, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
-        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada.",
-        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter <i><u>l'hyperlien</u></i> de Statistique Canada."
+        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité des données",

@@ -149,7 +149,7 @@
         "pass": "Pass",
         "fail": "Fail",
         "passMessage": "As evaluated above, the data are considered fit for purpose for SDG reporting.",
-        "failMessage": "As evaluated above, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
+        "failMessage": "As evaluated above, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "actions": {
         "continue": "Continue",
@@ -218,10 +218,10 @@
         "high": "High"
       },
       "interpretation": {
-        "low": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
-        "medium": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
+        "low": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "medium": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
         "high": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting.",
-        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
+        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "actions": {
         "continue": "Continue",
@@ -248,9 +248,9 @@
       },
       "messages": {
         "bothPass": "As evaluated, the data are considered fit for purpose for SDG reporting.",
-        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
-        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>.",
-        "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to Statistics Canada's <i><u>hyperlink</u></i>."
+        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "qualitySummary": {
         "title": "Data Quality Dimensions Summary",
