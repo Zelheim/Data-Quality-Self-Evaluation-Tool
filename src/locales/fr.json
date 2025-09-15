@@ -185,17 +185,17 @@
         },
         "tooltip": {
           "title": "Les points correspondent au nombre de critères respectés :",
-          "high": "3 points = Élevé (tous les critères respectés)",
-          "medium": "2 points = Moyen (2 critères respectés)",
-          "low": "1 point = Faible (1 critère respecté)",
-          "notSufficient": "0 point = Insuffisant (aucun critère respecté)",
-          "exceptions": "Veuillez noter que la dimension 'Accessibilité et clarté' ne contient que 2 critères ; satisfaire les deux critères (2/2) résulte en la note maximale de 3 points (Élevée)."
+          "high": "3 points = Tous les critères respectés",
+          "medium": "2 points = 2 critères respectés",
+          "low": "1 point = 1 critère respecté",
+          "notSufficient": "0 point = Aucun critère respecté",
+          "exceptions": "Veuillez noter que la dimension 'Accessibilité et clarté' ne contient que 2 critères ; satisfaire les deux critères (2/2) résulte en la note maximale de 3 points."
         },
         "options": {
-          "notSufficient": "0 - Insuffisant (aucun critère respecté)",
-          "low": "1 - Faible (1 critère respecté)",
-          "medium": "2 - Moyen (2 critères respectés)",
-          "high": "3 - Élevé (tous les critères respectés)"
+          "notSufficient": "0 - Aucun critère respecté",
+          "low": "1 - 1 critère respecté",
+          "medium": "2 - 2 critères respectés",
+          "high": "3 - Tous les critères respectés"
         }
       },
       "summary": {
