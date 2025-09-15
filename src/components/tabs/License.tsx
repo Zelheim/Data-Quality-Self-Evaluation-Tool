@@ -7,10 +7,10 @@ import {
   TableRow, 
   TableCell 
 } from '../ui/Table';
-import { useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../ui/Card';
 
 const License = ({ currentYear }: { currentYear: number }) => {
+  const { t } = useTranslation();
   return (
     <Card>
       <CardHeader>
