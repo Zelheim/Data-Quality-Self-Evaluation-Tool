@@ -297,18 +297,18 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           </Table>
         </div>
 
-        <div id="quality-summary-title">
-          {t('assessment.quality.summary.title')}
-        </div>
-        
-        <div 
+        <section
           ref={resultRef}
           tabIndex={-1}
           aria-labelledby="quality-summary-title"
           className="transition-all"
         >
+          <h2 id="quality-summary-title">
+            {t('assessment.quality.summary.title')}
+          </h2>
+
           {showResult && generateQualitySummary()}
-          
+
           <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
             <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
             <div className="wb-inv-message-content">
@@ -318,7 +318,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               </span>
             </div>
           </div>
-          
+
           {showResult && qualityPass !== null && (
             <div>
               <ResultCard result={qualityPass ? 'pass' : 'fail'}>
@@ -326,14 +326,14 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
               </ResultCard>
             </div>
           )}
-          
+
           {showResult && qualityInterpretation && (
             <div className="wb-inv-message wb-inv-message-info mrgn-tp-md" role="status" aria-live="polite">
               <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
               <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: qualityInterpretation}} />
             </div>
           )}
-        </div>
+        </section>
       </CardContent>
       
       <CardFooter className="text-center">

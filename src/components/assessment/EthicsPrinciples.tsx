@@ -219,18 +219,18 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           </Table>
         </div>
 
-        <div id="ethics-results-title">
-          {t('assessment.ethics.results.title')}
-        </div>
-        
-        <div 
+        <section
           ref={resultRef}
           tabIndex={-1}
           aria-labelledby="ethics-results-title"
           className="transition-all"
         >
+          <h2 id="ethics-results-title">
+            {t('assessment.ethics.results.title')}
+          </h2>
+
           {showResult && ethicsPass !== null && (
-            <div 
+            <div
               className={`wb-inv-result ${ethicsPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} text-center mrgn-tp-md`}
               role="alert"
               aria-live="polite"
@@ -246,7 +246,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
               <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: t(part1MessageKey)}} />
             </div>
           )}
-        </div>
+        </section>
       </CardContent>
 
       <CardFooter>

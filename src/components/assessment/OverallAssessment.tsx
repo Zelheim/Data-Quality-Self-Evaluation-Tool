@@ -621,23 +621,23 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   
   const renderEthicsPrinciplesSummary = () => {
     return (
-      <div>
-        <h3 id="ethics-summary-title" className="mrgn-bttm-md text-primary">
+      <section aria-labelledby="ethics-summary-title">
+        <h2 id="ethics-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.ethics.title')}
-        </h3>
-        
+        </h2>
+
         <div className={`wb-inv-result ${ethicsPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
           <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
           <div className="wb-inv-result-content">
             <strong>{ethicsPass ? t('assessment.ethics.results.pass') : t('assessment.ethics.results.fail')}</strong>
           </div>
         </div>
-        
+
         <div className="wb-inv-message wb-inv-message-info mrgn-bttm-md">
           <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
           <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: part1MessageKey ? t(part1MessageKey) : ''}} />
         </div>
-        
+
         <div>
           <Table aria-labelledby="ethics-summary-title">
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
@@ -652,12 +652,12 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                 <TableRow key={principle.id}>
                   <TableCell><strong>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong></TableCell>
                   <TableCell>
-                    {assessmentData.ethicsPrinciples[principle.id] 
+                    {assessmentData.ethicsPrinciples[principle.id]
                       ? assessmentData.ethicsPrinciples[principle.id] === "Yes"
                         ? t('assessment.ethics.table.answers.yes')
                         : assessmentData.ethicsPrinciples[principle.id] === "No"
                           ? t('assessment.ethics.table.answers.no')
-                          : assessmentData.ethicsPrinciples[principle.id] 
+                          : assessmentData.ethicsPrinciples[principle.id]
                       : t('assessment.overall.export.notEvaluated')}
                   </TableCell>
                 </TableRow>
@@ -665,29 +665,29 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             </TableBody>
           </Table>
         </div>
-      </div>
+      </section>
     );
   };
   
   const renderQualityDimensionsSummary = () => {
     return (
-      <div>
-        <h3 id="quality-summary-title" className="mrgn-bttm-md text-primary">
+      <section aria-labelledby="quality-summary-title">
+        <h2 id="quality-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.quality.title')}
-        </h3>
-        
+        </h2>
+
         <div className={`wb-inv-result ${qualityPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
           <span className={`glyphicon ${qualityPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
           <div className="wb-inv-result-content">
             <strong>{qualityPass ? t('assessment.quality.summary.pass') : t('assessment.quality.summary.fail')}</strong>
           </div>
         </div>
-        
+
         <div className="wb-inv-message wb-inv-message-info mrgn-bttm-md">
           <span className="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
           <div className="wb-inv-message-content" dangerouslySetInnerHTML={{__html: qualityInterpretationKey ? t(qualityInterpretationKey) : ''}} />
         </div>
-        
+
         <div>
           <Table aria-labelledby="quality-summary-title">
             <caption className="sr-only">{t('assessment.quality.table.caption')}</caption>
@@ -695,19 +695,19 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
               <TableRow>
                 <TableHead scope="col">{t('assessment.quality.table.headers.elements')}</TableHead>
                 <TableHead scope="col" className="text-center">{t('assessment.quality.summary.tableHeaders.score')}</TableHead>
-                <TableHead scope="col">{t('assessment.overall.criteriaSatisfied')}</TableHead>  
+                <TableHead scope="col">{t('assessment.overall.criteriaSatisfied')}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {QUALITY_DIMENSIONS.map((dimension) => {
                 const score = assessmentData.qualityDimensions[dimension.id] || 0;
-                
+
                 // Calculate which criteria were satisfied based on the score
                 const criteriaSatisfied: any[] = [];
                 for (let i = 0; i < dimension.criteria.length; i++) {
                   if (dimension.id === "3") {
-                    // For dimension 3 (Accessibility): score of 3 means both criteria satisfied, 
-                    // score of 2 means both satisfied (since there are only 2 criteria), 
+                    // For dimension 3 (Accessibility): score of 3 means both criteria satisfied,
+                    // score of 2 means both satisfied (since there are only 2 criteria),
                     // score of 1 means first criterion satisfied
                     criteriaSatisfied.push(score >= 2 || (score === 1 && i === 0));
                   } else {
@@ -715,7 +715,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
                     criteriaSatisfied.push(i < score);
                   }
                 }
-                
+
                 return (
                   <TableRow key={dimension.id}>
                     <TableCell><strong>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong></TableCell>
@@ -735,7 +735,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             </TableBody>
           </Table>
         </div>
-        
+
         {/* Total Score Display */}
         <div className="wb-inv-message wb-inv-message-grayscale mrgn-tp-md">
           <span className="glyphicon glyphicon-dashboard" aria-hidden="true"></span>
@@ -747,7 +747,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
             </span>
           </div>
         </div>
-      </div>
+      </section>
     );
   };
 
