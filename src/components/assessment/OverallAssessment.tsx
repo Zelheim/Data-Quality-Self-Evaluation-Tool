@@ -622,9 +622,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   const renderEthicsPrinciplesSummary = () => {
     return (
       <section aria-labelledby="ethics-summary-title">
-        <h2 id="ethics-summary-title" className="mrgn-bttm-md text-primary">
+        <h3 id="ethics-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.ethics.title')}
-        </h2>
+        </h3>
 
         <div className={`wb-inv-result ${ethicsPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
           <span className={`glyphicon ${ethicsPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
@@ -672,9 +672,9 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   const renderQualityDimensionsSummary = () => {
     return (
       <section aria-labelledby="quality-summary-title">
-        <h2 id="quality-summary-title" className="mrgn-bttm-md text-primary">
+        <h3 id="quality-summary-title" className="mrgn-bttm-md text-primary">
           {t('assessment.quality.title')}
-        </h2>
+        </h3>
 
         <div className={`wb-inv-result ${qualityPass ? 'wb-inv-result-pass' : 'wb-inv-result-fail'} mrgn-bttm-md`} role="status">
           <span className={`glyphicon ${qualityPass ? 'glyphicon-ok-sign text-success' : 'glyphicon-remove-sign text-danger'}`} aria-hidden="true"></span>
@@ -754,7 +754,7 @@ const OverallAssessment: React.FC<OverallAssessmentProps> = ({
   return (
     <Card className="panel panel-default">
       <CardHeader>
-        <CardTitle id="overall-assessment-title">
+        <CardTitle id="overall-assessment-title" as="h2">
           {t('assessment.overall.title')}
         </CardTitle>
       </CardHeader>

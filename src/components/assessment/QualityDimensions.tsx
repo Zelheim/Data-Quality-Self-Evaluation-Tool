@@ -216,7 +216,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
   return (
     <Card className="panel panel-default">
       <CardHeader>
-        <CardTitle id="quality-dimensions-title">
+        <CardTitle id="quality-dimensions-title" as="h2">
           {t('assessment.quality.title')}
         </CardTitle>
       </CardHeader>
@@ -303,9 +303,9 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           aria-labelledby="quality-summary-title"
           className="transition-all"
         >
-          <h2 id="quality-summary-title">
+          <h3 id="quality-summary-title">
             {t('assessment.quality.summary.title')}
-          </h2>
+          </h3>
 
           {showResult && generateQualitySummary()}
 

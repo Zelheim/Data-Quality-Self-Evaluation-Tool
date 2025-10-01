@@ -130,7 +130,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle id="ethics-principles-title">
+        <CardTitle id="ethics-principles-title" as="h2">
           {t('assessment.ethics.title')}
         </CardTitle>
       </CardHeader>
@@ -225,9 +225,9 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           aria-labelledby="ethics-results-title"
           className="transition-all"
         >
-          <h2 id="ethics-results-title">
+          <h3 id="ethics-results-title">
             {t('assessment.ethics.results.title')}
-          </h2>
+          </h3>
 
           {showResult && ethicsPass !== null && (
             <div
