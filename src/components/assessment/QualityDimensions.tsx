@@ -6,15 +6,16 @@ import { Button } from '../ui/Button';
 import ResultCard from '../ui/ResultCard';
 import StatCanTooltip from '../ui/StatCanTooltip';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/Card';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableHead, 
-  TableRow, 
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableHead,
+  TableRow,
   TableCell,
-  TableCaption 
+  TableCaption
 } from '../ui/Table';
+import ErrorSummary, { type ValidationError } from '../ui/ErrorSummary';
 
 interface QualityDimensionsProps {
   qualityScores: Record<string, number>;
@@ -51,6 +52,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
 }) => {
   const { t } = useTranslation();
   const resultRef = useRef<HTMLDivElement>(null);
+  const [validationErrors, setValidationErrors] = React.useState<ValidationError[]>([]);
 
   // Initialize dimensions with default values if not done already
   React.useEffect(() => {
@@ -155,16 +157,31 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     );
   };
 
+  const validateQuality = () => {
+    const errors: ValidationError[] = [];
+
+    // Note: Quality dimensions don't have required validation since 0 is a valid score
+    // The user can intentionally select no criteria, which results in a score of 0
+    // This is different from ethics where all questions must be answered
+
+    setValidationErrors(errors);
+    return errors.length === 0;
+  };
+
   const updateQualityResult = () => {
+    if (!validateQuality()) {
+      return;
+    }
+
     // Check if any dimension has a score of 0
-    const hasZeroScore = QUALITY_DIMENSIONS.some(dimension => 
+    const hasZeroScore = QUALITY_DIMENSIONS.some(dimension =>
       qualityScores[dimension.id] === 0
     );
-    
+
     // Fail if any score is 0 or if total score is less than 8
     const isQualityPass = !hasZeroScore && totalScore >= 8;
     setQualityPass(isQualityPass);
-    
+
     let message = '';
     if (hasZeroScore) {
       message = t('assessment.quality.interpretation.fail');
@@ -175,10 +192,10 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
     } else if (totalScore >= 11) {
       message = t('assessment.quality.interpretation.high');
     }
-    
+
     setQualityInterpretation(message);
     setShowResult(true);
-    
+
     // Focus on the result section for screen readers
     setTimeout(() => {
       if (resultRef.current) {
@@ -224,7 +241,9 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
           </p>
         </div>
 
-        <div>
+        <ErrorSummary errors={validationErrors} titleKey="assessment.quality.validation.errorSummaryTitle" />
+
+        <div className="wb-frmvld">
           <Table aria-labelledby="quality-dimensions-title">
             <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
             <TableHeader>
@@ -234,7 +253,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                 <TableHead>{t('assessment.quality.table.headers.criteria')}</TableHead>
                 <TableHead className="text-center">
                   <div>
-                    <StatCanTooltip 
+                    <StatCanTooltip
                       tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
                     >
                       {t('assessment.quality.table.headers.answer')}

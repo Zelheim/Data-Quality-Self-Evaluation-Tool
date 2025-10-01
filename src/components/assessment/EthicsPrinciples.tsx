@@ -3,25 +3,26 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ETHICS_PRINCIPLES } from '../../types/assessment';
 import { Button } from '../ui/Button';
-import { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardContent, 
-  CardFooter 
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardContent,
+  CardFooter
 } from '../ui/Card';
-import { 
-  Table, 
-  TableHeader, 
-  TableBody, 
-  TableHead, 
-  TableRow, 
-  TableCell 
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell
 } from '../ui/Table';
-import { 
-  Select, 
-  SelectItem 
+import {
+  Select,
+  SelectItem
 } from '../ui/Select';
+import ErrorSummary, { type ValidationError } from '../ui/ErrorSummary';
 
 interface EthicsPrinciplesProps {
   ethicsAnswers: Record<string, string>;
@@ -50,51 +51,65 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
 }) => {
   const { t } = useTranslation();
   const resultRef = React.useRef<HTMLDivElement>(null);
+  const [validationErrors, setValidationErrors] = React.useState<ValidationError[]>([]);
 
   const handleAnswerChange = (id: string, value: string) => {
     setEthicsAnswers({
       ...ethicsAnswers,
       [id]: value
     });
+
+    // Clear validation error for this field when user makes a selection
+    if (validationErrors.length > 0) {
+      setValidationErrors(validationErrors.filter(error => error.id !== `ethics-${id}`));
+    }
   };
 
   const validateAnswers = () => {
     const requiredPrinciples = ETHICS_PRINCIPLES.map(p => p.id);
-    let allValid = true;
+    const errors: ValidationError[] = [];
     let noAnswers = 0;
-    
+
     for (const id of requiredPrinciples) {
       if (!ethicsAnswers[id] || ethicsAnswers[id] === "unselected") {
-        allValid = false;
+        const principle = ETHICS_PRINCIPLES.find(p => p.id === id);
+        if (principle) {
+          errors.push({
+            id: `ethics-${id}`,
+            message: t('assessment.ethics.validation.fieldRequired'),
+            fieldLabel: t(`ethicsPrinciples.principle${id}.element`)
+          });
+        }
       } else if (ethicsAnswers[id] === "No") {
         noAnswers++;
       }
     }
-    
-    if (!allValid) {
-      onShowAlert(t('assessment.ethics.alerts.answerAll'));
+
+    if (errors.length > 0) {
+      setValidationErrors(errors);
       return false;
     }
-    
+
+    setValidationErrors([]);
     const isPass = noAnswers === 0;
     setEthicsPass(isPass);
-    
+
     // Set message key based on result
     if (isPass) {
       setPart1MessageKey('assessment.ethics.results.passMessage');
     } else {
       setPart1MessageKey('assessment.ethics.results.failMessage');
     }
-    
+
     setShowResult(true);
-    
+
     // Focus on the result section for screen readers
     setTimeout(() => {
       if (resultRef.current) {
         resultRef.current.focus();
       }
     }, 100);
-    
+
     return true;
   };
   
@@ -125,7 +140,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           <p>
           {t('assessment.ethics.intro.intro') }
           </p>
-          <ol 
+          <ol
                 aria-label={t('frontPage.bulletPoints.label')}
             >
               <li>{t('assessment.ethics.intro.bulletPoints.item1')}</li>
@@ -141,7 +156,9 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
           </p>
         </div>
 
-        <div>
+        <ErrorSummary errors={validationErrors} titleKey="assessment.ethics.validation.errorSummaryTitle" />
+
+        <div className="wb-frmvld">
           <Table>
             <caption className="sr-only">{t('assessment.ethics.table.caption')}</caption>
             <TableHeader>
@@ -149,36 +166,55 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
                 <TableHead>{t('assessment.ethics.table.headers.elements')}</TableHead>
                 <TableHead>{t('assessment.ethics.table.headers.explanation')}</TableHead>
                 <TableHead>{t('assessment.ethics.table.headers.criteria')}</TableHead>
-                <TableHead>{t('assessment.ethics.table.headers.answer')}</TableHead>
+                <TableHead>
+                  {t('assessment.ethics.table.headers.answer')}{' '}
+                  <strong className="required">{t('assessment.ethics.validation.required')}</strong>
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {ETHICS_PRINCIPLES.map((principle) => (
-                <TableRow key={principle.id}>
-                  <TableCell>
-                    <strong id={`ethics-el-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
-                  </TableCell>
-                  <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
-                  <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
-                  <TableCell>
-                    <Select
-                      value={ethicsAnswers[principle.id] || "unselected"}
-                      onValueChange={(value) => handleAnswerChange(principle.id, value)}
-                      aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
-                    >
-                      <SelectItem value="unselected" disabled>
-                        {t('assessment.ethics.table.answers.select')}
-                      </SelectItem>
-                      <SelectItem value="Yes">
-                        {t('assessment.ethics.table.answers.yes')}
-                      </SelectItem>
-                      <SelectItem value="No">
-                        {t('assessment.ethics.table.answers.no')}
-                      </SelectItem>
-                    </Select>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {ETHICS_PRINCIPLES.map((principle) => {
+                const hasError = validationErrors.some(error => error.id === `ethics-${principle.id}`);
+                return (
+                  <TableRow key={principle.id}>
+                    <TableCell>
+                      <strong id={`ethics-el-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
+                    </TableCell>
+                    <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
+                    <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
+                    <TableCell>
+                      <div id={`ethics-${principle.id}`} className={hasError ? 'has-error' : ''}>
+                        <Select
+                          value={ethicsAnswers[principle.id] || "unselected"}
+                          onValueChange={(value) => handleAnswerChange(principle.id, value)}
+                          aria-labelledby={`ethics-el-${principle.id} ethics-crit-${principle.id}`}
+                          aria-required="true"
+                          aria-invalid={hasError}
+                          aria-describedby={hasError ? `ethics-${principle.id}-error` : undefined}
+                        >
+                          <SelectItem value="unselected" disabled>
+                            {t('assessment.ethics.table.answers.select')}
+                          </SelectItem>
+                          <SelectItem value="Yes">
+                            {t('assessment.ethics.table.answers.yes')}
+                          </SelectItem>
+                          <SelectItem value="No">
+                            {t('assessment.ethics.table.answers.no')}
+                          </SelectItem>
+                        </Select>
+                        {hasError && (
+                          <span id={`ethics-${principle.id}-error`} className="error text-danger">
+                            <span className="label label-danger">
+                              <span className="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                              {' '}{t('assessment.ethics.validation.fieldRequired')}
+                            </span>
+                          </span>
+                        )}
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </div>

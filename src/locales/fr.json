@@ -159,6 +159,11 @@
       },
       "alerts": {
         "answerAll": "Veuillez fournir des réponses pour tous les critères."
+      },
+      "validation": {
+        "errorSummaryTitle": "Le formulaire n'a pas pu être soumis car il contient des erreurs.",
+        "required": "(obligatoire)",
+        "fieldRequired": "Ce champ est obligatoire."
       }
     },
     "quality": {
@@ -230,6 +235,10 @@
         "evaluateARIA": "Évaluer vos résultats",
         "goBack": "Retour",
         "goBackARIA": "Retour à la section précédente"
+      },
+      "validation": {
+        "errorSummaryTitle": "Le formulaire n'a pas pu être soumis car il contient des erreurs.",
+        "atLeastOneCriterion": "Veuillez sélectionner au moins un critère pour chaque dimension de qualité."
       }
     },
     "overall": {

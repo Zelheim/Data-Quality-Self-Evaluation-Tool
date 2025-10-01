@@ -159,6 +159,11 @@
       },
       "alerts": {
         "answerAll": "Please provide answers to all criteria."
+      },
+      "validation": {
+        "errorSummaryTitle": "The form could not be submitted because there are errors.",
+        "required": "(required)",
+        "fieldRequired": "This field is required."
       }
     },
     "quality": {
@@ -231,6 +236,10 @@
         "goBack": "Go back",
         "goBackARIA": "Go back to the previous section"
 
+      },
+      "validation": {
+        "errorSummaryTitle": "The form could not be submitted because there are errors.",
+        "atLeastOneCriterion": "Please select at least one criterion for each quality dimension."
       }
     },
     "overall": {
