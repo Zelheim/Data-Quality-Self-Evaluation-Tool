@@ -180,7 +180,7 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
                     <TableCell>
                       <strong id={`ethics-el-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.element`)}</strong>
                     </TableCell>
-                    <TableCell>{t(`ethicsPrinciples.principle${principle.id}.explanation`)}</TableCell>
+                    <TableCell dangerouslySetInnerHTML={{ __html: t(`ethicsPrinciples.principle${principle.id}.explanation`) }} children={undefined}/>
                     <TableCell id={`ethics-crit-${principle.id}`}>{t(`ethicsPrinciples.principle${principle.id}.criteria`)}</TableCell>
                     <TableCell>
                       <div id={`ethics-${principle.id}`} className={hasError ? 'has-error' : ''}>

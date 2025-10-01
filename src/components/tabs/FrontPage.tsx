@@ -16,7 +16,7 @@ const FrontPage: React.FC<FrontPageProps> = ({ onStartAssessment }) => {
     >
       <div className="panel panel-info mrgn-tp-lg">
         <div className="panel-body">
-          <p className="mrgn-tp-md">{t('frontPage.intro')}</p>
+          <p className="mrgn-tp-md" dangerouslySetInnerHTML={{__html: t('frontPage.intro')}}/>
           <p>{t('frontPage.assessmentInfo')}</p>
           
           <ul 

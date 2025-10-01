@@ -268,7 +268,7 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
                   <TableCell>
                     <strong id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
                   </TableCell>
-                  <TableCell>{t(`qualityDimensions.dimension${dimension.id}.definition`)}</TableCell>
+                  <TableCell dangerouslySetInnerHTML={{__html: t(`qualityDimensions.dimension${dimension.id}.definition`)}} children={undefined}/>
                   <TableCell id={`quality-crit-${dimension.id}`} colSpan={2}>
                     <div className="dimension-content">
                       {dimension.criteria.map((_, idx) => (
