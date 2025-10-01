@@ -66,14 +66,14 @@
   "frontPage": {
     "titleLine1": "Bienvenue à ",
     "titleLine2": "l'outil d'évaluation de l'adéquation des données",
-    "intro": "L'outil d'évaluation de l'adéquation des données est principalement conçu pour aider à évaluer si les données non officielles sont considérées comme adéquates à l'utilisation pour contribuer aux rapports du Canada sur les objectifs de développement durable (ODD), mais il peut aussi être utilisé pour évaluer des données à toute autre fin.",
+    "intro": "L'outil d'évaluation de l'adéquation des données est principalement conçu pour aider à évaluer si les données non officielles sont considérées comme adéquates à l'utilisation pour contribuer aux rapports du Canada sur les objectifs de développement durable (<abbr>ODD</abbr>), mais il peut aussi être utilisé pour évaluer des données à toute autre fin.",
     "assessmentInfo": "Avec cet outil, l'adéquation des données est évaluée en fonction de la qualité et de l'éthique des données.",
     "bulletPoints": {
       "item1": "L'éthique des données permet d'évaluer si les données ont été acquises et utilisées de manière appropriée tout au long de leur cycle de vie, qui s'étend de l'acquisition à la diffusion.",
       "item2": "La qualité des données est importante puisqu'elle permet d'évaluer les mesures mises en place pour protéger les données contre les erreurs et informer les utilisateurs de leur adéquation à l'utilisation.",
       "label": "Liste des critères d'évaluation"
     },
-    "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les ODD, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Nous envoyer un courriel concernant votre évaluation de données\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées à l'aide de cet outil.",
+    "usage": "Si vous souhaitez poursuivre l'évaluation de vos données pour un rapport potentiel sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>, veuillez <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Nous envoyer un courriel concernant votre évaluation de données\">nous contacter</a> avec votre soumission une fois que les données ont été évaluées à l'aide de cet outil.",
     "noteToUsers": "Veuillez noter que cet outil d'évaluation de l'adéquation des données n'est pas destiné à évaluer si les données répondent aux normes de statistiques officielles.",
     "contactInfo": "N'hésitez pas à <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Envoyer un courriel à l'équipe ODD de Statistique Canada pour des questions\">contacter l'équipe ODD de Statistique Canada</a> si vous avez des questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
@@ -127,7 +127,7 @@
           "item4": "Protection de la vie privée, et",
           "item5": "Confidentialité."
         },
-        "part1": "L'évaluation de chacun de ces éléments nous aide à évaluer si les données sont utilisées de manière appropriée tout au long de leur cycle de vie et peuvent donc être considérées comme adéquates pour contribuer aux rapports sur les objectifs de développement durable (ODD). Veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a> pour en savoir plus sur l'éthique des données.",
+        "part1": "L'évaluation de chacun de ces éléments nous aide à évaluer si les données sont utilisées de manière appropriée tout au long de leur cycle de vie et peuvent donc être considérées comme adéquates pour contribuer aux rapports sur les objectifs de développement durable (<abbr>ODD</abbr>). Veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a> pour en savoir plus sur l'éthique des données.",
         "part2": "Chaque principe d'éthique est évalué ci-dessous en répondant si les données sont alignées avec les principes ou non."
       },
       "table": {
@@ -148,8 +148,8 @@
         "title": "Résultats de l'évaluation des principes d'éthique des données :",
         "pass": "Réussite",
         "fail": "Échec",
-        "passMessage": "Telles qu'évaluées ci-dessus, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
+        "passMessage": "Telles qu'évaluées ci-dessus, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
+        "failMessage": "Telles qu'évaluées ci-dessus, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "actions": {
         "continue": "Continuer",
@@ -223,10 +223,10 @@
         "high": "Élevé"
       },
       "interpretation": {
-        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
-        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
-        "high": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les ODD.",
-        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
+        "low": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "medium": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr> mais pourrait être améliorée. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "high": "Telle qu'évaluée ci-dessus, la qualité des données est considérée comme adéquate à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
+        "fail": "Telle qu'évaluée ci-dessus, la qualité des données n'est pas considérée comme adéquate à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "actions": {
         "continue": "Continuer",
@@ -255,10 +255,10 @@
         "totalScore": "Résultat total sur 15"
       },
       "messages": {
-        "bothPass": "Telles qu'évaluées, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les ODD.",
-        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
-        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
-        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les ODD. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
+        "bothPass": "Telles qu'évaluées, les données sont considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
+        "ethicsFailQualityPass": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Les données doivent satisfaire tous les principes fondamentaux d'éthique des données pour être considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "ethicsPassQualityFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Les données doivent obtenir un score minimum de 8 sur l'évaluation par rapport aux critères des dimensions de qualité. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>.",
+        "bothFail": "Telles qu'évaluées, les données ne sont pas considérées comme adéquates à l'utilisation pour les rapports sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>. Pour en savoir plus et améliorer l'éthique et la qualité des données, veuillez consulter le <a href=\"https://www.statcan.gc.ca/fr/confiance\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Centre de confiance de Statistique Canada</a>."
       },
       "qualitySummary": {
         "title": "Résumé des dimensions de la qualité des données",
@@ -327,7 +327,7 @@
   "ethicsPrinciples": {
     "principle1": {
       "element": "Avantages pour la population canadienne",
-      "explanation": "Les renseignements obtenus et utilisés doivent fournir à la population canadienne un avantage clair et facile à communiquer. Les données doivent appuyer les rapports du Canada sur les objectifs de développement durable (ODD) en permettant la mesure d'un indicateur non présenté ou en fournissant des données plus granulaires pour un indicateur déjà présenté.",
+      "explanation": "Les renseignements obtenus et utilisés doivent fournir à la population canadienne un avantage clair et facile à communiquer. Les données doivent appuyer les rapports du Canada sur les objectifs de développement durable (<abbr>ODD</abbr>) en permettant la mesure d'un indicateur non présenté ou en fournissant des données plus granulaires pour un indicateur déjà présenté.",
       "criteria": "Les renseignements fournissent-ils un avantage clair à la population canadienne?"
     },
     "principle2": {
@@ -354,7 +354,7 @@
   "qualityDimensions": {
     "dimension1": {
       "element": "Exactitude et fiabilité",
-      "definition": "L'exactitude des renseignements statistiques désigne la mesure dans laquelle les renseignements décrivent correctement le phénomène qu'ils sont censés mesurer. La fiabilité correspond à la mesure dans laquelle les renseignements statistiques décrivent correctement, et de façon constante au fil du temps, le phénomène qu'ils sont censés mesurer. Les données doivent mesurer, avec exactitude et fiabilité, les progrès accomplis par le Canada à l'égard d'un indicateur choisi des ODD.",
+      "definition": "L'exactitude des renseignements statistiques désigne la mesure dans laquelle les renseignements décrivent correctement le phénomène qu'ils sont censés mesurer. La fiabilité correspond à la mesure dans laquelle les renseignements statistiques décrivent correctement, et de façon constante au fil du temps, le phénomène qu'ils sont censés mesurer. Les données doivent mesurer, avec exactitude et fiabilité, les progrès accomplis par le Canada à l'égard d'un indicateur choisi des <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
       "criteria": [
         "Il n'y a pas ou peu de valeurs manquantes.",
         "Des règles de vérification sont établies pour la validation des données.",
@@ -363,7 +363,7 @@
     },
     "dimension2": {
       "element": "Actualité et ponctualité",
-      "definition": "L'actualité des renseignements statistiques se réfère au délai entre la période de référence de l'information et la date à laquelle l'information devient disponible. La ponctualité se réfère à la différence entre la disponibilité planifiée et réelle. Les données doivent fournir une mesure des progrès du Canada sur les ODD à des intervalles planifiés et réguliers dans le temps couvrant la période de l'Agenda 2030.",
+      "definition": "L'actualité des renseignements statistiques se réfère au délai entre la période de référence de l'information et la date à laquelle l'information devient disponible. La ponctualité se réfère à la différence entre la disponibilité planifiée et réelle. Les données doivent fournir une mesure des progrès du Canada sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr> à des intervalles planifiés et réguliers dans le temps couvrant la période de l'Agenda 2030.",
       "criteria": [
         "Les données sont disponibles en temps opportun.",
         "Les données sont diffusées à des intervalles réguliers.",
@@ -372,7 +372,7 @@
     },
     "dimension3": {
       "element": "Accessibilité et clarté",
-      "definition": "L'accessibilité et la clarté des données et des informations de soutien se réfèrent à la facilité avec laquelle les utilisateurs peuvent apprendre que l'information existe, la trouver, la visualiser et l'utiliser. Les données et leurs informations de soutien doivent être facilement accessibles et récoltables pour faciliter leur utilisation dans les rapports du Canada sur les ODD.",
+      "definition": "L'accessibilité et la clarté des données et des informations de soutien se réfèrent à la facilité avec laquelle les utilisateurs peuvent apprendre que l'information existe, la trouver, la visualiser et l'utiliser. Les données et leurs informations de soutien doivent être facilement accessibles et récoltables pour faciliter leur utilisation dans les rapports du Canada sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
       "criteria": [
         "Les données et les renseignements à l'appui sont facilement accessibles.",
         "Les données et les renseignements à l'appui sont fournis dans un format convivial."
@@ -389,7 +389,7 @@
     },
     "dimension5": {
       "element": "Cohérence et comparabilité",
-      "definition": "La cohérence et la comparabilité des renseignements statistiques se réfèrent à la mesure dans laquelle ils peuvent être combinés et comparés de manière fiable avec d'autres renseignements statistiques et dans le temps. L'utilisation de concepts communs (par ex. terminologie, classification, méthodologie, etc.) sont cruciaux pour assurer la cohérence et faciliter leur utilisation dans les rapports du Canada sur les ODD.",
+      "definition": "La cohérence et la comparabilité des renseignements statistiques se réfèrent à la mesure dans laquelle ils peuvent être combinés et comparés de manière fiable avec d'autres renseignements statistiques et dans le temps. L'utilisation de concepts communs (par ex. terminologie, classification, méthodologie, etc.) sont cruciaux pour assurer la cohérence et faciliter leur utilisation dans les rapports du Canada sur les <abbr title=\"Objectifs de développement durable\">ODD</abbr>.",
       "criteria": [
         "Des concepts normalisés sont utilisés.",
         "La comparabilité est maintenue au fil du temps et d'une région à l'autre.",

@@ -66,14 +66,14 @@
   "frontPage": {
     "titleLine1": "Welcome to the",
     "titleLine2": "Data Suitability Assessment Tool",
-    "intro": "The Data Suitability Assessment Tool is mainly designed to help assess if non-official data are considered fit for purpose to contribute to Canada's reporting on the Sustainable Development Goals (SDGs), but it can also be used to evaluate data for any other purposes.",
+    "intro": "The Data Suitability Assessment Tool is mainly designed to help assess if non-official data are considered fit for purpose to contribute to Canada's reporting on the Sustainable Development Goals (<abbr>SDGs</abbr>), but it can also be used to evaluate data for any other purposes.",
     "assessmentInfo": "Through this tool, data suitability is assessed by evaluating both the quality and the ethics of the data.",
     "bulletPoints": {
       "item1": "Data ethics assess whether the data have been acquired and used appropriately throughout their life cycle, which spans from the acquisition to the dissemination.",
       "item2": "Data quality is important as it helps evaluate the measures in place to safeguard the data against errors and inform users of their fitness for purpose.",
       "label": "Assessment criteria list"
     },
-    "usage": "If you wish to pursue the assessment of your data for a potential SDG reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated with this tool.",
+    "usage": "If you wish to pursue the assessment of your data for a potential <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting, please <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Email us about your data assessment\">contact us</a> with your submission once the data have been evaluated with this tool.",
     "noteToUsers": "Please note that this Data Suitability Assessment Tool is not meant to assess if the data meet official statistics standards.",
     "contactInfo": "Do not hesitate to <a href=\"mailto:statcan.sdg-odd.statcan@statcan.gc.ca\" aria-label=\"Email Statistics Canada's SDG team for questions\">contact Statistics Canada's SDG team</a> should you have any questions.",
     "email": "statcan.sdg-odd.statcan@statcan.gc.ca",
@@ -127,7 +127,7 @@
           "item4": "Privacy, and",
           "item5": "Confidentiality."
         },
-        "part1": "Evaluating each of these elements helps us assess if the data are used appropriately throughout its life cycle and can therefore be considered suitable for the purpose of contributing to Sustainable Development Goals (SDGs) reporting. Please consult <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a> to learn more about data ethics.",
+        "part1": "Evaluating each of these elements helps us assess if the data are used appropriately throughout its life cycle and can therefore be considered suitable for the purpose of contributing to Sustainable Development Goals (<abbr>SDGs</abbr>) reporting. Please consult <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a> to learn more about data ethics.",
         "part2": "Each ethic principle is evaluated below by answering if the data are aligned with the principles or not."
       },
       "table": {
@@ -148,8 +148,8 @@
         "title": "Results of the Data Ethics Assessment:",
         "pass": "Pass",
         "fail": "Fail",
-        "passMessage": "As evaluated above, the data are considered fit for purpose for SDG reporting.",
-        "failMessage": "As evaluated above, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
+        "passMessage": "As evaluated above, the data are considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting.",
+        "failMessage": "As evaluated above, the data are not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "actions": {
         "continue": "Continue",
@@ -223,10 +223,10 @@
         "high": "High"
       },
       "interpretation": {
-        "low": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
-        "medium": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
-        "high": "As evaluated above, the quality of the data is considered fit for purpose for SDG reporting.",
-        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
+        "low": "As evaluated above, the quality of the data is not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "medium": "As evaluated above, the quality of the data is considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting but could be improved. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "high": "As evaluated above, the quality of the data is considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting.",
+        "fail": "As evaluated above, the quality of the data is not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "actions": {
         "continue": "Continue",
@@ -256,10 +256,10 @@
         "totalScore": "Total score out of 15"
       },
       "messages": {
-        "bothPass": "As evaluated, the data are considered fit for purpose for SDG reporting.",
-        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must satisfy all core data ethics principles to be suitable for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
-        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
-        "bothFail": "As evaluated, the data are not considered fit for purpose for SDG reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
+        "bothPass": "As evaluated, the data are considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting.",
+        "ethicsFailQualityPass": "As evaluated, the data are not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. The data must satisfy all core data ethics principles to be suitable for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "ethicsPassQualityFail": "As evaluated, the data are not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. The data must obtain a minimum score of 8 on the assessment against the dimensions of quality criteria. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>.",
+        "bothFail": "As evaluated, the data are not considered fit for purpose for <abbr title=\"Sustainable Development Goals\">SDG</abbr> reporting. To learn more about and improve on data ethics and data quality, please refer to <a href=\"https://www.statcan.gc.ca/en/trust\" target=\"_blank\" rel=\"noopener noreferrer\" class=\"text-blue-600 hover:text-blue-800 hover:underline\">Statistics Canada's Trust Center</a>."
       },
       "qualitySummary": {
         "title": "Data Quality Dimensions Summary",
@@ -332,7 +332,7 @@
   "ethicsPrinciples": {
     "principle1": {
       "element": "Benefit to Canadians",
-      "explanation": "The information acquired and utilized must provide a clear and easily communicated benefit to Canadians. The data must support Canada's reporting on the Sustainable Development Goals (SDGs) by enabling the measurement of an unreported indicator or by providing more granular data for an indicator already reported.",
+      "explanation": "The information acquired and utilized must provide a clear and easily communicated benefit to Canadians. The data must support Canada's reporting on the Sustainable Development Goals (<abbr>SDGs</abbr>) by enabling the measurement of an unreported indicator or by providing more granular data for an indicator already reported.",
       "criteria": "Does the information provide a clear benefit to Canadians?"
     },
     "principle2": {
@@ -359,7 +359,7 @@
   "qualityDimensions": {
     "dimension1": {
       "element": "Accuracy and reliability",
-      "definition": "The accuracy of statistical information is the degree to which the information correctly describes the phenomena it was designed to measure. Reliability reflects the degree to which statistical information correctly describes the phenomena it was designed to measure consistently over time. The data must accurately and reliably measure Canada's progress for a selected SDG indicator over time.",
+      "definition": "The accuracy of statistical information is the degree to which the information correctly describes the phenomena it was designed to measure. Reliability reflects the degree to which statistical information correctly describes the phenomena it was designed to measure consistently over time. The data must accurately and reliably measure Canada's progress for a selected <abbr title=\"Sustainable Development Goals\">SDG</abbr> indicator over time.",
       "criteria": [
         "There are no or few missing values.",
         "There are established verification rules for data validation.",
@@ -368,7 +368,7 @@
     },
     "dimension2": {
       "element": "Timeliness and punctuality",
-      "definition": "The timeliness of statistical information refers to the delay between the information reference period and the date on which the information becomes available. Punctuality refers to the difference between planned and actual availability. The data must provide a measure of Canada's progress on the SDGs at planned and regular intervals through time covering the period of the Agenda 2030.",
+      "definition": "The timeliness of statistical information refers to the delay between the information reference period and the date on which the information becomes available. Punctuality refers to the difference between planned and actual availability. The data must provide a measure of Canada's progress on the <abbr title=\"Sustainable Development Goals\">SDGs</abbr> at planned and regular intervals through time covering the period of the Agenda 2030.",
       "criteria": [
         "Data are available in a timely manner.",
         "Data are released at regular intervals.",
@@ -377,7 +377,7 @@
     },
     "dimension3": {
       "element": "Accessibility and clarity",
-      "definition": "The accessibility and clarity of data and supporting information refer to the ease with which users can learn that the information exists, find it, view it and use it. The data and their supporting information must be easily accessible and harvested to facilitate its use in Canada's reporting on the SDGs.",
+      "definition": "The accessibility and clarity of data and supporting information refer to the ease with which users can learn that the information exists, find it, view it and use it. The data and their supporting information must be easily accessible and harvested to facilitate its use in Canada's reporting on the <abbr title=\"Sustainable Development Goals\">SDGs</abbr>.",
       "criteria": [
         "Data and supporting information are easily accessible.",
         "Data and supporting information are provided in an easy-to-use format."
@@ -394,7 +394,7 @@
     },
     "dimension5": {
       "element": "Coherence and comparability",
-      "definition": "The coherence and comparability of statistical information refer to the degree to which it can be reliably combined and compared with other statistical information and over time. The use of common concepts (e.g., terminology, classification, methodology etc.) are critical to ensuring coherence and facilitate its use in Canada's reporting on the SDGs.",
+      "definition": "The coherence and comparability of statistical information refer to the degree to which it can be reliably combined and compared with other statistical information and over time. The use of common concepts (e.g., terminology, classification, methodology etc.) are critical to ensuring coherence and facilitate its use in Canada's reporting on the <abbr title=\"Sustainable Development Goals\">SDGs</abbr>.",
       "criteria": [
         "Standard concepts are used.",
         "Comparability is maintained over time and across regions.",
