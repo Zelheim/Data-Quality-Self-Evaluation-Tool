@@ -140,37 +140,37 @@
       </p>
     `;
 
-    // Table
-    let tableHTML = `
-      <table class="table table-bordered">
-        <caption class="sr-only">Data Ethics Principles Assessment</caption>
-        <thead>
-          <tr>
-            <th scope="col">Elements</th>
-            <th scope="col">Answer</th>
-          </tr>
-        </thead>
-        <tbody>
-    `;
+    // Generate list
+    let listHTML = '<div class="mrgn-tp-lg">';
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
       const answerText = answer === 'Yes' ? t('yes') : answer === 'No' ? t('no') : t('notEvaluated');
+      const answerIcon = answer === 'Yes' ? '<span class="glyphicon glyphicon-ok-sign text-success" aria-hidden="true"></span>' : answer === 'No' ? '<span class="glyphicon glyphicon-remove-sign text-danger" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-question-sign text-muted" aria-hidden="true"></span>';
+      const labelClass = answer === 'Yes' ? 'label-success' : answer === 'No' ? 'label-danger' : 'label-default';
 
-      tableHTML += `
-        <tr>
-          <td><strong>${principle.element}</strong></td>
-          <td>${answerText}</td>
-        </tr>
+      listHTML += `
+        <div class="panel panel-default mrgn-bttm-md">
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-sm-8">
+                <h5 class="mrgn-tp-0 mrgn-bttm-0">${principle.element}</h5>
+              </div>
+              <div class="col-sm-4 text-right">
+                <span class="h5 mrgn-tp-0 mrgn-bttm-0">
+                  ${answerIcon}
+                  <span class="label ${labelClass} mrgn-lft-sm" style="font-size: 1em;">${answerText}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       `;
     });
 
-    tableHTML += `
-        </tbody>
-      </table>
-    `;
+    listHTML += '</div>';
 
-    document.getElementById('ethics-summary-table').innerHTML = tableHTML;
+    document.getElementById('ethics-summary-table').innerHTML = listHTML;
   }
 
   // Render quality summary
@@ -202,23 +202,15 @@
       </p>
     `;
 
-    // Table
-    let tableHTML = `
-      <table class="table table-bordered">
-        <caption class="sr-only">Data Quality Dimensions Assessment</caption>
-        <thead>
-          <tr>
-            <th scope="col">Dimension</th>
-            <th scope="col" class="text-center">Score</th>
-            <th scope="col">Criteria Satisfied ✓ or Not Satisfied ✗</th>
-          </tr>
-        </thead>
-        <tbody>
-    `;
+    // Generate summary list
+    let summaryHTML = '<div class="mrgn-tp-lg">';
 
     QUALITY_DIMENSIONS.forEach(dimension => {
       const score = qualityDimensions[dimension.id] || 0;
       const criteria = criteriaSatisfaction[dimension.id] || [];
+
+      // Determine score badge color
+      const scoreClass = score === 0 ? 'label-danger' : score === 3 ? 'label-success' : 'label-warning';
 
       // Calculate criteria satisfaction based on score
       const criteriaSatisfied = [];
@@ -232,26 +224,38 @@
 
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteriaSatisfied[idx];
-        const icon = satisfied ? '✓' : '✗';
-        const colorClass = satisfied ? 'text-success' : 'text-danger';
-        return `<div class="${colorClass}">${icon} ${criterion}</div>`;
+        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle text-danger" aria-hidden="true"></span>';
+        const srText = satisfied ? '<span class="wb-inv">Satisfied: </span>' : '<span class="wb-inv">Not satisfied: </span>';
+        return `<li class="mrgn-bttm-sm">${icon} ${srText}${criterion}</li>`;
       }).join('');
 
-      tableHTML += `
-        <tr>
-          <td><strong>${dimension.element}</strong></td>
-          <td class="text-center">${score}/3</td>
-          <td>${criteriaHTML}</td>
-        </tr>
+      summaryHTML += `
+        <section class="panel panel-primary mrgn-bttm-lg">
+          <header class="panel-heading">
+            <h4 class="panel-title">${dimension.element}</h4>
+          </header>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="well well-sm mrgn-bttm-md">
+                  <span class="h5 mrgn-tp-0 mrgn-bttm-0">
+                    <strong>Score:</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/3</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <h5 class="mrgn-tp-md mrgn-bttm-sm">Criteria Assessment:</h5>
+            <ul class="fa-ul mrgn-lft-lg">
+              ${criteriaHTML}
+            </ul>
+          </div>
+        </section>
       `;
     });
 
-    tableHTML += `
-        </tbody>
-      </table>
-    `;
+    summaryHTML += '</div>';
 
-    document.getElementById('quality-summary-table').innerHTML = tableHTML;
+    document.getElementById('quality-summary-table').innerHTML = summaryHTML;
 
     // Total score
     document.getElementById('total-score-display').textContent = `${results.totalQualityScore}/15`;
