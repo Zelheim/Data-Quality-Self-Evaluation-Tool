@@ -26,17 +26,23 @@
       li.className = 'mrgn-bttm-lg';
 
       li.innerHTML = `
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <legend id="ethics-el-${principle.id}" class="mrgn-tp-0">${principle.element}</legend>
+        <div class="well mrgn-bttm-0">
+          <fieldset>
+            <legend id="ethics-el-${principle.id}" class="h3 mrgn-tp-0 mrgn-bttm-md">
+              ${principle.element}
+            </legend>
 
-            <p class="mrgn-tp-md"><strong>Explanation:</strong></p>
-            <p>${principle.explanation}</p>
+            <div class="mrgn-bttm-md">
+              <h4 class="mrgn-bttm-sm">Explanation</h4>
+              <p>${principle.explanation}</p>
+            </div>
 
-            <p class="mrgn-tp-md"><strong>Criteria:</strong></p>
-            <p id="ethics-crit-${principle.id}">${principle.criteria}</p>
+            <div class="mrgn-bttm-md">
+              <h4 class="mrgn-bttm-sm">Criteria</h4>
+              <p id="ethics-crit-${principle.id}">${principle.criteria}</p>
+            </div>
 
-            <div class="form-group mrgn-tp-md">
+            <div class="form-group mrgn-tp-md mrgn-bttm-0">
               <label for="ethics-${principle.id}" class="required">
                 <span class="field-name">Answer</span>
                 <strong class="required" aria-hidden="true">(required)</strong>
@@ -53,14 +59,14 @@
                 <option value="Yes" ${ethicsAnswers[principle.id] === 'Yes' ? 'selected' : ''}>Yes</option>
                 <option value="No" ${ethicsAnswers[principle.id] === 'No' ? 'selected' : ''}>No</option>
               </select>
-              <span id="ethics-${principle.id}-error" class="error text-danger hidden">
+              <span id="ethics-${principle.id}-error" class="error text-danger hidden mrgn-tp-sm">
                 <span class="label label-danger">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
                   This field is required.
                 </span>
               </span>
             </div>
-          </div>
+          </fieldset>
         </div>
       `;
 
@@ -188,7 +194,7 @@
     `;
 
     // Switch buttons
-    document.getElementById('evaluate-btn').classList.add('hidden');
+    document.getElementById('evaluate-btn');
     document.getElementById('continue-btn').classList.remove('hidden');
 
     // Focus on results

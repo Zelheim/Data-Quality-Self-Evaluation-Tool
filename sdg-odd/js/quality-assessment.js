@@ -46,10 +46,12 @@
       const li = document.createElement('li');
       li.className = 'mrgn-bttm-lg';
 
+      const score = qualityScores[dimension.id] || 0;
+
       const checkboxesHTML = dimension.criteria.map((criterion, idx) => {
         const checked = criteriaSatisfaction[dimension.id]?.[idx] || false;
         return `
-          <div class="checkbox">
+          <div class="checkbox mrgn-bttm-sm">
             <label for="quality-${dimension.id}-${idx}">
               <input
                 id="quality-${dimension.id}-${idx}"
@@ -66,26 +68,30 @@
       }).join('');
 
       li.innerHTML = `
-        <div class="panel panel-default">
-          <div class="panel-body">
-            <fieldset>
-              <legend id="quality-el-${dimension.id}">${dimension.element}</legend>
+        <div class="well mrgn-bttm-0">
+          <fieldset>
+            <legend id="quality-el-${dimension.id}" class="h3 mrgn-tp-0 mrgn-bttm-md">
+              ${dimension.element}
+            </legend>
 
-              <p class="mrgn-tp-md"><strong>Definition:</strong></p>
+            <div class="mrgn-bttm-md">
+              <h4 class="mrgn-bttm-sm">Definition</h4>
               <p>${dimension.definition}</p>
+            </div>
 
-              <p class="mrgn-tp-md"><strong>Criteria:</strong></p>
+            <div class="mrgn-bttm-md">
+              <h4 class="mrgn-bttm-sm">Criteria (select all that apply)</h4>
               <div id="quality-crit-${dimension.id}">
                 ${checkboxesHTML}
               </div>
+            </div>
 
-              <div class="well mrgn-tp-md">
-                <p class="mrgn-tp-0 mrgn-bttm-0">
-                  <strong>Score:</strong> <span id="score-${dimension.id}">${qualityScores[dimension.id] || 0}/${dimension.maxScore}</span>
-                </p>
-              </div>
-            </fieldset>
-          </div>
+            <div class="alert alert-info mrgn-tp-md mrgn-bttm-0">
+              <p class="mrgn-tp-0 mrgn-bttm-0">
+                <strong>Score:</strong> <span id="score-${dimension.id}">${score}/${dimension.maxScore}</span>
+              </p>
+            </div>
+          </fieldset>
         </div>
       `;
 
@@ -249,7 +255,7 @@
     `;
 
     // Switch buttons
-    document.getElementById('evaluate-quality-btn').classList.add('hidden');
+    document.getElementById('evaluate-quality-btn');
     document.getElementById('continue-quality-btn').classList.remove('hidden');
 
     // Focus on results
