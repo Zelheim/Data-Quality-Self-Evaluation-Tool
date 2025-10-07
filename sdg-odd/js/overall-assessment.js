@@ -215,7 +215,16 @@
 
   // Show export modal
   function showExportModal() {
-    $('#export-modal').modal('show');
+    // Use WET-BOEW's modal via data attribute or directly via jQuery
+    var $modal = $('#export-modal');
+    $modal.addClass('in').attr('aria-hidden', 'false').css('display', 'block');
+    $('body').addClass('modal-open');
+
+    // Add backdrop
+    if ($('.modal-backdrop').length === 0) {
+      $('<div class="modal-backdrop fade in"></div>').appendTo('body');
+    }
+
     generateExportContent();
   }
 
