@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ wet-boew.github.io/wet-boew/License-en.htm / wet-boew.github.io/wet-boew/Licence-fr.htm -->
+
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<title>Data Quality Suitability Tool - Quality Assessment - Statistics Canada</title>
+<meta name="dcterms.title" content="Data Quality Suitability Tool - Quality Assessment - Statistics Canada" />
+<meta name="dcterms.language" title="ISO639-2" content="eng" />
+<meta name="dcterms.creator" content="Government of Canada, Statistics Canada" />
+<meta name="dcterms.issued" title="W3CDTF" content="2018-05-16" />
+<meta name="dcterms.modified" title="W3CDTF" content="2024-01-01" />
+<meta name="dcterms.subject" title="gcstc" content="none" />
+<meta name="description" content="Quality Assessment - Part 2 of the Data Quality Suitability Tool" />
+<meta name="keywords" content="data quality, assessment, SDG, statistics" />
+<meta property="dcterms:service" content="StatCan"/>
+<meta property="dcterms:accessRights" content="2"/>
+<link href="/wet-boew4b/assets/favicon.ico" rel="icon" type="image/x-icon">
+<link rel="stylesheet" href="/wet-boew4b/css/wet-boew.min.css">
+<script src="/wet-boew4b/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/wet-boew4b/css/theme.min.css">
+<link rel="stylesheet" href="/wet-boew4b/css/statcan.css">
+<link rel="stylesheet" href="/wet-boew4b/invitation-manager/Overlay.css">
+<link rel="stylesheet" href="/sdg-odd/css/app.css">
+<noscript>
+<link rel="stylesheet" href="/wet-boew4b/css/noscript.min.css" />
+</noscript>
+<!-- Adobe Analytics RUN --><script src="//assets.adobedtm.com/be5dfd287373/0127575cd23a/launch-f7c3e6060667.min.js"></script>
+<script>dataLayer1 = [];</script>
+</head>
+
+<body vocab="//schema.org/" typeof="WebPage">
+<ul id="wb-tphp">
+	<li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Skip to main content</a> </li>
+	<li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Skip to "About this site"</a> </li>
+</ul>
+<header role="banner">
+	<div id="wb-bnr" class="container">
+		<section id="wb-lng" class="visible-md visible-lg text-right">
+			<h2 class="wb-inv">Language selection</h2>
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="list-inline margin-bottom-none">
+						<li><a lang="fr" href="/sdg-odd/fr/quality-assessment.html">Français</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<div class="row">
+			<div class="brand col-xs-8 col-sm-9 col-md-6"> <img src="/wet-boew4b/assets/sig-blk-gov-en.svg" alt="Government of Canada"><span class="wb-inv"> / <span lang="fr">Gouvernement du Canada</span></span> </div>
+			<section class="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs" id="wb-glb-mn">
+				<h2>Search and menus</h2>
+				<ul class="list-inline text-right chvrn">
+					<li><a href="#mb-pnl" title="Search and menus" aria-controls="mb-pnl" class="overlay-lnk" role="button"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Search and menus</span></span></span></a></li>
+				</ul>
+				<div id="mb-pnl"></div>
+			</section>
+			<section id="wb-srch" class="col-xs-6 text-right visible-md visible-lg">
+				<h2 class="wb-inv">Search</h2>
+				<form action="https://www.statcan.gc.ca/search/results/site-search" method="get" name="cse-search-box" role="search" class="form-inline">
+					<div class="form-group wb-srch-qry">
+						<label for="wb-srch-q" class="wb-inv">Search website</label>
+						<input type="hidden" name="fq" value="stclac:2" />
+						<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="27" maxlength="150" placeholder="Search website">
+						<datalist id="wb-srch-q-ac"> </datalist>
+					</div>
+					<div class="form-group submit">
+						<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Search</span></button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+	<nav role="navigation" id="wb-sm" class="wb-menu visible-md visible-lg" data-trgt="mb-pnl" data-ajax-replace="/wet-boew4b/ajax/sitemenu-en.html" typeof="SiteNavigationElement">
+		<div class="container nvbar">
+			<h2 class="wb-inv">Topics menu</h2>
+			<div class="row">
+				<ul class="list-inline menu">
+					<li><a href="https://www150.statcan.gc.ca/n1/en/subjects?MM=1">Subjects</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/en/type/data?MM=1">Data</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/en/type/analysis?MM=1">Analysis</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/reference?MM=1">Reference</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/geography?MM=1">Geography</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/census?MM=1">Census</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/surveys?MM=1">Surveys and statistical programs</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/about/statcan?MM=1">About StatCan</a></li>
+					<li><a href="https://www.canada.ca/en.html">Canada.ca</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav role="navigation" id="wb-bc" class="" property="breadcrumb">
+		<div class="container">
+			<div class="row">
+
+				<!-- Breadcrumb trail -->
+				<ol class="breadcrumb">
+					<li><a href="https://www.statcan.gc.ca/en/start">Home</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/en/subjects">Subjects</a></li>
+					<li><a href="/sdg-odd/index-eng.htm">Sustainable Development Goals Information Hub</a></li>
+					<li><a href="/sdg-odd/en/index.html">Data Quality Suitability Tool</a></li>
+					<li>Quality Assessment</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
+</header>
+
+
+<main role="main" property="mainContentOfPage" class="container">
+      <h1 id="wb-cont" property="name">Part 2 - Data Quality Dimensions</h1>
+
+      <div class="alert alert-info mrgn-tp-lg">
+        <p><strong>BETA:</strong> This is a tool in development. We welcome your <a href="mailto:statcan.sdg-odd.statcan@statcan.gc.ca" class="alert-link">feedback</a>.</p>
+      </div>
+
+      <section>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <p>The following Statistics Canada's data quality dimensions are used to assess the quality of data:</p>
+
+            <ol class="lst-spcd">
+              <li>Accuracy and reliability</li>
+              <li>Timeliness and punctuality</li>
+              <li>Accessibility and clarity</li>
+              <li>Interpretability</li>
+              <li>Coherence and comparability</li>
+            </ol>
+
+            <p>Evaluating each of these dimensions helps assess what was done to the data during the acquisition and processing, as well as how the data are made available. This evaluation provides an assessment of the methods in place to protect against errors and inform and give confidence in the quality of the data to users.</p>
+
+            <p>Each quality dimension is evaluated below by assessing if the data satisfy the criterion, and by selecting the checkbox for each satisfied criteria/criterion.</p>
+
+            <section>
+              <strong>Scoring:</strong>
+              <p>Points correspond to the number of criteria satisfied:</p>
+              <ul class="lst-spcd">
+                <li>3 points = All criteria satisfied</li>
+                <li>2 points = 2 criteria satisfied</li>
+                <li>1 point = 1 criterion satisfied</li>
+                <li>0 points = No criterion satisfied</li>
+              </ul>
+              <p><strong>Note:</strong> The 'Accessibility and clarity' dimension contains only 2 criteria; satisfying both criteria (2/2) results in the maximum score of 3 points.</p>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <form id="quality-form" class="wb-frmvld" novalidate>
+        <section>
+          <h2>Data Quality Dimensions Assessment</h2>
+          <ul class="list-unstyled mrgn-tp-md" id="quality-dimensions-list"></ul>
+        </section>
+
+        <section id="quality-results" class="hidden" tabindex="-1">
+          <h2 id="quality-results-title">Results of the Data Quality Dimensions Assessment</h2>
+          <div id="quality-summary-table"></div>
+          <div class="well mrgn-tp-md">
+            <p class="mrgn-tp-0 mrgn-bttm-0">
+              <span class="glyphicon glyphicon-dashboard mrgn-rght-sm" aria-hidden="true"></span>
+              <strong>Total score:</strong> <span id="total-score-display"></span>
+            </p>
+          </div>
+          <div id="quality-result-display" class="mrgn-tp-md"></div>
+          <div id="quality-result-message" class="mrgn-tp-md"></div>
+        </section>
+
+        <div class="mrgn-tp-lg mrgn-bttm-lg">
+          <a href="/sdg-odd/en/ethics-assessment.html" class="btn btn-default btn-lg">
+            <span class="glyphicon glyphicon-chevron-left mrgn-rght-sm" aria-hidden="true"></span>
+            Go back
+          </a>
+          <button type="button" id="evaluate-quality-btn" class="btn btn-primary btn-lg">Submit</button>
+          <button type="button" id="continue-quality-btn" class="btn btn-primary btn-lg hidden">Next</button>
+        </div>
+      </form>
+
+      <div class="pagedetails">
+        <dl id="wb-dtmd">
+          <dt>Date modified:&#32;</dt>
+          <dd><time property="dateModified">2024-01-01</time></dd>
+        </dl>
+      </div>
+    </main>
+
+<footer id="wb-info">
+	<h2 class="wb-inv">About this site</h2>
+	<div class="gc-contextual">
+		<div class="container">
+			<nav>
+				<h3>Statistics Canada</h3>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.statcan.gc.ca/en/reference/refcentre/index">Contact StatCan</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/trust">Trust Centre</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="gc-main-footer">
+		<div class="container">
+			<nav>
+				<h3>Government of Canada</h3>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.canada.ca/en/contact.html">All contacts</a></li>
+					<li><a href="https://www.canada.ca/en/government/dept.html">Departments and agencies</a></li>
+					<li><a href="https://www.canada.ca/en/government/system.html">About government</a></li>
+				</ul>
+				<h4><span class="wb-inv">Themes and topics</span></h4>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.canada.ca/en/services/jobs.html">Jobs</a></li>
+					<li><a href="https://www.canada.ca/en/services/immigration-citizenship.html">Immigration and citizenship</a></li>
+					<li><a href="https://travel.gc.ca/">Travel and tourism</a></li>
+					<li><a href="https://www.canada.ca/en/services/business.html">Business</a></li>
+					<li><a href="https://www.canada.ca/en/services/benefits.html">Benefits</a></li>
+					<li><a href="https://www.canada.ca/en/services/health.html">Health</a></li>
+					<li><a href="https://www.canada.ca/en/services/taxes.html">Taxes</a></li>
+					<li><a href="https://www.canada.ca/en/services/environment.html">Environment and natural resources</a></li>
+					<li><a href="https://www.canada.ca/en/services/defence.html">National security and defence</a></li>
+					<li><a href="https://www.canada.ca/en/services/culture.html">Culture, history and sport</a></li>
+					<li><a href="https://www.canada.ca/en/services/policing.html">Policing, justice and emergencies</a></li>
+					<li><a href="https://www.canada.ca/en/services/transport.html">Transport and infrastructure</a></li>
+					<li><a href="https://international.gc.ca/world-monde/index.aspx?lang=eng">Canada and the world</a></li>
+					<li><a href="https://www.canada.ca/en/services/finance.html">Money and finance</a></li>
+					<li><a href="https://www.canada.ca/en/services/science.html">Science and innovation</a></li>
+					<li><a href="https://www.canada.ca/en/services/indigenous-peoples.html">Indigenous peoples</a></li>
+					<li><a href="https://www.canada.ca/en/services/veterans.html">Veterans and military</a></li>
+					<li><a href="https://www.canada.ca/en/services/youth.html">Youth</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="gc-sub-footer">
+		<div class="container d-flex align-items-center">
+			<nav>
+				<h3 class="wb-inv">Government of Canada Corporate</h3>
+				<ul>
+					<li><a href="https://www.canada.ca/en/social.html">Social media</a></li>
+					<li><a href="https://www.canada.ca/en/mobile.html">Mobile applications</a></li>
+					<li><a href="https://www.canada.ca/en/government/about.html">About Canada.ca</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/terms-conditions">Terms and conditions</a></li>
+					<li><a href="https://www.statcan.gc.ca/en/reference/privacy">Privacy</a></li>
+				</ul>
+			</nav>
+			<div class="wtrmrk align-self-end"> <img src="/wet-boew4b/assets/wmms-blk.svg" alt="Symbol of the Government of Canada"> </div>
+		</div>
+	</div>
+</footer>
+<script src="/wet-boew4b/js/wet-boew.min.js"></script>
+<script src="/wet-boew4b/js/theme.min.js"></script>
+<!-- InvitationManager -->
+<script src="/wet-boew4b/invitation-manager/Overlay.js"></script>
+<script src="/wet-boew4b/invitation-manager/InvitationManager.js"></script>
+<!-- End InvitationManager -->
+<script src="/sdg-odd/js/data.js"></script>
+<script src="/sdg-odd/js/storage.js"></script>
+<script src="/sdg-odd/js/quality-assessment.js"></script>
+<script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>
