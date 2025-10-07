@@ -12,11 +12,22 @@
     renderOverallAssessment();
 
     // Setup event listeners
-    document.getElementById('export-btn').addEventListener('click', showExportModal);
-    document.getElementById('reset-btn').addEventListener('click', handleReset);
-    document.getElementById('export-format-select').addEventListener('change', handleFormatChange);
-    document.getElementById('copy-btn').addEventListener('click', handleCopy);
-    document.getElementById('download-btn').addEventListener('click', handleDownload);
+    var exportBtn = document.getElementById('export-btn');
+    var resetBtn = document.getElementById('reset-btn');
+    var exportFormatSelect = document.getElementById('export-format-select');
+    var copyBtn = document.getElementById('copy-btn');
+    var downloadBtn = document.getElementById('download-btn');
+
+    if (exportBtn) exportBtn.addEventListener('click', showExportModal);
+    if (resetBtn) {
+      console.log('Reset button found, attaching event listener');
+      resetBtn.addEventListener('click', handleReset);
+    } else {
+      console.error('Reset button not found!');
+    }
+    if (exportFormatSelect) exportFormatSelect.addEventListener('change', handleFormatChange);
+    if (copyBtn) copyBtn.addEventListener('click', handleCopy);
+    if (downloadBtn) downloadBtn.addEventListener('click', handleDownload);
 
     // Setup modal close handlers
     var closeButtons = document.querySelectorAll('#export-modal [data-dismiss="modal"]');
@@ -585,11 +596,12 @@
   }
 
   // Handle reset
-  function handleReset() {
-    if (confirm('Are you sure you want to reset the assessment? All data will be lost.')) {
-      AssessmentStorage.reset();
-      window.location.href = '/sdg-odd/en/index.html';
-    }
+  function handleReset(e) {
+    e.preventDefault();
+    // Clear all localStorage
+    localStorage.clear();
+    // Redirect to ethics assessment page
+    window.location.href = 'ethics-assessment.html';
   }
 
   // Initialize when DOM is ready
