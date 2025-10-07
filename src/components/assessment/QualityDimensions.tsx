@@ -12,8 +12,7 @@ import {
   TableBody,
   TableHead,
   TableRow,
-  TableCell,
-  TableCaption
+  TableCell
 } from '../ui/Table';
 import ErrorSummary, { type ValidationError } from '../ui/ErrorSummary';
 
@@ -243,59 +242,67 @@ const QualityDimensions: React.FC<QualityDimensionsProps> = ({
 
         <ErrorSummary errors={validationErrors} titleKey="assessment.quality.validation.errorSummaryTitle" />
 
-        <div className="wb-frmvld">
-          <Table aria-labelledby="quality-dimensions-title">
-            <TableCaption className="sr-only">{t('assessment.quality.table.caption')}</TableCaption>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{t('assessment.quality.table.headers.elements')}</TableHead>
-                <TableHead>{t('assessment.quality.table.headers.definition')}</TableHead>
-                <TableHead>{t('assessment.quality.table.headers.criteria')}</TableHead>
-                <TableHead className="text-center">
-                  <div>
-                    <StatCanTooltip
-                      tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
-                    >
-                      {t('assessment.quality.table.headers.answer')}
-                    </StatCanTooltip>
-                  </div>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {QUALITY_DIMENSIONS.map((dimension) => (
-                <TableRow key={dimension.id}>
-                  <TableCell>
-                    <strong id={`quality-el-${dimension.id}`}>{t(`qualityDimensions.dimension${dimension.id}.element`)}</strong>
-                  </TableCell>
-                  <TableCell dangerouslySetInnerHTML={{__html: t(`qualityDimensions.dimension${dimension.id}.definition`)}} children={undefined}/>
-                  <TableCell id={`quality-crit-${dimension.id}`} colSpan={2}>
-                    <div className="dimension-content">
-                      {dimension.criteria.map((_, idx) => (
-                        <div key={idx} className="criteria-row-unified">
-                          <div className="criteria-text-unified">
-                            {idx + 1}. {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
-                          </div>
-                          <div className="criteria-checkbox-unified">
-                            <label>
-                              <input
-                                type="checkbox"
-                                checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
-                                onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
-                                aria-labelledby={`quality-crit-${dimension.id}-${idx}`}
-                                aria-describedby={`quality-crit-${dimension.id}`}
-                              />
-                            </label>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+        <div className="mrgn-bttm-md">
+          <StatCanTooltip
+            tooltip={`${t('assessment.quality.table.tooltip.title')}\n\n• ${t('assessment.quality.table.tooltip.high')}\n• ${t('assessment.quality.table.tooltip.medium')}\n• ${t('assessment.quality.table.tooltip.low')}\n• ${t('assessment.quality.table.tooltip.notSufficient')}\n\n${t('assessment.quality.table.tooltip.exceptions')}`}
+          >
+            <strong>{t('assessment.quality.table.headers.answer')}</strong>
+          </StatCanTooltip>
         </div>
+
+        <form className="wb-frmvld" role="form" onSubmit={(e) => { e.preventDefault(); handleEvaluate(); }}>
+          <ul className="list-unstyled mrgn-tp-lg">
+            {QUALITY_DIMENSIONS.map((dimension) => (
+              <li key={dimension.id} className="mrgn-bttm-lg">
+                <section className="panel panel-default">
+                  <div className="panel-body">
+                    <fieldset>
+                      <legend id={`quality-el-${dimension.id}`}>
+                        {t(`qualityDimensions.dimension${dimension.id}.element`)}
+                      </legend>
+
+                      <div className="form-section-content">
+                        <div className="form-section-label">{t('assessment.quality.table.headers.definition')}:</div>
+                        <div dangerouslySetInnerHTML={{__html: t(`qualityDimensions.dimension${dimension.id}.definition`)}} />
+                      </div>
+
+                      <div className="form-section-content">
+                        <div className="form-section-label">{t('assessment.quality.table.headers.criteria')}:</div>
+                        <div className="checkbox-group-container" id={`quality-crit-${dimension.id}`}>
+                          {dimension.criteria.map((_, idx) => (
+                            <div key={idx} className="checkbox">
+                              <label htmlFor={`quality-${dimension.id}-${idx}`}>
+                                <input
+                                  id={`quality-${dimension.id}-${idx}`}
+                                  type="checkbox"
+                                  checked={criteriaSatisfaction[dimension.id]?.[idx] || false}
+                                  onChange={(e) => handleCriteriaChange(dimension.id, idx, e.target.checked)}
+                                  aria-describedby={`quality-el-${dimension.id}`}
+                                />
+                                {t(`qualityDimensions.dimension${dimension.id}.criteria.${idx}`)}
+                              </label>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="score-display-info">
+                        <strong>{t('assessment.quality.summary.tableHeaders.score')}:</strong>
+                        {' '}
+                        <span className="label label-info">
+                          {t('assessment.quality.summary.scoreDisplay', {
+                            score: qualityScores[dimension.id] || 0,
+                            maxScore: dimension.maxScore
+                          })}
+                        </span>
+                      </div>
+                    </fieldset>
+                  </div>
+                </section>
+              </li>
+            ))}
+          </ul>
+        </form>
 
         <section
           ref={resultRef}
