@@ -17,6 +17,39 @@
     document.getElementById('export-format-select').addEventListener('change', handleFormatChange);
     document.getElementById('copy-btn').addEventListener('click', handleCopy);
     document.getElementById('download-btn').addEventListener('click', handleDownload);
+
+    // Setup modal close handlers
+    var closeButtons = document.querySelectorAll('#export-modal [data-dismiss="modal"]');
+    closeButtons.forEach(function(btn) {
+      btn.addEventListener('click', closeExportModal);
+    });
+
+    // Close modal when clicking backdrop
+    var modal = document.getElementById('export-modal');
+    if (modal) {
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+          closeExportModal();
+        }
+      });
+    }
+  }
+
+  // Close export modal
+  function closeExportModal() {
+    var modal = document.getElementById('export-modal');
+    if (modal) {
+      modal.classList.remove('in');
+      modal.setAttribute('aria-hidden', 'true');
+      modal.style.display = 'none';
+    }
+
+    document.body.classList.remove('modal-open');
+
+    var backdrop = document.querySelector('.modal-backdrop');
+    if (backdrop) {
+      backdrop.remove();
+    }
   }
 
   // Render overall assessment
@@ -215,14 +248,22 @@
 
   // Show export modal
   function showExportModal() {
-    // Use WET-BOEW's modal via data attribute or directly via jQuery
-    var $modal = $('#export-modal');
-    $modal.addClass('in').attr('aria-hidden', 'false').css('display', 'block');
-    $('body').addClass('modal-open');
+    var modal = document.getElementById('export-modal');
+    if (!modal) return;
 
-    // Add backdrop
-    if ($('.modal-backdrop').length === 0) {
-      $('<div class="modal-backdrop fade in"></div>').appendTo('body');
+    // Show modal
+    modal.classList.add('in');
+    modal.setAttribute('aria-hidden', 'false');
+    modal.style.display = 'block';
+
+    // Add modal-open class to body
+    document.body.classList.add('modal-open');
+
+    // Add backdrop if it doesn't exist
+    if (!document.querySelector('.modal-backdrop')) {
+      var backdrop = document.createElement('div');
+      backdrop.className = 'modal-backdrop fade in';
+      document.body.appendChild(backdrop);
     }
 
     generateExportContent();
