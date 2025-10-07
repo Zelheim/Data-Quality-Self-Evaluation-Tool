@@ -36,7 +36,6 @@ const EthicsPrinciples: React.FC<EthicsPrinciplesProps> = ({
   setEthicsPass,
   part1MessageKey,
   setPart1MessageKey,
-  onShowAlert,
   onNextStep,
   showResult,
   setShowResult,
