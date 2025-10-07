@@ -1,0 +1,6 @@
+/* indicators */
+@media (max-width: 767px){
+	.pull-right[class*=indicator] {
+		float:right!important;
+	}
+}

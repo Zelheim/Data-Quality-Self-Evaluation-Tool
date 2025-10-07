@@ -1,0 +1,51 @@
+/* CCTD homepage */
+.redline
+{
+	border-bottom:1px solid #af3c43;
+	font-size:27px;
+	padding-bottom:.2em;
+}
+.heading-container
+{
+	position: relative;
+}
+.centered
+{
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+}
+.monthly-slider .wb-tabs.carousel-s2
+{
+	background-color: #FFF;
+	min-height: 300px;
+	box-shadow: 0 0 4px #243850;
+}
+.monthly-slider .release-date
+{
+	font-weight: bold;
+	padding-top: 14px;
+}
+.monthly-link
+{
+	color: blue !important;
+	text-decoration: underline !important;
+}
+.bg-default
+{
+	background-color: #dddddd;
+}
+.bg-grey-default
+{
+	background-color: #dddddd !important;
+}
+.monthly-slider h3
+{
+	font-size: 120%;
+	padding-top: 0;
+	margin-top: 0;
+}
+/*.fixed
+{
+	 min-height: 300px !important;
+}*/

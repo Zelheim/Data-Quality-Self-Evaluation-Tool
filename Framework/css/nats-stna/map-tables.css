@@ -1,0 +1,27 @@
+/* map tables */
+img[usemap] {
+	border: none;
+	height: auto;
+	max-width:100%;
+	width: auto;
+}
+.normal-indent {
+	font-weight:100;
+	padding-left: 30px !important;
+}
+tbody th
+{
+	font-weight: normal !important;
+}
+tbody tr.active th
+{
+	font-weight:bold !important;
+}
+tr.active.no-bold th
+{
+	font-weight:normal !important;
+}
+.bg-default {
+	background-color: #eaebed !important;
+	color: #335075 !important;
+}

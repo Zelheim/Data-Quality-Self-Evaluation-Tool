@@ -1,0 +1,6 @@
+/* indicators */
+@media (max-width: 767px){
+	.pull-right[class*=col-lg], .pull-right[class*=col-md], .pull-right[class*=col-sm] {
+		float:right!important;
+	}
+}
