@@ -224,7 +224,7 @@
 
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteriaSatisfied[idx];
-        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
+        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle text-danger" aria-hidden="true"></span>';
         const statusLabel = satisfied ? `<strong class="text-success">${t('satisfiedLabel')}</strong>` : `<strong class="text-danger">${t('notSatisfiedLabel')}</strong>`;
         return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');

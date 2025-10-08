@@ -62,7 +62,7 @@
               </select>
               <span id="ethics-${principle.id}-error" class="error text-danger hidden mrgn-tp-sm">
                 <span class="label label-danger">
-                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
                   ${t('requiredFieldError')}
                 </span>
               </span>

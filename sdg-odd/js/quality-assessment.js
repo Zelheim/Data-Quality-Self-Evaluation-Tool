@@ -87,10 +87,10 @@
               </div>
             </div>
 
-            <div class="alert alert-info mrgn-tp-md mrgn-bttm-0">
-              <p class="mrgn-tp-0 mrgn-bttm-0">
-                <strong>${t('scoringLabel')} :</strong> <span id="score-${dimension.id}">${score}/${dimension.maxScore}</span>
-              </p>
+            <div class="mrgn-tp-md mrgn-bttm-0">
+              <span class="mrgn-tp-0 mrgn-bttm-0">
+                <strong>${t('scoringLabel')} :</strong> <span id="score-${dimension.id}" class="label ${score === 0 ? 'label-danger' : score === 3 ? 'label-success' : 'label-warning'} mrgn-lft-sm" style="font-size: 1em;">${score}/${dimension.maxScore}</span>
+              </span>
             </div>
           </fieldset>
         </div>
@@ -134,6 +134,10 @@
     const dimension = QUALITY_DIMENSIONS.find(d => d.id === dimensionId);
     if (scoreDisplay) {
       scoreDisplay.textContent = `${score}/${dimension.maxScore}`;
+
+      // Update label color based on score
+      scoreDisplay.className = `label ${score === 0 ? 'label-danger' : score === 3 ? 'label-success' : 'label-warning'} mrgn-lft-sm`;
+      scoreDisplay.style.fontSize = '1em';
     }
 
     // Calculate and save total score
@@ -196,7 +200,7 @@
 
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteria[idx] || false;
-        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
+        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle text-danger" aria-hidden="true"></span>';
         const statusLabel = satisfied ? `<strong class="text-success">${t('satisfiedLabel')}</strong>` : `<strong class="text-danger">${t('notSatisfiedLabel')}</strong>`;
         return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');
