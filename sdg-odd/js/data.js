@@ -133,7 +133,7 @@ const TRANSLATIONS = {
     notSatisfiedLabel: "Not Satisfied:",
     scoreLabel: "Score:",
     criteriaAssessmentLabel: "Criteria Assessment:",
-    exportTitle: "Data Quality Suitability Tool - Overall Assessment",
+    exportTitle: "Data Suitability Assessment Tool - Overall Assessment",
     dateLabel: "Date:",
     overallResultLabel: "Overall Result:",
     ethicsPrinciplesTitle: "DATA ETHICS PRINCIPLES",
@@ -162,7 +162,7 @@ const TRANSLATIONS = {
     requiredLabel: "(required)",
     selectOption: "Select",
     definitionLabel: "Definition",
-    scoringLabel: "Scoring",
+    scoringLabel: "Score",
     criteriaSelectAll: "Criteria (select all that apply)"
   }
 };
