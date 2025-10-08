@@ -245,7 +245,7 @@
               </div>
             </div>
             <h5 class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h5>
-            <ul class="fa-ul mrgn-lft-lg">
+            <ul class="list-unstyled mrgn-lft-lg">
               ${criteriaHTML}
             </ul>
           </div>
