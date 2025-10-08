@@ -34,13 +34,13 @@
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">${t('explanationLabel')}</h3>
-              <p>${principle.explanation}</p>
+              <h3 id="ethics-exp-${principle.id}" class="mrgn-bttm-sm">${t('explanationLabel')}</h3>
+              <p aria-labelledby="ethics-exp-${principle.id}">${principle.explanation}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">${t('criteriaLabel')}</h3>
-              <p id="ethics-crit-${principle.id}">${principle.criteria}</p>
+              <h3 id="ethics-crit-heading-${principle.id}" class="mrgn-bttm-sm">${t('criteriaLabel')}</h3>
+              <p id="ethics-crit-${principle.id}" aria-labelledby="ethics-crit-heading-${principle.id}">${principle.criteria}</p>
             </div>
 
             <div class="form-group mrgn-tp-md mrgn-bttm-0">

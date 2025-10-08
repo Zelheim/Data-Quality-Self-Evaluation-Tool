@@ -76,13 +76,13 @@
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">${t('definitionLabel')}</h3>
+              <h3 id="quality-def-${dimension.id}" class="mrgn-bttm-sm">${t('definitionLabel')}</h3>
               <p>${dimension.definition}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">${t('criteriaSelectAll')}</h3>
-              <div id="quality-crit-${dimension.id}">
+              <h3 id="quality-crit-heading-${dimension.id}" class="mrgn-bttm-sm">${t('criteriaSelectAll')}</h3>
+              <div id="quality-crit-${dimension.id}" role="group" aria-labelledby="quality-crit-heading-${dimension.id}">
                 ${checkboxesHTML}
               </div>
             </div>
@@ -206,9 +206,9 @@
       }).join('');
 
       summaryHTML += `
-        <section class="panel panel-default mrgn-bttm-lg">
+        <section class="panel panel-default mrgn-bttm-lg" aria-labelledby="quality-summary-title-${dimension.id}">
           <header class="panel-heading">
-            <h3 class="panel-title">${dimension.element}</h3>
+            <h3 id="quality-summary-title-${dimension.id}" class="panel-title">${dimension.element}</h3>
           </header>
           <div class="panel-body">
             <div class="row">
@@ -220,8 +220,8 @@
                 </div>
               </div>
             </div>
-            <h4 class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h4>
-            <ul class="list-unstyled mrgn-lft-lg">
+            <h4 id="quality-summary-criteria-${dimension.id}" class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h4>
+            <ul class="list-unstyled mrgn-lft-lg" aria-labelledby="quality-summary-criteria-${dimension.id}">
               ${criteriaHTML}
             </ul>
           </div>

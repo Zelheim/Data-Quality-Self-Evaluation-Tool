@@ -230,9 +230,9 @@
       }).join('');
 
       summaryHTML += `
-        <section class="panel panel-default mrgn-bttm-lg">
+        <section class="panel panel-default mrgn-bttm-lg" aria-labelledby="overall-quality-title-${dimension.id}">
           <header class="panel-heading">
-            <h4 class="panel-title">${dimension.element}</h4>
+            <h4 id="overall-quality-title-${dimension.id}" class="panel-title">${dimension.element}</h4>
           </header>
           <div class="panel-body">
             <div class="row">
@@ -244,8 +244,8 @@
                 </div>
               </div>
             </div>
-            <h5 class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h5>
-            <ul class="list-unstyled mrgn-lft-lg">
+            <h5 id="overall-quality-criteria-${dimension.id}" class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h5>
+            <ul class="list-unstyled mrgn-lft-lg" aria-labelledby="overall-quality-criteria-${dimension.id}">
               ${criteriaHTML}
             </ul>
           </div>
