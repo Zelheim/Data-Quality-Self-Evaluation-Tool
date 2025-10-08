@@ -206,7 +206,7 @@
       }).join('');
 
       summaryHTML += `
-        <section class="panel panel-primary mrgn-bttm-lg">
+        <section class="panel panel-default mrgn-bttm-lg">
           <header class="panel-heading">
             <h3 class="panel-title">${dimension.element}</h3>
           </header>
