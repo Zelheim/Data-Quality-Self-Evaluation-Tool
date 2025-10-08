@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html class="no-js" lang="fr" dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<!-- Web Experience Toolkit (WET) / Boîte à outils de l'expérience Web (BOEW)
+ wet-boew.github.io/wet-boew/License-en.htm / wet-boew.github.io/wet-boew/Licence-fr.htm -->
+
+<meta content="width=device-width,initial-scale=1" name="viewport" />
+<title>Outil d'évaluation de l'adéquation des données - Évaluation globale - Statistique Canada</title>
+<meta name="dcterms.title" content="Outil d'évaluation de l'adéquation des données - Évaluation globale - Statistique Canada" />
+<meta name="dcterms.language" title="ISO639-2" content="fra" />
+<meta name="dcterms.creator" content="Gouvernement du Canada, Statistique Canada" />
+<meta name="dcterms.issued" title="W3CDTF" content="2018-05-16" />
+<meta name="dcterms.modified" title="W3CDTF" content="2024-01-01" />
+<meta name="dcterms.subject" title="gcstc" content="none" />
+<meta name="description" content="Évaluation globale - Résumé de l'outil d'évaluation de l'adéquation des données" />
+<meta name="keywords" content="data quality, assessment, SDG, statistics" />
+<meta property="dcterms:service" content="StatCan"/>
+<meta property="dcterms:accessRights" content="2"/>
+<link href="/wet-boew4b/assets/favicon.ico" rel="icon" type="image/x-icon">
+<link rel="stylesheet" href="/wet-boew4b/css/wet-boew.min.css">
+<script src="/wet-boew4b/js/jquery.min.js"></script>
+<link rel="stylesheet" href="/wet-boew4b/css/theme.min.css">
+<link rel="stylesheet" href="/wet-boew4b/css/statcan.css">
+<link rel="stylesheet" href="/wet-boew4b/invitation-manager/Overlay.css">
+<link rel="stylesheet" href="/sdg-odd/css/app.css">
+<noscript>
+<link rel="stylesheet" href="/wet-boew4b/css/noscript.min.css" />
+</noscript>
+<!-- Adobe Analytics RUN --><script src="//assets.adobedtm.com/be5dfd287373/0127575cd23a/launch-f7c3e6060667.min.js"></script>
+<script>dataLayer1 = [];</script>
+</head>
+
+<body vocab="//schema.org/" typeof="WebPage">
+<ul id="wb-tphp">
+	<li class="wb-slc"> <a class="wb-sl" href="#wb-cont">Passer au contenu principal</a> </li>
+	<li class="wb-slc visible-sm visible-md visible-lg"> <a class="wb-sl" href="#wb-info">Passer à « À propos de ce site »</a> </li>
+</ul>
+<header role="banner">
+	<div id="wb-bnr" class="container">
+		<section id="wb-lng" class="visible-md visible-lg text-right">
+			<h2 class="wb-inv">Sélection de la langue</h2>
+			<div class="row">
+				<div class="col-md-12">
+					<ul class="list-inline margin-bottom-none">
+						<li><a lang="en" href="/sdg-odd/en/overall-assessment.html">English</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<div class="row">
+			<div class="brand col-xs-8 col-sm-9 col-md-6"> <img src="/wet-boew4b/assets/sig-blk-gov-fr.svg" alt="Gouvernement du Canada"><span class="wb-inv"> / <span lang="fr">Gouvernement du Canada</span></span> </div>
+			<section class="wb-mb-links col-xs-4 col-sm-3 visible-sm visible-xs" id="wb-glb-mn">
+				<h2>Recherche et menus</h2>
+				<ul class="list-inline text-right chvrn">
+					<li><a href="#mb-pnl" title="Recherche et menus" aria-controls="mb-pnl" class="overlay-lnk" role="button"><span class="glyphicon glyphicon-search"><span class="glyphicon glyphicon-th-list"><span class="wb-inv">Recherche et menus</span></span></span></a></li>
+				</ul>
+				<div id="mb-pnl"></div>
+			</section>
+			<section id="wb-srch" class="col-xs-6 text-right visible-md visible-lg">
+				<h2 class="wb-inv">Recherche</h2>
+				<form action="https://www.statcan.gc.ca/search/results/site-search" method="get" name="cse-search-box" role="search" class="form-inline">
+					<div class="form-group wb-srch-qry">
+						<label for="wb-srch-q" class="wb-inv">Rechercher dans le site Web</label>
+						<input type="hidden" name="fq" value="stclac:2" />
+						<input id="wb-srch-q" list="wb-srch-q-ac" class="wb-srch-q form-control" name="q" type="search" value="" size="27" maxlength="150" placeholder="Rechercher dans le site Web">
+						<datalist id="wb-srch-q-ac"> </datalist>
+					</div>
+					<div class="form-group submit">
+						<button type="submit" id="wb-srch-sub" class="btn btn-primary btn-small" name="wb-srch-sub"><span class="glyphicon-search glyphicon"></span><span class="wb-inv">Recherche</span></button>
+					</div>
+				</form>
+			</section>
+		</div>
+	</div>
+	<nav role="navigation" id="wb-sm" class="wb-menu visible-md visible-lg" data-trgt="mb-pnl" data-ajax-replace="/wet-boew4b/ajax/sitemenu-fr.html" typeof="SiteNavigationElement">
+		<div class="container nvbar">
+			<h2 class="wb-inv">Menus des sujets</h2>
+			<div class="row">
+				<ul class="list-inline menu">
+					<li><a href="https://www150.statcan.gc.ca/n1/fr/sujets?MM=1">Sujets</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/fr/type/donnees?MM=1">Données</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/fr/type/analyse?MM=1">Analyses</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/reference?MM=1">Références</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/geographie?MM=1">Géographie</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/recensement?MM=1">Recensement</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/enquete?MM=1">Enquêtes et programmes statistiques</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/apropos/statcan?MM=1">À propos de StatCan</a></li>
+					<li><a href="https://www.canada.ca/fr.html">Canada.ca</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<nav role="navigation" id="wb-bc" class="" property="breadcrumb">
+		<div class="container">
+			<div class="row">
+
+				<!-- Breadcrumb trail -->
+				<ol class="breadcrumb">
+					<li><a href="https://www.statcan.gc.ca/fr/debut">Accueil</a></li>
+					<li><a href="https://www150.statcan.gc.ca/n1/fr/sujets">Sujets</a></li>
+					<li><a href="/sdg-odd/index-fra.htm">Centre d'information sur les objectifs de développement durable</a></li>
+					<li><a href="/sdg-odd/fr/index.html">Outil d'évaluation de l'adéquation des données</a></li>
+					<li>Évaluation globale</li>
+				</ol>
+			</div>
+		</div>
+	</nav>
+</header>
+
+<main role="main" property="mainContentOfPage" class="container">
+      <h1 id="wb-cont" property="name">Évaluation globale</h1>
+
+      <div class="alert alert-info mrgn-tp-lg">
+        <p><strong>VERSION BÊTA :</strong> Cet outil est en cours d'élaboration. Vos <a href="mailto:statcan.sdg-odd.statcan@statcan.gc.ca" class="alert-link">commentaires</a> sont les bienvenus.</p>
+      </div>
+
+      <section>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2 id="overall-assessment-title">Résumé global</h2>
+            <div id="overall-result-display" class="mrgn-bttm-md"></div>
+            <div id="overall-message" class="mrgn-tp-md mrgn-bttm-md"></div>
+
+            <section>
+              <h3 id="ethics-summary-title">Partie 1 - Principes de l'éthique des données</h3>
+              <div id="ethics-summary-result" class="mrgn-bttm-md"></div>
+              <div id="ethics-summary-message" class="mrgn-bttm-md"></div>
+              <div id="ethics-summary-table"></div>
+            </section>
+
+            <section class="mrgn-tp-lg">
+              <h3 id="quality-summary-title">Partie 2 - Dimensions de la qualité des données</h3>
+              <div id="quality-summary-result" class="mrgn-bttm-md"></div>
+              <div id="quality-summary-message" class="mrgn-bttm-md"></div>
+              <div id="quality-summary-table"></div>
+              <div class="well mrgn-tp-md">
+                <p class="mrgn-tp-0 mrgn-bttm-0">
+                  <span class="glyphicon glyphicon-dashboard mrgn-rght-sm" aria-hidden="true"></span>
+                  <strong>Résultat total :</strong> <span id="total-score-display"></span>
+                </p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="mrgn-tp-md">
+          <button type="button" id="export-btn" class="btn btn-primary btn-lg mrgn-rght-sm mrgn-bttm-sm">
+            <span class="glyphicon glyphicon-export mrgn-rght-sm" aria-hidden="true"></span>
+            Exporter les résultats
+          </button>
+          <button type="button" id="reset-btn" class="btn btn-default btn-lg mrgn-rght-sm mrgn-bttm-sm">
+            <span class="glyphicon glyphicon-repeat mrgn-rght-sm" aria-hidden="true"></span>
+            Réinitialiser l'évaluation
+          </button>
+          <a href="/sdg-odd/fr/index.html" class="btn btn-default btn-lg mrgn-bttm-sm">
+            <span class="glyphicon glyphicon-home mrgn-rght-sm" aria-hidden="true"></span>
+            Retourner à l'accueil
+          </a>
+        </div>
+      </section>
+
+      <div class="pagedetails">
+        <dl id="wb-dtmd">
+          <dt>Date de modification :&#32;</dt>
+          <dd><time property="dateModified">2024-01-01</time></dd>
+        </dl>
+      </div>
+    </main>
+
+    <!-- Export Modal -->
+    <div id="export-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="export-modal-title" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fermer">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h2 class="modal-title" id="export-modal-title">
+              <span class="glyphicon glyphicon-export mrgn-rght-sm" aria-hidden="true"></span>
+              Exporter les résultats d'évaluation
+            </h2>
+          </div>
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="export-format-select">Format d'exportation</label>
+              <select id="export-format-select" class="form-control">
+                <option value="text">Texte</option>
+                <option value="csv">CSV</option>
+                <option value="pdf">PDF</option>
+                <option value="word">DOCX</option>
+              </select>
+            </div>
+            <div id="export-preview-container" class="form-group">
+              <label for="export-preview">Aperçu</label>
+              <textarea id="export-preview" class="form-control font-monospace" rows="15" readonly></textarea>
+            </div>
+            <div id="export-info" class="alert alert-info hidden">
+              <p class="mrgn-tp-0 mrgn-bttm-0">
+                <span class="glyphicon mrgn-rght-sm" aria-hidden="true"></span>
+                <span id="export-info-text"></span>
+              </p>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="copy-btn" class="btn btn-default">
+              <span class="glyphicon glyphicon-copy mrgn-rght-sm" aria-hidden="true"></span>
+              Copier dans le presse-papiers
+            </button>
+            <button type="button" id="download-btn" class="btn btn-primary">
+              <span class="glyphicon glyphicon-download mrgn-rght-sm" aria-hidden="true"></span>
+              Télécharger
+            </button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">
+              Fermer
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<footer id="wb-info">
+	<h2 class="wb-inv">À propos de ce site</h2>
+	<div class="gc-contextual">
+		<div class="container">
+			<nav>
+				<h3>Statistique Canada</h3>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.statcan.gc.ca/fr/reference/refcentre/index">Contactez StatCan</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/confiance">Centre de confiance</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="gc-main-footer">
+		<div class="container">
+			<nav>
+				<h3>Gouvernement du Canada</h3>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.canada.ca/fr/contact.html">Toutes les coordonnées</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/min.html">Ministères et organismes</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/systeme.html">À propos du gouvernement</a></li>
+				</ul>
+				<h4><span class="wb-inv">Thèmes et sujets</span></h4>
+				<ul class="list-unstyled colcount-sm-2 colcount-md-3">
+					<li><a href="https://www.canada.ca/fr/services/emplois.html">Emplois</a></li>
+					<li><a href="https://www.canada.ca/fr/services/immigration-citoyennete.html">Immigration et citoyenneté</a></li>
+					<li><a href="https://voyage.gc.ca/">Voyage et tourisme</a></li>
+					<li><a href="https://www.canada.ca/fr/services/entreprises.html">Entreprises</a></li>
+					<li><a href="https://www.canada.ca/fr/services/prestations.html">Prestations</a></li>
+					<li><a href="https://www.canada.ca/fr/services/sante.html">Santé</a></li>
+					<li><a href="https://www.canada.ca/fr/services/impots.html">Impôts</a></li>
+					<li><a href="https://www.canada.ca/fr/services/environnement.html">Environnement et ressources naturelles</a></li>
+					<li><a href="https://www.canada.ca/fr/services/defense.html">Sécurité nationale et défense</a></li>
+					<li><a href="https://www.canada.ca/fr/services/culture.html">Culture, histoire et sport</a></li>
+					<li><a href="https://www.canada.ca/fr/services/police.html">Services de police, justice et urgences</a></li>
+					<li><a href="https://www.canada.ca/fr/services/transport.html">Transport et infrastructure</a></li>
+					<li><a href="https://international.gc.ca/world-monde/index.aspx?lang=fra">Le Canada et le monde</a></li>
+					<li><a href="https://www.canada.ca/fr/services/finance.html">Argent et finance</a></li>
+					<li><a href="https://www.canada.ca/fr/services/science.html">Science et innovation</a></li>
+					<li><a href="https://www.canada.ca/fr/services/autochtones.html">Autochtones</a></li>
+					<li><a href="https://www.canada.ca/fr/services/ancienscombattants.html">Vétérans et militaires</a></li>
+					<li><a href="https://www.canada.ca/fr/services/jeunesse.html">Jeunesse</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<div class="gc-sub-footer">
+		<div class="container d-flex align-items-center">
+			<nav>
+				<h3 class="wb-inv">Gouvernement du Canada Corporate</h3>
+				<ul>
+					<li><a href="https://www.canada.ca/fr/sociaux.html">Médias sociaux</a></li>
+					<li><a href="https://www.canada.ca/fr/mobile.html">Applications mobiles</a></li>
+					<li><a href="https://www.canada.ca/fr/gouvernement/a-propos.html">À propos de Canada.ca</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/reference/avis">Avis</a></li>
+					<li><a href="https://www.statcan.gc.ca/fr/reference/confidentialite">Confidentialité</a></li>
+				</ul>
+			</nav>
+			<div class="wtrmrk align-self-end"> <img src="/wet-boew4b/assets/wmms-blk.svg" alt="Symbol of the Gouvernement du Canada"> </div>
+		</div>
+	</div>
+</footer>
+<script src="/wet-boew4b/js/wet-boew.min.js"></script>
+<script src="/wet-boew4b/js/theme.min.js"></script>
+<!-- InvitationManager -->
+<script src="/wet-boew4b/invitation-manager/Overlay.js"></script>
+<script src="/wet-boew4b/invitation-manager/InvitationManager.js"></script>
+<!-- End InvitationManager -->
+<script src="/sdg-odd/js/data-fr.js"></script>
+<script src="/sdg-odd/js/storage.js"></script>
+<script src="/sdg-odd/js/overall-assessment.js"></script>
+<script type="text/javascript">_satellite.pageBottom();</script>
+</body>
+</html>

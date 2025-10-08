@@ -34,19 +34,19 @@
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">Explanation</h3>
+              <h3 class="mrgn-bttm-sm">${t('explanationLabel')}</h3>
               <p>${principle.explanation}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">Criteria</h3>
+              <h3 class="mrgn-bttm-sm">${t('criteriaLabel')}</h3>
               <p id="ethics-crit-${principle.id}">${principle.criteria}</p>
             </div>
 
             <div class="form-group mrgn-tp-md mrgn-bttm-0">
               <label for="ethics-${principle.id}" class="required">
-                <span class="field-name">Answer</span>
-                <strong class="required" aria-hidden="true">(required)</strong>
+                <span class="field-name">${t('answerLabel')}</span>
+                <strong class="required" aria-hidden="true">${t('requiredLabel')}</strong>
               </label>
               <select
                 id="ethics-${principle.id}"
@@ -56,14 +56,14 @@
                 aria-describedby="ethics-crit-${principle.id}"
                 aria-required="true"
               >
-                <option value="">Select</option>
-                <option value="Yes" ${ethicsAnswers[principle.id] === 'Yes' ? 'selected' : ''}>Yes</option>
-                <option value="No" ${ethicsAnswers[principle.id] === 'No' ? 'selected' : ''}>No</option>
+                <option value="">${t('selectOption')}</option>
+                <option value="Yes" ${ethicsAnswers[principle.id] === 'Yes' ? 'selected' : ''}>${t('yes')}</option>
+                <option value="No" ${ethicsAnswers[principle.id] === 'No' ? 'selected' : ''}>${t('no')}</option>
               </select>
               <span id="ethics-${principle.id}-error" class="error text-danger hidden mrgn-tp-sm">
                 <span class="label label-danger">
                   <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                  This field is required.
+                  ${t('requiredFieldError')}
                 </span>
               </span>
             </div>
@@ -106,7 +106,7 @@
         allAnswered = false;
         errors.push({
           id: principle.id,
-          message: `${principle.element}: This field is required.`
+          message: `${principle.element}: ${t('requiredFieldError')}`
         });
         if (errorEl) {
           errorEl.classList.remove('hidden');
@@ -204,7 +204,10 @@
 
   // Handle continue button click
   function handleContinue() {
-    window.location.href = '/sdg-odd/en/quality-assessment.html';
+    // Detect language from HTML lang attribute
+    const lang = document.documentElement.lang || 'en';
+    const langPath = lang === 'fr' ? 'fr' : 'en';
+    window.location.href = `/sdg-odd/${langPath}/quality-assessment.html`;
   }
 
   // Initialize when DOM is ready

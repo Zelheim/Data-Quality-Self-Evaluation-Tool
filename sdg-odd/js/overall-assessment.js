@@ -225,7 +225,7 @@
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteriaSatisfied[idx];
         const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
-        const statusLabel = satisfied ? '<strong class="text-success">Satisfied:</strong>' : '<strong class="text-danger">Not Satisfied:</strong>';
+        const statusLabel = satisfied ? `<strong class="text-success">${t('satisfiedLabel')}</strong>` : `<strong class="text-danger">${t('notSatisfiedLabel')}</strong>`;
         return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');
 
@@ -239,12 +239,12 @@
               <div class="col-md-12">
                 <div class="well well-sm mrgn-bttm-md">
                   <span class="mrgn-tp-0 mrgn-bttm-0">
-                    <strong>Score:</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/3</span>
+                    <strong>${t('scoreLabel')}</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/3</span>
                   </span>
                 </div>
               </div>
             </div>
-            <h5 class="mrgn-tp-md mrgn-bttm-sm">Criteria Assessment:</h5>
+            <h5 class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h5>
             <ul class="fa-ul mrgn-lft-lg">
               ${criteriaHTML}
             </ul>
@@ -320,15 +320,15 @@
 
   // Generate text export
   function generateTextExport(date, overallPass, ethicsPrinciples, qualityDimensions, criteriaSatisfaction, results) {
-    let content = `Data Quality Suitability Tool - Overall Assessment\n`;
-    content += `Date: ${date}\n\n`;
-    content += `Overall Result: ${overallPass ? t('overallPass') : t('overallFail')}\n\n`;
+    let content = `${t('exportTitle')}\n`;
+    content += `${t('dateLabel')} ${date}\n\n`;
+    content += `${t('overallResultLabel')} ${overallPass ? t('overallPass') : t('overallFail')}\n\n`;
 
     // Ethics
-    content += `DATA ETHICS PRINCIPLES\n`;
-    content += `Data Ethics Principles Assessment: ${results.ethicsPass ? t('ethicsPass') : t('ethicsFail')}\n`;
-    content += `Message: ${results.ethicsMessage.replace(/<[^>]*>/g, '')}\n\n`;
-    content += `Data Ethics Principles:\n`;
+    content += `${t('ethicsPrinciplesTitle')}\n`;
+    content += `${t('ethicsAssessmentLabel')} ${results.ethicsPass ? t('ethicsPass') : t('ethicsFail')}\n`;
+    content += `${t('messageLabel')} ${results.ethicsMessage.replace(/<[^>]*>/g, '')}\n\n`;
+    content += `${t('ethicsPrinciplesLabel')}\n`;
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
@@ -337,10 +337,10 @@
     });
 
     // Quality
-    content += `\nDATA QUALITY DIMENSIONS\n`;
-    content += `Data Quality Dimensions Assessment: ${results.qualityPass ? t('qualityPass') : t('qualityFail')} (Score: ${results.totalQualityScore}/15)\n`;
-    content += `Message: ${results.qualityMessage.replace(/<[^>]*>/g, '')}\n\n`;
-    content += `Data Quality Dimensions:\n`;
+    content += `\n${t('qualityDimensionsTitle')}\n`;
+    content += `${t('qualityAssessmentLabel')} ${results.qualityPass ? t('qualityPass') : t('qualityFail')} (${t('scoreLabel')} ${results.totalQualityScore}/15)\n`;
+    content += `${t('messageLabel')} ${results.qualityMessage.replace(/<[^>]*>/g, '')}\n\n`;
+    content += `${t('qualityDimensionsLabel')}\n`;
 
     QUALITY_DIMENSIONS.forEach(dimension => {
       const score = qualityDimensions[dimension.id] || 0;
@@ -357,7 +357,7 @@
         }
       }
 
-      content += `  Criteria Details:\n`;
+      content += `  ${t('criteriaDetailsLabel')}\n`;
       dimension.criteria.forEach((criterion, idx) => {
         const status = criteriaSatisfied[idx] ? t('satisfied') : t('notSatisfied');
         content += `    ${idx + 1}. ${criterion}: ${status}\n`;
@@ -370,18 +370,18 @@
 
   // Generate CSV export
   function generateCSVExport(date, overallPass, ethicsPrinciples, qualityDimensions, criteriaSatisfaction, results) {
-    let content = `Data Quality Suitability Tool - Overall Assessment\r\n\r\n`;
-    content += `SUMMARY\r\n`;
-    content += `Category,Result\r\n`;
-    content += `Date,${date}\r\n`;
-    content += `Overall Result,${overallPass ? t('overallPass') : t('overallFail')}\r\n`;
-    content += `Data Ethics Principles Assessment,${results.ethicsPass ? t('ethicsPass') : t('ethicsFail')}\r\n`;
-    content += `Data Quality Dimensions Assessment,${results.qualityPass ? t('qualityPass') : t('qualityFail')}\r\n`;
-    content += `Score,${results.totalQualityScore}/15\r\n\r\n`;
+    let content = `${t('exportTitle')}\r\n\r\n`;
+    content += `${t('summaryLabel')}\r\n`;
+    content += `${t('categoryLabel')},${t('resultLabel')}\r\n`;
+    content += `${t('dateLabel').replace(':', '')},${date}\r\n`;
+    content += `${t('overallResultLabel').replace(':', '')},${overallPass ? t('overallPass') : t('overallFail')}\r\n`;
+    content += `${t('ethicsAssessmentLabel').replace(':', '')},${results.ethicsPass ? t('ethicsPass') : t('ethicsFail')}\r\n`;
+    content += `${t('qualityAssessmentLabel').replace(':', '')},${results.qualityPass ? t('qualityPass') : t('qualityFail')}\r\n`;
+    content += `${t('scoreLabel').replace(':', '')},${results.totalQualityScore}/15\r\n\r\n`;
 
     // Ethics
-    content += `DATA ETHICS PRINCIPLES\r\n`;
-    content += `Data Ethics Principle,Evaluation\r\n`;
+    content += `${t('ethicsPrinciplesTitle')}\r\n`;
+    content += `${t('ethicsPrincipleLabel')},${t('evaluationLabel')}\r\n`;
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
@@ -392,8 +392,8 @@
     content += "\r\n";
 
     // Quality
-    content += `DATA QUALITY DIMENSIONS\r\n`;
-    content += `Data Quality Dimension,Score,Assessment,Criteria Details\r\n`;
+    content += `${t('qualityDimensionsTitle')}\r\n`;
+    content += `${t('qualityDimensionLabel')},${t('scoreLabel').replace(':', '')},${t('assessmentLabel')},${t('criteriaDetailsLabel').replace(':', '')}\r\n`;
 
     QUALITY_DIMENSIONS.forEach(dimension => {
       const score = qualityDimensions[dimension.id] || 0;
@@ -472,7 +472,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Data Quality Suitability Tool - Overall Assessment</title>
+  <title>${t('exportTitle')}</title>
   <style>
     @page { margin: 1in; }
     body {
@@ -528,18 +528,18 @@
   </style>
 </head>
 <body>
-  <h1>Data Quality Suitability Tool - Overall Assessment</h1>
-  <p><strong>Date:</strong> ${date}</p>
-  <h2>Overall Result: ${overallPass ? 'PASS' : 'FAIL'}</h2>
+  <h1>${t('exportTitle')}</h1>
+  <p><strong>${t('dateLabel')}</strong> ${date}</p>
+  <h2>${t('overallResultLabel')} ${overallPass ? t('passLabel') : t('failLabel')}</h2>
 
-  <h2>DATA ETHICS PRINCIPLES</h2>
-  <p><strong>Assessment:</strong> ${results.ethicsPass ? 'PASS' : 'FAIL'}</p>
+  <h2>${t('ethicsPrinciplesTitle')}</h2>
+  <p><strong>${t('assessmentLabel')}:</strong> ${results.ethicsPass ? t('passLabel') : t('failLabel')}</p>
 
   <table>
     <thead>
       <tr>
-        <th>Principle</th>
-        <th>Answer</th>
+        <th>${t('principleLabel')}</th>
+        <th>${t('answerTableLabel')}</th>
       </tr>
     </thead>
     <tbody>
@@ -547,7 +547,7 @@
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
-      const answerText = answer === 'Yes' ? 'Yes' : answer === 'No' ? 'No' : 'Not evaluated';
+      const answerText = answer === 'Yes' ? t('yes') : answer === 'No' ? t('no') : t('notEvaluated');
       html += `
       <tr>
         <td>${principle.element}</td>
@@ -559,15 +559,15 @@
     </tbody>
   </table>
 
-  <h2>DATA QUALITY DIMENSIONS</h2>
-  <p><strong>Assessment:</strong> ${results.qualityPass ? 'PASS' : 'FAIL'} (Score: ${results.totalQualityScore}/15)</p>
+  <h2>${t('qualityDimensionsTitle')}</h2>
+  <p><strong>${t('assessmentLabel')}:</strong> ${results.qualityPass ? t('passLabel') : t('failLabel')} (${t('scoreLabel')} ${results.totalQualityScore}/15)</p>
 
   <table>
     <thead>
       <tr>
-        <th>Dimension</th>
-        <th>Score</th>
-        <th>Assessment</th>
+        <th>${t('dimensionLabel')}</th>
+        <th>${t('scoreLabel').replace(':', '')}</th>
+        <th>${t('assessmentLabel')}</th>
       </tr>
     </thead>
     <tbody>
@@ -582,7 +582,7 @@
       dimension.criteria.forEach((criterion, idx) => {
         const satisfied = criteria[idx] || false;
         const statusClass = satisfied ? 'status-satisfied' : 'status-not-satisfied';
-        const statusText = satisfied ? 'SATISFIED' : 'NOT SATISFIED';
+        const statusText = satisfied ? t('satisfied') : t('notSatisfied');
         criteriaHTML += `<div class="criteria-item"><span class="${statusClass}">${statusText}:</span> ${criterion}</div>`;
       });
       criteriaHTML += '</div>';
@@ -627,7 +627,7 @@
 <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
 <head>
   <meta charset="utf-8">
-  <title>Data Quality Suitability Tool - Overall Assessment</title>
+  <title>${t('exportTitle')}</title>
   <style>
     body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; }
     h1 { font-size: 18pt; font-weight: bold; margin-bottom: 12pt; }
@@ -639,18 +639,18 @@
   </style>
 </head>
 <body>
-  <h1>Data Quality Suitability Tool - Overall Assessment</h1>
-  <p><strong>Date:</strong> ${date}</p>
-  <h2>Overall Result: ${overallPass ? 'PASS' : 'FAIL'}</h2>
+  <h1>${t('exportTitle')}</h1>
+  <p><strong>${t('dateLabel')}</strong> ${date}</p>
+  <h2>${t('overallResultLabel')} ${overallPass ? t('passLabel') : t('failLabel')}</h2>
 
-  <h2>DATA ETHICS PRINCIPLES</h2>
-  <p><strong>Assessment:</strong> ${results.ethicsPass ? 'PASS' : 'FAIL'}</p>
+  <h2>${t('ethicsPrinciplesTitle')}</h2>
+  <p><strong>${t('assessmentLabel')}:</strong> ${results.ethicsPass ? t('passLabel') : t('failLabel')}</p>
 
   <table>
     <thead>
       <tr>
-        <th>Principle</th>
-        <th>Answer</th>
+        <th>${t('principleLabel')}</th>
+        <th>${t('answerTableLabel')}</th>
       </tr>
     </thead>
     <tbody>
@@ -658,7 +658,7 @@
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
-      const answerText = answer === 'Yes' ? 'Yes' : answer === 'No' ? 'No' : 'Not evaluated';
+      const answerText = answer === 'Yes' ? t('yes') : answer === 'No' ? t('no') : t('notEvaluated');
       html += `
       <tr>
         <td>${principle.element}</td>
@@ -670,15 +670,15 @@
     </tbody>
   </table>
 
-  <h2>DATA QUALITY DIMENSIONS</h2>
-  <p><strong>Assessment:</strong> ${results.qualityPass ? 'PASS' : 'FAIL'} (Score: ${results.totalQualityScore}/15)</p>
+  <h2>${t('qualityDimensionsTitle')}</h2>
+  <p><strong>${t('assessmentLabel')}:</strong> ${results.qualityPass ? t('passLabel') : t('failLabel')} (${t('scoreLabel')} ${results.totalQualityScore}/15)</p>
 
   <table>
     <thead>
       <tr>
-        <th>Dimension</th>
-        <th>Score</th>
-        <th>Assessment</th>
+        <th>${t('dimensionLabel')}</th>
+        <th>${t('scoreLabel').replace(':', '')}</th>
+        <th>${t('assessmentLabel')}</th>
       </tr>
     </thead>
     <tbody>

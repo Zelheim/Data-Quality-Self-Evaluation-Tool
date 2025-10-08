@@ -76,12 +76,12 @@
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">Definition</h3>
+              <h3 class="mrgn-bttm-sm">${t('definitionLabel')}</h3>
               <p>${dimension.definition}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h3 class="mrgn-bttm-sm">Criteria (select all that apply)</h3>
+              <h3 class="mrgn-bttm-sm">${t('criteriaSelectAll')}</h3>
               <div id="quality-crit-${dimension.id}">
                 ${checkboxesHTML}
               </div>
@@ -89,7 +89,7 @@
 
             <div class="alert alert-info mrgn-tp-md mrgn-bttm-0">
               <p class="mrgn-tp-0 mrgn-bttm-0">
-                <strong>Score:</strong> <span id="score-${dimension.id}">${score}/${dimension.maxScore}</span>
+                <strong>${t('scoringLabel')} :</strong> <span id="score-${dimension.id}">${score}/${dimension.maxScore}</span>
               </p>
             </div>
           </fieldset>
@@ -197,7 +197,7 @@
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteria[idx] || false;
         const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
-        const statusLabel = satisfied ? '<strong class="text-success">Satisfied:</strong>' : '<strong class="text-danger">Not Satisfied:</strong>';
+        const statusLabel = satisfied ? `<strong class="text-success">${t('satisfiedLabel')}</strong>` : `<strong class="text-danger">${t('notSatisfiedLabel')}</strong>`;
         return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');
 
@@ -211,12 +211,12 @@
               <div class="col-md-12">
                 <div class="well well-sm mrgn-bttm-md">
                   <span class="mrgn-tp-0 mrgn-bttm-0">
-                    <strong>Score:</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/${dimension.maxScore}</span>
+                    <strong>${t('scoreLabel')}</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/${dimension.maxScore}</span>
                   </span>
                 </div>
               </div>
             </div>
-            <h4 class="mrgn-tp-md mrgn-bttm-sm">Criteria Assessment:</h4>
+            <h4 class="mrgn-tp-md mrgn-bttm-sm">${t('criteriaAssessmentLabel')}</h4>
             <ul class="fa-ul mrgn-lft-lg">
               ${criteriaHTML}
             </ul>
@@ -266,7 +266,10 @@
   // Handle continue button click
   function handleContinue() {
     AssessmentStorage.calculateOverallPass();
-    window.location.href = '/sdg-odd/en/overall-assessment.html';
+    // Detect language from HTML lang attribute
+    const lang = document.documentElement.lang || 'en';
+    const langPath = lang === 'fr' ? 'fr' : 'en';
+    window.location.href = `/sdg-odd/${langPath}/overall-assessment.html`;
   }
 
   // Initialize when DOM is ready
