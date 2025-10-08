@@ -135,12 +135,26 @@ const TRANSLATIONS = {
 // Get translation function
 function t(key, replacements = {}) {
   const lang = 'en'; // For now, only English
-  let text = TRANSLATIONS[lang][key] || key;
+
+  // Handle nested keys (e.g., 'qualityScoreText.high')
+  const keys = key.split('.');
+  let text = TRANSLATIONS[lang];
+
+  for (const k of keys) {
+    if (text && typeof text === 'object' && k in text) {
+      text = text[k];
+    } else {
+      text = key; // Return the key if not found
+      break;
+    }
+  }
 
   // Handle replacements
-  Object.keys(replacements).forEach(placeholder => {
-    text = text.replace(`{${placeholder}}`, replacements[placeholder]);
-  });
+  if (typeof text === 'string') {
+    Object.keys(replacements).forEach(placeholder => {
+      text = text.replace(`{${placeholder}}`, replacements[placeholder]);
+    });
+  }
 
   return text;
 }

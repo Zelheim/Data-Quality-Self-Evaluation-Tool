@@ -460,140 +460,250 @@
     URL.revokeObjectURL(url);
   }
 
-  // Generate PDF export
-  async function generatePDFExport(fileName) {
-    const { jsPDF } = window.jspdf;
-    const pdf = new jsPDF();
-    const { ethicsPrinciples, qualityDimensions, results } = assessmentData;
+  // Generate PDF export without external library
+  function generatePDFExport(fileName) {
+    const { ethicsPrinciples, qualityDimensions, criteriaSatisfaction, results } = assessmentData;
     const date = results.date || new Date().toISOString().split('T')[0];
     const overallPass = results.ethicsPass && results.qualityPass;
 
-    let yPosition = 20;
-    const margin = 20;
-    const pageWidth = pdf.internal.pageSize.getWidth();
+    // Build HTML content for PDF
+    let html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Data Quality Suitability Tool - Overall Assessment</title>
+  <style>
+    @page { margin: 1in; }
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 12pt;
+      line-height: 1.4;
+    }
+    h1 {
+      font-size: 18pt;
+      font-weight: bold;
+      margin-bottom: 12pt;
+      page-break-after: avoid;
+    }
+    h2 {
+      font-size: 14pt;
+      font-weight: bold;
+      margin-top: 24pt;
+      margin-bottom: 12pt;
+      page-break-after: avoid;
+    }
+    p { margin: 6pt 0; }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12pt 0;
+      page-break-inside: auto;
+    }
+    tr { page-break-inside: avoid; page-break-after: auto; }
+    th, td {
+      border: 1px solid black;
+      padding: 6pt;
+      text-align: left;
+    }
+    th {
+      background-color: #e0e0e0;
+      font-weight: bold;
+    }
+    .criteria-list {
+      margin: 6pt 0;
+      padding-left: 20pt;
+    }
+    .criteria-item {
+      margin: 3pt 0;
+    }
+    .status-satisfied {
+      color: #006400;
+      font-weight: bold;
+    }
+    .status-not-satisfied {
+      color: #8B0000;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Data Quality Suitability Tool - Overall Assessment</h1>
+  <p><strong>Date:</strong> ${date}</p>
+  <h2>Overall Result: ${overallPass ? 'PASS' : 'FAIL'}</h2>
 
-    // Title
-    pdf.setFontSize(16);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('Data Quality Suitability Tool - Overall Assessment', margin, yPosition);
-    yPosition += 15;
+  <h2>DATA ETHICS PRINCIPLES</h2>
+  <p><strong>Assessment:</strong> ${results.ethicsPass ? 'PASS' : 'FAIL'}</p>
 
-    // Date
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'normal');
-    pdf.text(`Date: ${date}`, margin, yPosition);
-    yPosition += 20;
+  <table>
+    <thead>
+      <tr>
+        <th>Principle</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
 
-    // Overall Result
-    pdf.setFontSize(14);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text(`Overall Result: ${overallPass ? 'Pass' : 'Fail'}`, margin, yPosition);
-    yPosition += 15;
-
-    // Ethics Section
-    pdf.setFontSize(12);
-    pdf.text('DATA ETHICS PRINCIPLES', margin, yPosition);
-    yPosition += 10;
-
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
       const answerText = answer === 'Yes' ? 'Yes' : answer === 'No' ? 'No' : 'Not evaluated';
-      pdf.text(`${principle.element}: ${answerText}`, margin, yPosition);
-      yPosition += 8;
-      if (yPosition > 270) {
-        pdf.addPage();
-        yPosition = margin;
-      }
+      html += `
+      <tr>
+        <td>${principle.element}</td>
+        <td>${answerText}</td>
+      </tr>`;
     });
 
-    yPosition += 10;
+    html += `
+    </tbody>
+  </table>
 
-    // Quality Section
-    pdf.setFontSize(12);
-    pdf.setFont('helvetica', 'bold');
-    pdf.text('DATA QUALITY DIMENSIONS', margin, yPosition);
-    yPosition += 10;
+  <h2>DATA QUALITY DIMENSIONS</h2>
+  <p><strong>Assessment:</strong> ${results.qualityPass ? 'PASS' : 'FAIL'} (Score: ${results.totalQualityScore}/15)</p>
 
-    pdf.setFontSize(10);
-    pdf.setFont('helvetica', 'normal');
+  <table>
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Score</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
+
     QUALITY_DIMENSIONS.forEach(dimension => {
       const score = qualityDimensions[dimension.id] || 0;
       const assessment = getQualityScoreText(score);
+      const criteria = criteriaSatisfaction[dimension.id] || [];
 
-      pdf.setFont('helvetica', 'bold');
-      pdf.text(`${dimension.element}: ${score}/3 - ${assessment}`, margin, yPosition);
-      yPosition += 8;
-
-      pdf.setFont('helvetica', 'normal');
+      let criteriaHTML = '<div class="criteria-list">';
       dimension.criteria.forEach((criterion, idx) => {
-        const criteriaSatisfied = dimension.id === "3" ? (score >= 2 || (score === 1 && idx === 0)) : (idx < score);
-        const status = criteriaSatisfied ? 'SATISFIED' : 'NOT SATISFIED';
-        const criteriaText = `  ${idx + 1}. ${criterion}: ${status}`;
-        const splitCriteria = pdf.splitTextToSize(criteriaText, pageWidth - 2 * margin);
-        pdf.text(splitCriteria, margin, yPosition);
-        yPosition += splitCriteria.length * 4;
-
-        if (yPosition > 270) {
-          pdf.addPage();
-          yPosition = margin;
-        }
+        const satisfied = criteria[idx] || false;
+        const statusClass = satisfied ? 'status-satisfied' : 'status-not-satisfied';
+        const statusText = satisfied ? 'SATISFIED' : 'NOT SATISFIED';
+        criteriaHTML += `<div class="criteria-item"><span class="${statusClass}">${statusText}:</span> ${criterion}</div>`;
       });
-      yPosition += 5;
+      criteriaHTML += '</div>';
+
+      html += `
+      <tr>
+        <td>${dimension.element}${criteriaHTML}</td>
+        <td>${score}/3</td>
+        <td>${assessment}</td>
+      </tr>`;
     });
 
-    pdf.save(fileName);
+    html += `
+    </tbody>
+  </table>
+</body>
+</html>`;
+
+    // For PDF, we'll use print functionality
+    // Open in new window and trigger print dialog
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(html);
+    printWindow.document.close();
+
+    // Wait for content to load, then print
+    printWindow.onload = function() {
+      printWindow.focus();
+      printWindow.print();
+      // Note: User will need to "Save as PDF" in their print dialog
+    };
   }
 
-  // Generate Word export - Note: This is a simplified version
-  // For full Word export with docx library, you would need to include the library
-  async function generateWordExport(fileName) {
-    // For now, create a simple HTML document that can be opened in Word
-    const { ethicsPrinciples, qualityDimensions, results } = assessmentData;
+  // Generate Word export without external library
+  function generateWordExport(fileName) {
+    const { ethicsPrinciples, qualityDimensions, criteriaSatisfaction, results } = assessmentData;
     const date = results.date || new Date().toISOString().split('T')[0];
     const overallPass = results.ethicsPass && results.qualityPass;
 
+    // Build HTML content for Word
     let html = `
-      <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word'>
-      <head><meta charset='utf-8'><title>Data Quality Assessment</title></head>
-      <body>
-        <h1>Data Quality Suitability Tool - Overall Assessment</h1>
-        <p>Date: ${date}</p>
-        <h2>Overall Result: ${overallPass ? 'Pass' : 'Fail'}</h2>
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>Data Quality Suitability Tool - Overall Assessment</title>
+  <style>
+    body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; }
+    h1 { font-size: 18pt; font-weight: bold; margin-bottom: 12pt; }
+    h2 { font-size: 14pt; font-weight: bold; margin-top: 24pt; margin-bottom: 12pt; }
+    p { margin: 6pt 0; }
+    table { border-collapse: collapse; width: 100%; margin: 12pt 0; }
+    th, td { border: 1px solid black; padding: 6pt; text-align: left; }
+    th { background-color: #f0f0f0; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Data Quality Suitability Tool - Overall Assessment</h1>
+  <p><strong>Date:</strong> ${date}</p>
+  <h2>Overall Result: ${overallPass ? 'PASS' : 'FAIL'}</h2>
 
-        <h2>DATA ETHICS PRINCIPLES</h2>
-        <table border="1" cellpadding="5" cellspacing="0">
-          <tr><th>Principle</th><th>Answer</th></tr>
-    `;
+  <h2>DATA ETHICS PRINCIPLES</h2>
+  <p><strong>Assessment:</strong> ${results.ethicsPass ? 'PASS' : 'FAIL'}</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Principle</th>
+        <th>Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
 
     ETHICS_PRINCIPLES.forEach(principle => {
       const answer = ethicsPrinciples[principle.id];
       const answerText = answer === 'Yes' ? 'Yes' : answer === 'No' ? 'No' : 'Not evaluated';
-      html += `<tr><td>${principle.element}</td><td>${answerText}</td></tr>`;
+      html += `
+      <tr>
+        <td>${principle.element}</td>
+        <td>${answerText}</td>
+      </tr>`;
     });
 
     html += `
-        </table>
-        <h2>DATA QUALITY DIMENSIONS</h2>
-        <table border="1" cellpadding="5" cellspacing="0">
-          <tr><th>Dimension</th><th>Score</th><th>Assessment</th></tr>
-    `;
+    </tbody>
+  </table>
+
+  <h2>DATA QUALITY DIMENSIONS</h2>
+  <p><strong>Assessment:</strong> ${results.qualityPass ? 'PASS' : 'FAIL'} (Score: ${results.totalQualityScore}/15)</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Dimension</th>
+        <th>Score</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+`;
 
     QUALITY_DIMENSIONS.forEach(dimension => {
       const score = qualityDimensions[dimension.id] || 0;
       const assessment = getQualityScoreText(score);
-      html += `<tr><td>${dimension.element}</td><td>${score}/3</td><td>${assessment}</td></tr>`;
+      html += `
+      <tr>
+        <td>${dimension.element}</td>
+        <td>${score}/3</td>
+        <td>${assessment}</td>
+      </tr>`;
     });
 
     html += `
-        </table>
-      </body>
-      </html>
-    `;
+    </tbody>
+  </table>
+</body>
+</html>`;
 
-    const blob = new Blob(['\ufeff', html], {
-      type: 'application/msword'
+    // Create blob with proper MIME type for Word
+    const blob = new Blob([html], {
+      type: 'application/vnd.ms-word'
     });
 
     downloadBlob(blob, fileName);
