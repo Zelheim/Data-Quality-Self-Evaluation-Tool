@@ -13,6 +13,7 @@
 
     // Setup event listeners
     document.getElementById('evaluate-btn').addEventListener('click', handleEvaluate);
+    document.getElementById('evaluate-btn-resubmit').addEventListener('click', handleEvaluate);
     document.getElementById('continue-btn').addEventListener('click', handleContinue);
   }
 
@@ -28,17 +29,17 @@
       li.innerHTML = `
         <div class="well mrgn-bttm-0">
           <fieldset>
-            <legend id="ethics-el-${principle.id}" class="h3 mrgn-tp-0 mrgn-bttm-md">
+            <legend id="ethics-el-${principle.id}" class="mrgn-tp-0 mrgn-bttm-md">
               ${principle.element}
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h4 class="mrgn-bttm-sm">Explanation</h4>
+              <h3 class="mrgn-bttm-sm">Explanation</h3>
               <p>${principle.explanation}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h4 class="mrgn-bttm-sm">Criteria</h4>
+              <h3 class="mrgn-bttm-sm">Criteria</h3>
               <p id="ethics-crit-${principle.id}">${principle.criteria}</p>
             </div>
 
@@ -165,6 +166,8 @@
     const resultDisplay = document.getElementById('ethics-result-display');
     const resultMessage = document.getElementById('ethics-result-message');
 
+    // Hide submit button container and show results
+    document.getElementById('submit-button-container').classList.add('hidden');
     resultsSection.classList.remove('hidden');
 
     // Result display
@@ -192,10 +195,6 @@
         ${message}
       </p>
     `;
-
-    // Switch buttons
-    document.getElementById('evaluate-btn');
-    document.getElementById('continue-btn').classList.remove('hidden');
 
     // Focus on results
     setTimeout(() => {

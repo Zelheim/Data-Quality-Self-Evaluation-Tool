@@ -29,6 +29,7 @@
 
     // Setup event listeners
     document.getElementById('evaluate-quality-btn').addEventListener('click', handleEvaluate);
+    document.getElementById('evaluate-quality-btn-resubmit').addEventListener('click', handleEvaluate);
     document.getElementById('continue-quality-btn').addEventListener('click', handleContinue);
   }
 
@@ -70,17 +71,17 @@
       li.innerHTML = `
         <div class="well mrgn-bttm-0">
           <fieldset>
-            <legend id="quality-el-${dimension.id}" class="h3 mrgn-tp-0 mrgn-bttm-md">
+            <legend id="quality-el-${dimension.id}" class="mrgn-tp-0 mrgn-bttm-md">
               ${dimension.element}
             </legend>
 
             <div class="mrgn-bttm-md">
-              <h4 class="mrgn-bttm-sm">Definition</h4>
+              <h3 class="mrgn-bttm-sm">Definition</h3>
               <p>${dimension.definition}</p>
             </div>
 
             <div class="mrgn-bttm-md">
-              <h4 class="mrgn-bttm-sm">Criteria (select all that apply)</h4>
+              <h3 class="mrgn-bttm-sm">Criteria (select all that apply)</h3>
               <div id="quality-crit-${dimension.id}">
                 ${checkboxesHTML}
               </div>
@@ -179,6 +180,8 @@
     const resultDisplay = document.getElementById('quality-result-display');
     const resultMessage = document.getElementById('quality-result-message');
 
+    // Hide submit button container and show results
+    document.getElementById('submit-button-container').classList.add('hidden');
     resultsSection.classList.remove('hidden');
 
     // Generate summary list
@@ -193,27 +196,27 @@
 
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteria[idx] || false;
-        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle text-danger" aria-hidden="true"></span>';
-        const srText = satisfied ? '<span class="wb-inv">Satisfied: </span>' : '<span class="wb-inv">Not satisfied: </span>';
-        return `<li class="mrgn-bttm-sm">${icon} ${srText}${criterion}</li>`;
+        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
+        const statusLabel = satisfied ? '<strong class="text-success">Satisfied:</strong>' : '<strong class="text-danger">Not Satisfied:</strong>';
+        return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');
 
       summaryHTML += `
         <section class="panel panel-primary mrgn-bttm-lg">
           <header class="panel-heading">
-            <h4 class="panel-title">${dimension.element}</h4>
+            <h3 class="panel-title">${dimension.element}</h3>
           </header>
           <div class="panel-body">
             <div class="row">
               <div class="col-md-12">
                 <div class="well well-sm mrgn-bttm-md">
-                  <span class="h5 mrgn-tp-0 mrgn-bttm-0">
+                  <span class="mrgn-tp-0 mrgn-bttm-0">
                     <strong>Score:</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/${dimension.maxScore}</span>
                   </span>
                 </div>
               </div>
             </div>
-            <h5 class="mrgn-tp-md mrgn-bttm-sm">Criteria Assessment:</h5>
+            <h4 class="mrgn-tp-md mrgn-bttm-sm">Criteria Assessment:</h4>
             <ul class="fa-ul mrgn-lft-lg">
               ${criteriaHTML}
             </ul>
@@ -253,10 +256,6 @@
         ${message}
       </p>
     `;
-
-    // Switch buttons
-    document.getElementById('evaluate-quality-btn');
-    document.getElementById('continue-quality-btn').classList.remove('hidden');
 
     // Focus on results
     setTimeout(() => {

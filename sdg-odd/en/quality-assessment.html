@@ -142,40 +142,49 @@
                 <li>1 point = 1 criterion satisfied</li>
                 <li>0 points = No criterion satisfied</li>
               </ul>
-              <p><strong>Note:</strong> The 'Accessibility and clarity' dimension contains only 2 criteria; satisfying both criteria (2/2) results in the maximum score of 3 points.</p>
+              <p><strong>Note:</strong> The "Accessibility and clarity" dimension contains only two criteria. Satisfying both criteria (2/2) results in the maximum score of 3 points.</p>
             </section>
           </div>
         </div>
       </section>
 
-      <form id="quality-form" class="wb-frmvld" novalidate>
-        <section>
-          <h2>Data Quality Dimensions Assessment</h2>
+      <section>
+		<h2>Data Quality Dimensions Assessment</h2>
+		<form id="quality-form" class="wb-frmvld" novalidate>
           <ul class="list-unstyled mrgn-tp-md" id="quality-dimensions-list"></ul>
-        </section>
+        </form>
+	  </section>
 
-        <section id="quality-results" class="hidden" tabindex="-1">
-          <h2 id="quality-results-title">Results of the Data Quality Dimensions Assessment</h2>
-          <div id="quality-summary-table"></div>
-          <div class="well mrgn-tp-md">
-            <p class="mrgn-tp-0 mrgn-bttm-0">
-              <span class="glyphicon glyphicon-dashboard mrgn-rght-sm" aria-hidden="true"></span>
-              <strong>Total score:</strong> <span id="total-score-display"></span>
-            </p>
-          </div>
-          <div id="quality-result-display" class="mrgn-tp-md"></div>
-          <div id="quality-result-message" class="mrgn-tp-md"></div>
-        </section>
+
+      <div class="mrgn-tp-lg mrgn-bttm-lg" id="submit-button-container">
+        <a href="/sdg-odd/en/ethics-assessment.html" class="btn btn-default btn-lg">
+          <span class="glyphicon glyphicon-chevron-left mrgn-rght-sm" aria-hidden="true"></span>
+          Go back
+        </a>
+        <button type="button" id="evaluate-quality-btn" class="btn btn-primary btn-lg">Submit</button>
+      </div>
+
+      <section id="quality-results" class="hidden" tabindex="-1">
+        <h2 id="quality-results-title">Results of the Data Quality Dimensions Assessment</h2>
+        <div id="quality-summary-table"></div>
+        <div class="well mrgn-tp-md">
+          <p class="mrgn-tp-0 mrgn-bttm-0">
+            <span class="glyphicon glyphicon-dashboard mrgn-rght-sm" aria-hidden="true"></span>
+            <strong>Total score:</strong> <span id="total-score-display"></span>
+          </p>
+        </div>
+        <div id="quality-result-display" class="mrgn-tp-md"></div>
+        <div id="quality-result-message" class="mrgn-tp-md"></div>
 
         <div class="mrgn-tp-lg mrgn-bttm-lg">
           <a href="/sdg-odd/en/ethics-assessment.html" class="btn btn-default btn-lg">
             <span class="glyphicon glyphicon-chevron-left mrgn-rght-sm" aria-hidden="true"></span>
             Go back
           </a>
-          <button type="button" id="evaluate-quality-btn" class="btn btn-primary btn-lg">Submit</button>
-          <button type="button" id="continue-quality-btn" class="btn btn-primary btn-lg hidden">Next</button>
+          <button type="button" id="evaluate-quality-btn-resubmit" class="btn btn-primary btn-lg">Submit</button>
+          <button type="button" id="continue-quality-btn" class="btn btn-primary btn-lg">Next</button>
         </div>
-      </form>
+      </section>
 
       <div class="pagedetails">
         <dl id="wb-dtmd">

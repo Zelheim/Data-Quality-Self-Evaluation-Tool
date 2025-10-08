@@ -140,23 +140,27 @@
         <ul id="error-list"></ul>
       </div>
 
-      <form id="ethics-form" class="wb-frmvld" novalidate>
-        <section>
-          <h2>Data Ethics Principles Assessment</h2>
+	  <section>
+		<h2>Data Ethics Principles Assessment</h2>
+	  	<form id="ethics-form" class="wb-frmvld" novalidate>        
           <ul class="list-unstyled mrgn-tp-md" id="ethics-principles-list"></ul>
-        </section>
+      	</form>
+	  </section>
 
-        <section id="ethics-results" class="hidden" tabindex="-1">
-          <h2 id="ethics-results-title">Results of the Data Ethics Principles Assessment</h2>
-          <div id="ethics-result-display" class="mrgn-tp-md"></div>
-          <div id="ethics-result-message" class="mrgn-tp-md"></div>
-        </section>
+      <div class="mrgn-tp-lg mrgn-bttm-lg" id="submit-button-container">
+        <button type="button" id="evaluate-btn" class="btn btn-primary btn-lg">Submit</button>
+      </div>
+
+      <section id="ethics-results" class="hidden" tabindex="-1">
+        <h2 id="ethics-results-title">Results of the Data Ethics Principles Assessment</h2>
+        <div id="ethics-result-display" class="mrgn-tp-md"></div>
+        <div id="ethics-result-message" class="mrgn-tp-md"></div>
 
         <div class="mrgn-tp-lg mrgn-bttm-lg">
-          <button type="button" id="evaluate-btn" class="btn btn-primary btn-lg">Submit</button>
-          <button type="button" id="continue-btn" class="btn btn-primary btn-lg hidden">Next</button>
+          <button type="button" id="evaluate-btn-resubmit" class="btn btn-primary btn-lg">Submit</button>
+          <button type="button" id="continue-btn" class="btn btn-primary btn-lg">Next</button>
         </div>
-      </form>
+      </section>
 
 	<div class="pagedetails">
 		<dl id="wb-dtmd">

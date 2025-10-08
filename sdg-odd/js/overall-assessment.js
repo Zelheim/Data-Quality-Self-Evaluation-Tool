@@ -224,9 +224,9 @@
 
       const criteriaHTML = dimension.criteria.map((criterion, idx) => {
         const satisfied = criteriaSatisfied[idx];
-        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle text-success" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle text-danger" aria-hidden="true"></span>';
-        const srText = satisfied ? '<span class="wb-inv">Satisfied: </span>' : '<span class="wb-inv">Not satisfied: </span>';
-        return `<li class="mrgn-bttm-sm">${icon} ${srText}${criterion}</li>`;
+        const icon = satisfied ? '<span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>' : '<span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span>';
+        const statusLabel = satisfied ? '<strong class="text-success">Satisfied:</strong>' : '<strong class="text-danger">Not Satisfied:</strong>';
+        return `<li class="mrgn-bttm-sm">${icon} ${statusLabel} ${criterion}</li>`;
       }).join('');
 
       summaryHTML += `
@@ -238,7 +238,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="well well-sm mrgn-bttm-md">
-                  <span class="h5 mrgn-tp-0 mrgn-bttm-0">
+                  <span class="mrgn-tp-0 mrgn-bttm-0">
                     <strong>Score:</strong> <span class="label ${scoreClass} mrgn-lft-sm" style="font-size: 1em;">${score}/3</span>
                   </span>
                 </div>
